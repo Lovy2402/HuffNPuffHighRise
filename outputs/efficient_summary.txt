@@ -1,0 +1,75 @@
+efficient_core summary
+Spins=25
+Seed=123456789
+Threads=1
+Free Games:25.000000
+RTP:7.888000
+Var:332.696456
+ElapsedSeconds:0.000010
+SpinsPerSecond:2596053.997923
+
+FEATURE-SPECIFIC FORCED TEST CASES
+
+FEATURE TEST: FORCED GIRDER VIA INJECTED HAT
+
+===== GIRDER TEST ORIGINAL FULL PAY WINDOW =====
+row 0 | HV1    LV3    LV2    LV2    HV3    
+row 1 | LV4    HAT    HV4    LV4    LV2    
+row 2 | HAT    HV2    LV3    HV2    HAT    
+row 3 | LV3    LV4    HAT    LV3    HV1    
+row 4 | HV2    WILD   LV1    HV4    LV3    
+row 5 | LV1    LV1    HV2    LV1    HV4    
+
+===== GIRDER TEST ORIGINAL ACTIVE PAY WINDOW =====
+row 0 | LV3    LV4    HAT    LV3    HV1    
+row 1 | HV2    WILD   LV1    HV4    LV3    
+row 2 | LV1    LV1    HV2    LV1    HV4    
+Injected HAT at row=0, reel=0 replacing LV3
+Injected HAT at row=1, reel=2 replacing LV1
+
+===== GIRDER TEST MODIFIED ACTIVE PAY WINDOW =====
+row 0 | HAT    LV4    HAT    LV3    HV1    
+row 1 | HV2    WILD   HAT    HV4    LV3    
+row 2 | LV1    LV1    HV2    LV1    HV4    
+GIRDER TEST state change: hats_before=3, hats_after=6, free_game=1
+GIRDER TEST payout after feature: round_win remains 65 because core ways payout is calculated before girder logic
+
+FEATURE TEST: FORCED EXPHAT/HAT ACTIVE ROW EXPANSION
+
+===== EXPHAT TEST ORIGINAL FULL PAY WINDOW =====
+row 0 | HV1    HV1    HAT    LV1    LV4    
+row 1 | LV4    LV3    LV2    HV3    HV3    
+row 2 | HAT    HV2    HV3    LV2    LV2    
+row 3 | LV3    HV4    WILD   LV4    HAT    
+row 4 | HV2    LV1    LV3    HV2    HV1    
+row 5 | LV1    HV1    HV2    LV3    LV3    
+Injected XHAT at row=4, reel=0 replacing HV2
+
+===== EXPHAT TEST MODIFIED FULL PAY WINDOW =====
+row 0 | HV1    HV1    HAT    LV1    LV4    
+row 1 | LV4    LV3    LV2    HV3    HV3    
+row 2 | HAT    HV2    HV3    LV2    LV2    
+row 3 | LV3    HV4    WILD   LV4    HAT    
+row 4 | XHAT   LV1    LV3    HV2    HV1    
+row 5 | LV1    HV1    HV2    LV3    LV3    
+EXPHAT TEST payout/state change: round_win_before=5, round_win_after=5, hats_before=2, hats_after=3, free_game=0
+
+FEATURE TEST: INJECTED HAT ON FIRST ACTIVE REEL
+
+===== HAT TEST ORIGINAL FULL PAY WINDOW =====
+row 0 | HV3    HV2    LV2    LV2    LV2    
+row 1 | XHAT   HV4    HV4    LV2    HV2    
+row 2 | LV4    LV1    LV3    HV2    LV1    
+row 3 | LV1    HV1    HAT    LV4    LV4    
+row 4 | HV1    LV2    LV1    HAT    HV3    
+row 5 | HAT    LV3    HV2    LV3    LV2    
+Injected HAT at row=3, reel=0 replacing LV1
+
+===== HAT TEST MODIFIED FULL PAY WINDOW =====
+row 0 | HV3    HV2    LV2    LV2    LV2    
+row 1 | XHAT   HV4    HV4    LV2    HV2    
+row 2 | LV4    LV1    LV3    HV2    LV1    
+row 3 | HAT    HV1    HAT    LV4    LV4    
+row 4 | HV1    LV2    LV1    HAT    HV3    
+row 5 | HAT    LV3    HV2    LV3    LV2    
+HAT TEST state: round_win=0, hats_active=4, note=HAT is counted for bonus state but not seeded as a paying ways symbol

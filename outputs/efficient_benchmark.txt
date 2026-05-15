@@ -1,0 +1,9 @@
+efficient_core summary
+Spins=1000000
+Seed=123456789
+Threads=1
+Free Games:11.118029
+RTP:4.013876
+Var:182.441312
+ElapsedSeconds:0.254813
+SpinsPerSecond:3924449.665986
