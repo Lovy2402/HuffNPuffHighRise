@@ -459,9 +459,11 @@ winElements simulateOneSpin(int spin_index){
     probTables thresh_probs;
     debug_log << "Initial active_rows=" << active_rows << "\n";
     vector<vector<Symbol>>pay_window = generatePayWindow(BG1_Reels,BG1_Reelsize);
-    active_rows = explosiveHAT(pay_window,active_rows);
-    int round_win = waysWinCalculation(pay_window,active_rows);
     vector<vector<Symbol>> active_pay_window = getActivePayWindow(pay_window,active_rows);
+    logPayWindow(active_pay_window, "INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK");
+    active_rows = explosiveHAT(active_pay_window,active_rows);
+    int round_win = waysWinCalculation(pay_window,active_rows);
+    active_pay_window = getActivePayWindow(pay_window,active_rows);
     logPayWindow(active_pay_window, "ACTIVE PAY WINDOW BEFORE GIRDER");
     int hat_counts = allHatCount(active_pay_window);
     debug_log << "Bonus pre-check hat_counts=" << hat_counts << "\n";

@@ -57,11 +57,39 @@ struct SpinResult {
     int free_game = 0;
 };
 
+struct SymbolWinDetail {
+    Symbol symbol = BLANK;
+    int left2right = 0;
+    int ways = 0;
+    int pay = 0;
+    int symbol_win = 0;
+};
+
+struct DetailedSpinResult {
+    Window pay_window{};
+    ActiveWindow active_window_before_girder{};
+    ActiveWindow active_window_after_girder{};
+    vector<SymbolWinDetail> wins;
+    int initial_active_start_row = 3;
+    int active_start_row = 3;
+    int active_window_rows = 0;
+    bool explosive_hat_present = false;
+    bool explosive_hat_triggered = false;
+    double explosive_hat_roll = -1.0;
+    bool girder_eligible = false;
+    bool girder_triggered = false;
+    double girder_roll = -1.0;
+    int hats_before_girder = 0;
+    int hats_after_girder = 0;
+    SpinResult result{};
+};
+
 struct Aggregate {
     uint64_t spins = 0;
     long double win_xbet_sum = 0.0L;
     long double win_xbet_square_sum = 0.0L;
     uint64_t free_games = 0;
+    uint64_t paid_hits = 0;
     array<array<uint64_t, MAX_MATCH>, SYMBOL_COUNT> hit_table{};
     array<array<int64_t, MAX_MATCH>, SYMBOL_COUNT> win_table{};
 
@@ -71,6 +99,7 @@ struct Aggregate {
         win_xbet_sum += win_xbet;
         win_xbet_square_sum += win_xbet * win_xbet;
         free_games += result.free_game;
+        paid_hits += result.round_win > 0 ? 1 : 0;
     }
 
     void merge(const Aggregate& other) {
@@ -78,12 +107,11 @@ struct Aggregate {
         win_xbet_sum += other.win_xbet_sum;
         win_xbet_square_sum += other.win_xbet_square_sum;
         free_games += other.free_games;
+        paid_hits += other.paid_hits;
         for (int symbol = 0; symbol < SYMBOL_COUNT; symbol++) {
             for (int match = 0; match < MAX_MATCH; match++) {
                 hit_table[symbol][match] += other.hit_table[symbol][match];
-                if (other.win_table[symbol][match] != 0) {
-                    win_table[symbol][match] = other.win_table[symbol][match];
-                }
+                win_table[symbol][match] += other.win_table[symbol][match];
             }
         }
     }
@@ -195,8 +223,8 @@ int countHatActive(const ActiveWindow& window, int rows) {
     return count;
 }
 
-bool hasExplosiveHat(const Window& window) {
-    for (int row = 0; row < NO_OF_ROWS; row++) {
+bool hasExplosiveHat(const Window& window, int start_row) {
+    for (int row = start_row; row < NO_OF_ROWS; row++) {
         for (int reel = 0; reel < NO_OF_REELS; reel++) {
             if (window[row][reel] == EXPHAT) {
                 return true;
@@ -207,7 +235,7 @@ bool hasExplosiveHat(const Window& window) {
 }
 
 int explosiveHat(const Window& window, int active_rows, mt19937& rng) {
-    if (hasExplosiveHat(window)) {
+    if (hasExplosiveHat(window, active_rows)) {
         double p = getUniform(rng);
         return active_rows - (cumProbability(p) + 1);
     }
@@ -223,7 +251,12 @@ void copyActiveWindow(const Window& source, int active_rows, ActiveWindow& targe
     }
 }
 
-int waysWinCalculation(const Window& window, int start_row, Aggregate* aggregate) {
+int waysWinCalculationWithDetails(
+    const Window& window,
+    int start_row,
+    Aggregate* aggregate,
+    vector<SymbolWinDetail>* details
+) {
     int symbol_count[NO_OF_SYMBOLS] = {};
     for (int row = start_row; row < NO_OF_ROWS; row++) {
         Symbol symbol = window[row][0];
@@ -259,11 +292,18 @@ int waysWinCalculation(const Window& window, int start_row, Aggregate* aggregate
         int symbol_win = PAY_TABLE[symbol][left2right] * ways;
         if (aggregate != nullptr) {
             aggregate->hit_table[symbol][left2right]++;
-            aggregate->win_table[symbol][left2right] = symbol_win;
+            aggregate->win_table[symbol][left2right] += symbol_win;
+        }
+        if (details != nullptr) {
+            details->push_back({symbol, left2right, ways, PAY_TABLE[symbol][left2right], symbol_win});
         }
         win += symbol_win;
     }
     return win;
+}
+
+int waysWinCalculation(const Window& window, int start_row, Aggregate* aggregate) {
+    return waysWinCalculationWithDetails(window, start_row, aggregate, nullptr);
 }
 
 void girderTrigger(ActiveWindow& window, int rows, mt19937& rng) {
@@ -309,6 +349,56 @@ SpinResult simulateOneSpin(mt19937& rng, Aggregate* aggregate) {
 
     hat_counts = countHatActive(active_window, active_window_rows);
     return {round_win, hat_counts >= 6 ? 1 : 0};
+}
+
+DetailedSpinResult simulateOneSpinDetailed(mt19937& rng, Aggregate* aggregate) {
+    DetailedSpinResult detailed;
+    detailed.initial_active_start_row = 3;
+    detailed.active_start_row = 3;
+
+    generatePayWindow(detailed.pay_window, rng);
+
+    detailed.explosive_hat_present = hasExplosiveHat(detailed.pay_window, detailed.active_start_row);
+    if (detailed.explosive_hat_present) {
+        detailed.explosive_hat_roll = getUniform(rng);
+        detailed.active_start_row = detailed.initial_active_start_row - (cumProbability(detailed.explosive_hat_roll) + 1);
+        detailed.explosive_hat_triggered = detailed.active_start_row != detailed.initial_active_start_row;
+    }
+
+    int round_win = waysWinCalculationWithDetails(
+        detailed.pay_window,
+        detailed.active_start_row,
+        aggregate,
+        &detailed.wins
+    );
+
+    copyActiveWindow(
+        detailed.pay_window,
+        detailed.active_start_row,
+        detailed.active_window_before_girder,
+        detailed.active_window_rows
+    );
+    detailed.active_window_after_girder = detailed.active_window_before_girder;
+
+    detailed.hats_before_girder = countHatActive(
+        detailed.active_window_after_girder,
+        detailed.active_window_rows
+    );
+    detailed.girder_eligible = detailed.hats_before_girder > 0;
+    if (detailed.girder_eligible) {
+        detailed.girder_roll = getUniform(rng);
+        if (detailed.girder_roll < 0.1) {
+            detailed.girder_triggered = true;
+            girderTrigger(detailed.active_window_after_girder, detailed.active_window_rows, rng);
+        }
+    }
+
+    detailed.hats_after_girder = countHatActive(
+        detailed.active_window_after_girder,
+        detailed.active_window_rows
+    );
+    detailed.result = {round_win, detailed.hats_after_girder >= 6 ? 1 : 0};
+    return detailed;
 }
 
 Aggregate simulateRangeWithRng(uint64_t spins, mt19937& rng) {
@@ -522,6 +612,7 @@ void writeSummary(ostream& out, const Options& options, const Aggregate& aggrega
     out << "SpinsPerSecond:" << (elapsed_seconds > 0.0 ? aggregate.spins / elapsed_seconds : 0.0) << "\n";
 }
 
+#ifndef EFFICIENT_CORE_LIBRARY
 int main(int argc, char** argv) {
     Options options = parseOptions(argc, argv);
 
@@ -546,3 +637,4 @@ int main(int argc, char** argv) {
     writeSummary(cout, options, aggregate, elapsed);
     return 0;
 }
+#endif

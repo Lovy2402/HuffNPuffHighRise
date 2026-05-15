@@ -159,6 +159,64 @@ This file should document:
 - commands needed to reproduce tests
 
 
+## TASK 3:
+
+Use the optimized implementation in efficient_core/ to create:
+
+game.cpp
+
+Purpose:
+- provide a user-facing executable for the slot game
+- support spin-by-spin play
+- support RTP simulation/reporting
+- support symbol win distribution reporting
+
+Requirements:
+1. Do NOT modify core/core.cpp.
+2. Do NOT duplicate gameplay logic unnecessarily.
+3. Reuse efficient_core implementation as the backend.
+4. Preserve exact gameplay behavior validated previously.
+5. Keep game.cpp as an interface/runner layer, not a new engine.
+
+game.cpp should support at least two modes:
+
+Mode 1: interactive / spin-by-spin
+- user can trigger one spin at a time
+- print the pay window
+- print wins/payouts/features for that spin
+- print running balance/RTP if useful
+
+Mode 2: simulation/report mode
+- user can provide number of spins, e.g. --spins 1000000
+- compute RTP
+- compute total wager, total win, net result
+- compute hit counts and win totals by symbol and left-to-right match length
+
+For symbol win distribution, use the same idea as:
+
+HitTable[uniqueSymbols[s]][left2right]++;
+WinTable[uniqueSymbols[s]][left2right] += symbol_win;
+Look into gameRule/example_symbol_dist.csv to understand what is meant by symbol win distribution. Mode 2 should output
+the things in example_symbol_dist.csv.
+
+Important:
+- If current code uses assignment instead of accumulation for WinTable, check whether that is intentional.
+- For distribution reporting, cumulative win per symbol/length is usually preferred.
+- Output should be readable and optionally saved to outputs/.
+
+Also inspect gameRule/ for the example symbol win distribution format.
+That example is not specific to this game, but use it as formatting guidance.
+
+If needed, create:
+- outputs/rtp_report.txt
+- outputs/symbol_win_distribution.txt
+
+Before implementing, first provide:
+1. planned CLI interface
+2. files to create/modify
+3. reporting format
+4. how validation will be done
+
 
 ## Constraints
     Do NOT modify core/core.cpp
@@ -168,3 +226,25 @@ This file should document:
     Validate optimized behavior against outputs/test.txt.
     Prefer minimal and readable changes
     Preserve deterministic behavior whenever possible
+    After every major task, update SUMMARY.md.
+    After completing a task, stop and wait for user review before any git commit.
+    Never automatically commit unless explicitly instructed.
+
+
+## How to update SUMMARY.md after every task completion
+
+The summary should be concise and operationally useful for starting a fresh Codex session.
+
+Include:
+    1. Completed tasks
+    2. Important files created/modified
+    3. Current repository structure assumptions
+    4. Validation status
+    5. Important invariants/rules
+    6. Known issues or unresolved concerns
+    7. Benchmark/optimization status
+    8. Recommended next step
+
+Do not write long prose.
+Prefer structured bullet points and sections.
+

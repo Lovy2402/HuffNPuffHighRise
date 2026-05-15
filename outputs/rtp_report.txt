@@ -1,0 +1,16 @@
+game simulation report
+Spins=1000000
+Seed=1384405084
+Threads=4
+Bet=20
+TotalWager=20000000.000000
+TotalPayout=53519996.000000
+Net=33519996.000000
+RTP=2.676000
+Variance=97.282948
+HitFrequency=0.484890
+PaidHits=484890
+FreeGames=86710
+FreeGameTrigger=11.532695
+ElapsedSeconds=0.075722
+SpinsPerSecond=13206130.650337

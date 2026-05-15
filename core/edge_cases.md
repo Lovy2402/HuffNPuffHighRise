@@ -26,19 +26,19 @@
 
 ## EXPHAT can expose non-paying symbols in the expanded active region
 
-- Edge case: EXPHAT expansion lowers `active_rows`, adding more rows to the active pay window. Those newly active rows can include HAT, EXPHAT, or WILD on the first reel.
+- Edge case: EXPHAT expansion lowers `active_rows`, adding more rows to the active pay window. EXPHAT should only be evaluated if it appears in the initial active pay window, not anywhere in the full 6x5 pay window. Newly active rows can include HAT, EXPHAT, or WILD on the first reel.
 - Why it matters: expanded windows affect both payout evaluation and bonus hat counts.
-- Expected behavior: expanded active rows are included in ways and hat-count calculations; non-paying first-reel symbols are not paying ways seeds.
-- Possible failure modes: optimized implementations may expand the visual window but forget to use the expanded row set for payout or bonus counts.
-- Suggested validation strategy: inject EXPHAT, force each expansion threshold bucket, and compare active row count, ways payout, and hat counts before and after expansion.
+- Expected behavior: if EXPHAT is in the initial active window, sample the expansion probability and include expanded rows in ways and hat-count calculations; if EXPHAT is outside the initial active window, do not sample the EXPHAT RNG and do not expand.
+- Possible failure modes: optimized implementations may scan the full window, consume RNG too early, expand when EXPHAT is inactive, or expand the visual window but forget to use the expanded row set for payout or bonus counts.
+- Suggested validation strategy: inject EXPHAT inside the initial active window and outside it; verify only the active-window case consumes the EXPHAT RNG and changes active rows. Force each expansion threshold bucket for active EXPHAT.
 
-## Current reference summary guard has invalid C++ syntax
+## Reference summary guard must avoid divide-by-zero
 
-- Edge case: the current `core/core.cpp` uses `if total_free_games > 0:` in `simulateAll()`.
-- Why it matters: the authoritative reference file does not compile until that guard is expressed as valid C++.
-- Expected behavior: use `if (total_free_games > 0) { ... }` style syntax while preserving the intended zero-denominator guard.
-- Possible failure modes: validation cannot compile the reference, blocking equivalence testing.
-- Suggested validation strategy: compile `core/core.cpp` before equivalence runs and treat compiler failures as setup blockers.
+- Edge case: `simulateAll()` can complete with `total_free_games == 0`.
+- Why it matters: free-game trigger interval reporting must not divide by zero.
+- Expected behavior: report `0.0` when no free games trigger.
+- Possible failure modes: validation runs with small `N`, alternate seeds, or altered strips may report an invalid frequency.
+- Suggested validation strategy: compile and run deterministic short simulations that produce zero and nonzero free-game counts.
 
 ## Non-paying symbols on the first active reel can index outside `symbol_count`
 

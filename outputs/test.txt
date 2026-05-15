@@ -30,83 +30,14 @@ row 3 | LV1    HV1    LV2    HAT    LV4
 row 4 | HV1    LV2    HV4    LV3    HV3    
 row 5 | HAT    LV3    LV3    HV1    LV2    
 ======================
+getActivePayWindow active_rows=3, returned_rows=3
 
--- Explosive HAT evaluation --
-findSymbol XHAT: count=1, positions=5(row=1, reel=0)
-EXPHAT Info:1
-RNG uniform real [0.0, 1.0) -> 0.713564
-cumProbability p=0.713564, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
-cumProbability selected index=0
-Explosive HAT active_rows 3 -> 2
-
--- Ways win calculation --
-start_idx(active rows skipped)=2
-First reel active symbols: LV4, LV1, HV1, HAT
-Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
-First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=1, LV2=0, LV3=0, LV4=1
-Unique paying symbols on first active reel: HV1, LV1, LV4
-Evaluating symbol HV1
-  Reel 0 active slice: LV4, LV1, HV1, HAT | matching_or_wild=1
-  Reel 1 active slice: LV1, HV1, LV2, LV3 | matching_or_wild=1
-  Reel 2 active slice: HV1, LV2, HV4, LV3 | matching_or_wild=1
-  Reel 3 active slice: LV4, HAT, LV3, HV1 | matching_or_wild=1
-  Reel 4 active slice: LV1, LV4, HV3, LV2 | matching_or_wild=0
-  Win result: symbol=HV1, left2right=4, ways=1, pay=100, symbol_win=100
-Evaluating symbol LV1
-  Reel 0 active slice: LV4, LV1, HV1, HAT | matching_or_wild=1
-  Reel 1 active slice: LV1, HV1, LV2, LV3 | matching_or_wild=1
-  Reel 2 active slice: HV1, LV2, HV4, LV3 | matching_or_wild=0
-  Win result: symbol=LV1, left2right=2, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV4
-  Reel 0 active slice: LV4, LV1, HV1, HAT | matching_or_wild=1
-  Reel 1 active slice: LV1, HV1, LV2, LV3 | matching_or_wild=0
-  Win result: symbol=LV4, left2right=1, ways=1, pay=0, symbol_win=0
-Total ways win=100
-getActivePayWindow active_rows=2, returned_rows=4
-
-===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=4, reels=5
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV4    LV1    HV1    LV4    LV1    
-row 1 | LV1    HV1    LV2    HAT    LV4    
-row 2 | HV1    LV2    HV4    LV3    HV3    
-row 3 | HAT    LV3    LV3    HV1    LV2    
-======================
-allHatCount rows=4, reels=5 -> 2
-Bonus pre-check hat_counts=2
-RNG uniform real [0.0, 1.0) -> 0.256999
-Girder probability p=0.256999, threshold=0.1
-Girder trigger: NO
-allHatCount rows=4, reels=5 -> 2
-Bonus final hat_counts=2, free_game=0
-Spin summary: round_win=100, round_win_xbet=5, free_game=0
-
-============================================================
-SPIN 2
-============================================================
-Initial active_rows=3
-
--- Generating pay window --
-RNG int [0, 17] -> 14
-Reel 0: size=18, start_idx=14, symbols=14:HAT -> 15:LV3 -> 16:HV4 -> 17:LV2 -> 0:LV1 -> 1:LV2
-RNG int [0, 15] -> 12
-Reel 1: size=16, start_idx=12, symbols=12:LV4 -> 13:HV1 -> 14:LV3 -> 15:HV2 -> 0:HV4 -> 1:LV1
-RNG int [0, 19] -> 1
-Reel 2: size=20, start_idx=1, symbols=1:HV4 -> 2:LV1 -> 3:HV1 -> 4:HAT -> 5:LV2 -> 6:HV3
-RNG int [0, 16] -> 15
-Reel 3: size=17, start_idx=15, symbols=15:HAT -> 16:LV2 -> 0:LV2 -> 1:HV2 -> 2:LV4 -> 3:HAT
-RNG int [0, 18] -> 16
-Reel 4: size=19, start_idx=16, symbols=16:HV1 -> 17:LV3 -> 18:HV4 -> 0:HV4 -> 1:LV2 -> 2:HV3
-
-===== FULL PAY WINDOW =====
-rows=6, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | HAT    LV4    HV4    HAT    HV1    
-row 1 | LV3    HV1    LV1    LV2    LV3    
-row 2 | HV4    LV3    HV1    LV2    HV4    
-row 3 | LV2    HV2    HAT    HV2    HV4    
-row 4 | LV1    HV4    LV2    LV4    LV2    
-row 5 | LV2    LV1    HV3    HAT    HV3    
+row 0 | LV1    HV1    LV2    HAT    LV4    
+row 1 | HV1    LV2    HV4    LV3    HV3    
+row 2 | HAT    LV3    LV3    HV1    LV2    
 ======================
 
 -- Explosive HAT evaluation --
@@ -116,32 +47,114 @@ No EXPHAT present; active_rows remains 3
 
 -- Ways win calculation --
 start_idx(active rows skipped)=3
-First reel active symbols: LV2, LV1, LV2
-First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=0, LV1=1, LV2=2, LV3=0, LV4=0
-Unique paying symbols on first active reel: LV1, LV2
+First reel active symbols: LV1, HV1, HAT
+Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
+First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=1, LV2=0, LV3=0, LV4=0
+Unique paying symbols on first active reel: HV1, LV1
+Evaluating symbol HV1
+  Reel 0 active slice: LV1, HV1, HAT | matching_or_wild=1
+  Reel 1 active slice: HV1, LV2, LV3 | matching_or_wild=1
+  Reel 2 active slice: LV2, HV4, LV3 | matching_or_wild=0
+  Win result: symbol=HV1, left2right=2, ways=1, pay=0, symbol_win=0
 Evaluating symbol LV1
-  Reel 0 active slice: LV2, LV1, LV2 | matching_or_wild=1
-  Reel 1 active slice: HV2, HV4, LV1 | matching_or_wild=1
-  Reel 2 active slice: HAT, LV2, HV3 | matching_or_wild=0
-  Win result: symbol=LV1, left2right=2, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV2
-  Reel 0 active slice: LV2, LV1, LV2 | matching_or_wild=2
-  Reel 1 active slice: HV2, HV4, LV1 | matching_or_wild=0
-  Win result: symbol=LV2, left2right=1, ways=2, pay=0, symbol_win=0
+  Reel 0 active slice: LV1, HV1, HAT | matching_or_wild=1
+  Reel 1 active slice: HV1, LV2, LV3 | matching_or_wild=0
+  Win result: symbol=LV1, left2right=1, ways=1, pay=0, symbol_win=0
 Total ways win=0
 getActivePayWindow active_rows=3, returned_rows=3
 
 ===== ACTIVE PAY WINDOW BEFORE GIRDER =====
 rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV2    HV2    HAT    HV2    HV4    
-row 1 | LV1    HV4    LV2    LV4    LV2    
-row 2 | LV2    LV1    HV3    HAT    HV3    
+row 0 | LV1    HV1    LV2    HAT    LV4    
+row 1 | HV1    LV2    HV4    LV3    HV3    
+row 2 | HAT    LV3    LV3    HV1    LV2    
 ======================
 allHatCount rows=3, reels=5 -> 2
 Bonus pre-check hat_counts=2
-RNG uniform real [0.0, 1.0) -> 0.926903
-Girder probability p=0.926903, threshold=0.1
+RNG uniform real [0.0, 1.0) -> 0.713564
+Girder probability p=0.713564, threshold=0.1
+Girder trigger: NO
+allHatCount rows=3, reels=5 -> 2
+Bonus final hat_counts=2, free_game=0
+Spin summary: round_win=0, round_win_xbet=0, free_game=0
+
+============================================================
+SPIN 2
+============================================================
+Initial active_rows=3
+
+-- Generating pay window --
+RNG int [0, 17] -> 2
+Reel 0: size=18, start_idx=2, symbols=2:HV1 -> 3:LV4 -> 4:HAT -> 5:LV3 -> 6:HV2 -> 7:LV1
+RNG int [0, 15] -> 4
+Reel 1: size=16, start_idx=4, symbols=4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4 -> 8:WILD -> 9:LV1
+RNG int [0, 19] -> 16
+Reel 2: size=20, start_idx=16, symbols=16:HAT -> 17:LV1 -> 18:HV2 -> 19:LV4 -> 0:LV4 -> 1:HV4
+RNG int [0, 16] -> 12
+Reel 3: size=17, start_idx=12, symbols=12:LV3 -> 13:HV4 -> 14:LV1 -> 15:HAT -> 16:LV2 -> 0:LV2
+RNG int [0, 18] -> 1
+Reel 4: size=19, start_idx=1, symbols=1:LV2 -> 2:HV3 -> 3:LV1 -> 4:HAT -> 5:LV4 -> 6:HV1
+
+===== FULL PAY WINDOW =====
+rows=6, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HV1    LV3    HAT    LV3    LV2    
+row 1 | LV4    HAT    LV1    HV4    HV3    
+row 2 | HAT    HV2    HV2    LV1    LV1    
+row 3 | LV3    LV4    LV4    HAT    HAT    
+row 4 | HV2    WILD   LV4    LV2    LV4    
+row 5 | LV1    LV1    HV4    LV2    HV1    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV3    LV4    LV4    HAT    HAT    
+row 1 | HV2    WILD   LV4    LV2    LV4    
+row 2 | LV1    LV1    HV4    LV2    HV1    
+======================
+
+-- Explosive HAT evaluation --
+findSymbol XHAT: count=0, positions=none
+EXPHAT Info:0
+No EXPHAT present; active_rows remains 3
+
+-- Ways win calculation --
+start_idx(active rows skipped)=3
+First reel active symbols: LV3, HV2, LV1
+First reel symbol counts: HV1=0, HV2=1, HV3=0, HV4=0, LV1=1, LV2=0, LV3=1, LV4=0
+Unique paying symbols on first active reel: HV2, LV1, LV3
+Evaluating symbol HV2
+  Reel 0 active slice: LV3, HV2, LV1 | matching_or_wild=1
+  Reel 1 active slice: LV4, WILD, LV1 | matching_or_wild=1
+  Reel 2 active slice: LV4, LV4, HV4 | matching_or_wild=0
+  Win result: symbol=HV2, left2right=2, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV1
+  Reel 0 active slice: LV3, HV2, LV1 | matching_or_wild=1
+  Reel 1 active slice: LV4, WILD, LV1 | matching_or_wild=2
+  Reel 2 active slice: LV4, LV4, HV4 | matching_or_wild=0
+  Win result: symbol=LV1, left2right=2, ways=2, pay=0, symbol_win=0
+Evaluating symbol LV3
+  Reel 0 active slice: LV3, HV2, LV1 | matching_or_wild=1
+  Reel 1 active slice: LV4, WILD, LV1 | matching_or_wild=1
+  Reel 2 active slice: LV4, LV4, HV4 | matching_or_wild=0
+  Win result: symbol=LV3, left2right=2, ways=1, pay=0, symbol_win=0
+Total ways win=0
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== ACTIVE PAY WINDOW BEFORE GIRDER =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV3    LV4    LV4    HAT    HAT    
+row 1 | HV2    WILD   LV4    LV2    LV4    
+row 2 | LV1    LV1    HV4    LV2    HV1    
+======================
+allHatCount rows=3, reels=5 -> 2
+Bonus pre-check hat_counts=2
+RNG uniform real [0.0, 1.0) -> 0.861305
+Girder probability p=0.861305, threshold=0.1
 Girder trigger: NO
 allHatCount rows=3, reels=5 -> 2
 Bonus final hat_counts=2, free_game=0
@@ -153,26 +166,35 @@ SPIN 3
 Initial active_rows=3
 
 -- Generating pay window --
-RNG int [0, 17] -> 12
-Reel 0: size=18, start_idx=12, symbols=12:LV1 -> 13:HV1 -> 14:HAT -> 15:LV3 -> 16:HV4 -> 17:LV2
-RNG int [0, 15] -> 7
-Reel 1: size=16, start_idx=7, symbols=7:LV4 -> 8:WILD -> 9:LV1 -> 10:HV3 -> 11:LV2 -> 12:LV4
-RNG int [0, 19] -> 12
-Reel 2: size=20, start_idx=12, symbols=12:HV1 -> 13:LV2 -> 14:HV4 -> 15:LV3 -> 16:HAT -> 17:LV1
-RNG int [0, 16] -> 4
-Reel 3: size=17, start_idx=4, symbols=4:LV3 -> 5:HV1 -> 6:WILD -> 7:LV1 -> 8:HV3 -> 9:LV2
-RNG int [0, 18] -> 13
-Reel 4: size=19, start_idx=13, symbols=13:HV3 -> 14:LV2 -> 15:HAT -> 16:HV1 -> 17:LV3 -> 18:HV4
+RNG int [0, 17] -> 2
+Reel 0: size=18, start_idx=2, symbols=2:HV1 -> 3:LV4 -> 4:HAT -> 5:LV3 -> 6:HV2 -> 7:LV1
+RNG int [0, 15] -> 14
+Reel 1: size=16, start_idx=14, symbols=14:LV3 -> 15:HV2 -> 0:HV4 -> 1:LV1 -> 2:HV1 -> 3:LV2
+RNG int [0, 19] -> 13
+Reel 2: size=20, start_idx=13, symbols=13:LV2 -> 14:HV4 -> 15:LV3 -> 16:HAT -> 17:LV1 -> 18:HV2
+RNG int [0, 16] -> 8
+Reel 3: size=17, start_idx=8, symbols=8:HV3 -> 9:LV2 -> 10:LV4 -> 11:HV2 -> 12:LV3 -> 13:HV4
+RNG int [0, 18] -> 12
+Reel 4: size=19, start_idx=12, symbols=12:LV4 -> 13:HV3 -> 14:LV2 -> 15:HAT -> 16:HV1 -> 17:LV3
 
 ===== FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV1    LV4    HV1    LV3    HV3    
-row 1 | HV1    WILD   LV2    HV1    LV2    
-row 2 | HAT    LV1    HV4    WILD   HAT    
-row 3 | LV3    HV3    LV3    LV1    HV1    
-row 4 | HV4    LV2    HAT    HV3    LV3    
-row 5 | LV2    LV4    LV1    LV2    HV4    
+row 0 | HV1    LV3    LV2    HV3    LV4    
+row 1 | LV4    HV2    HV4    LV2    HV3    
+row 2 | HAT    HV4    LV3    LV4    LV2    
+row 3 | LV3    LV1    HAT    HV2    HAT    
+row 4 | HV2    HV1    LV1    LV3    HV1    
+row 5 | LV1    LV2    HV2    HV4    LV3    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV3    LV1    HAT    HV2    HAT    
+row 1 | HV2    HV1    LV1    LV3    HV1    
+row 2 | LV1    LV2    HV2    HV4    LV3    
 ======================
 
 -- Explosive HAT evaluation --
@@ -182,40 +204,41 @@ No EXPHAT present; active_rows remains 3
 
 -- Ways win calculation --
 start_idx(active rows skipped)=3
-First reel active symbols: LV3, HV4, LV2
-First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=1, LV1=0, LV2=1, LV3=1, LV4=0
-Unique paying symbols on first active reel: HV4, LV2, LV3
-Evaluating symbol HV4
-  Reel 0 active slice: LV3, HV4, LV2 | matching_or_wild=1
-  Reel 1 active slice: HV3, LV2, LV4 | matching_or_wild=0
-  Win result: symbol=HV4, left2right=1, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV2
-  Reel 0 active slice: LV3, HV4, LV2 | matching_or_wild=1
-  Reel 1 active slice: HV3, LV2, LV4 | matching_or_wild=1
-  Reel 2 active slice: LV3, HAT, LV1 | matching_or_wild=0
-  Win result: symbol=LV2, left2right=2, ways=1, pay=0, symbol_win=0
+First reel active symbols: LV3, HV2, LV1
+First reel symbol counts: HV1=0, HV2=1, HV3=0, HV4=0, LV1=1, LV2=0, LV3=1, LV4=0
+Unique paying symbols on first active reel: HV2, LV1, LV3
+Evaluating symbol HV2
+  Reel 0 active slice: LV3, HV2, LV1 | matching_or_wild=1
+  Reel 1 active slice: LV1, HV1, LV2 | matching_or_wild=0
+  Win result: symbol=HV2, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV1
+  Reel 0 active slice: LV3, HV2, LV1 | matching_or_wild=1
+  Reel 1 active slice: LV1, HV1, LV2 | matching_or_wild=1
+  Reel 2 active slice: HAT, LV1, HV2 | matching_or_wild=1
+  Reel 3 active slice: HV2, LV3, HV4 | matching_or_wild=0
+  Win result: symbol=LV1, left2right=3, ways=1, pay=5, symbol_win=5
 Evaluating symbol LV3
-  Reel 0 active slice: LV3, HV4, LV2 | matching_or_wild=1
-  Reel 1 active slice: HV3, LV2, LV4 | matching_or_wild=0
+  Reel 0 active slice: LV3, HV2, LV1 | matching_or_wild=1
+  Reel 1 active slice: LV1, HV1, LV2 | matching_or_wild=0
   Win result: symbol=LV3, left2right=1, ways=1, pay=0, symbol_win=0
-Total ways win=0
+Total ways win=5
 getActivePayWindow active_rows=3, returned_rows=3
 
 ===== ACTIVE PAY WINDOW BEFORE GIRDER =====
 rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV3    HV3    LV3    LV1    HV1    
-row 1 | HV4    LV2    HAT    HV3    LV3    
-row 2 | LV2    LV4    LV1    LV2    HV4    
+row 0 | LV3    LV1    HAT    HV2    HAT    
+row 1 | HV2    HV1    LV1    LV3    HV1    
+row 2 | LV1    LV2    HV2    HV4    LV3    
 ======================
-allHatCount rows=3, reels=5 -> 1
-Bonus pre-check hat_counts=1
-RNG uniform real [0.0, 1.0) -> 0.748725
-Girder probability p=0.748725, threshold=0.1
+allHatCount rows=3, reels=5 -> 2
+Bonus pre-check hat_counts=2
+RNG uniform real [0.0, 1.0) -> 0.723627
+Girder probability p=0.723627, threshold=0.1
 Girder trigger: NO
-allHatCount rows=3, reels=5 -> 1
-Bonus final hat_counts=1, free_game=0
-Spin summary: round_win=0, round_win_xbet=0, free_game=0
+allHatCount rows=3, reels=5 -> 2
+Bonus final hat_counts=2, free_game=0
+Spin summary: round_win=5, round_win_xbet=0.25, free_game=0
 
 ============================================================
 SPIN 4
@@ -223,26 +246,35 @@ SPIN 4
 Initial active_rows=3
 
 -- Generating pay window --
-RNG int [0, 17] -> 4
-Reel 0: size=18, start_idx=4, symbols=4:HAT -> 5:LV3 -> 6:HV2 -> 7:LV1 -> 8:LV2 -> 9:HV3
-RNG int [0, 15] -> 13
-Reel 1: size=16, start_idx=13, symbols=13:HV1 -> 14:LV3 -> 15:HV2 -> 0:HV4 -> 1:LV1 -> 2:HV1
-RNG int [0, 19] -> 12
-Reel 2: size=20, start_idx=12, symbols=12:HV1 -> 13:LV2 -> 14:HV4 -> 15:LV3 -> 16:HAT -> 17:LV1
-RNG int [0, 16] -> 1
-Reel 3: size=17, start_idx=1, symbols=1:HV2 -> 2:LV4 -> 3:HAT -> 4:LV3 -> 5:HV1 -> 6:WILD
-RNG int [0, 18] -> 9
-Reel 4: size=19, start_idx=9, symbols=9:LV2 -> 10:HV2 -> 11:LV1 -> 12:LV4 -> 13:HV3 -> 14:LV2
+RNG int [0, 17] -> 10
+Reel 0: size=18, start_idx=10, symbols=10:XHAT -> 11:LV4 -> 12:LV1 -> 13:HV1 -> 14:HAT -> 15:LV3
+RNG int [0, 15] -> 11
+Reel 1: size=16, start_idx=11, symbols=11:LV2 -> 12:LV4 -> 13:HV1 -> 14:LV3 -> 15:HV2 -> 0:HV4
+RNG int [0, 19] -> 4
+Reel 2: size=20, start_idx=4, symbols=4:HAT -> 5:LV2 -> 6:HV3 -> 7:WILD -> 8:LV3 -> 9:HV2
+RNG int [0, 16] -> 13
+Reel 3: size=17, start_idx=13, symbols=13:HV4 -> 14:LV1 -> 15:HAT -> 16:LV2 -> 0:LV2 -> 1:HV2
+RNG int [0, 18] -> 11
+Reel 4: size=19, start_idx=11, symbols=11:LV1 -> 12:LV4 -> 13:HV3 -> 14:LV2 -> 15:HAT -> 16:HV1
 
 ===== FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HAT    HV1    HV1    HV2    LV2    
-row 1 | LV3    LV3    LV2    LV4    HV2    
-row 2 | HV2    HV2    HV4    HAT    LV1    
-row 3 | LV1    HV4    LV3    LV3    LV4    
-row 4 | LV2    LV1    HAT    HV1    HV3    
-row 5 | HV3    HV1    LV1    WILD   LV2    
+row 0 | XHAT   LV2    HAT    HV4    LV1    
+row 1 | LV4    LV4    LV2    LV1    LV4    
+row 2 | LV1    HV1    HV3    HAT    HV3    
+row 3 | HV1    LV3    WILD   LV2    LV2    
+row 4 | HAT    HV2    LV3    LV2    HAT    
+row 5 | LV3    HV4    HV2    HV2    HV1    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HV1    LV3    WILD   LV2    LV2    
+row 1 | HAT    HV2    LV3    LV2    HAT    
+row 2 | LV3    HV4    HV2    HV2    HV1    
 ======================
 
 -- Explosive HAT evaluation --
@@ -252,42 +284,38 @@ No EXPHAT present; active_rows remains 3
 
 -- Ways win calculation --
 start_idx(active rows skipped)=3
-First reel active symbols: LV1, LV2, HV3
-First reel symbol counts: HV1=0, HV2=0, HV3=1, HV4=0, LV1=1, LV2=1, LV3=0, LV4=0
-Unique paying symbols on first active reel: HV3, LV1, LV2
-Evaluating symbol HV3
-  Reel 0 active slice: LV1, LV2, HV3 | matching_or_wild=1
-  Reel 1 active slice: HV4, LV1, HV1 | matching_or_wild=0
-  Win result: symbol=HV3, left2right=1, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV1
-  Reel 0 active slice: LV1, LV2, HV3 | matching_or_wild=1
-  Reel 1 active slice: HV4, LV1, HV1 | matching_or_wild=1
-  Reel 2 active slice: LV3, HAT, LV1 | matching_or_wild=1
-  Reel 3 active slice: LV3, HV1, WILD | matching_or_wild=1
-  Reel 4 active slice: LV4, HV3, LV2 | matching_or_wild=0
-  Win result: symbol=LV1, left2right=4, ways=1, pay=25, symbol_win=25
-Evaluating symbol LV2
-  Reel 0 active slice: LV1, LV2, HV3 | matching_or_wild=1
-  Reel 1 active slice: HV4, LV1, HV1 | matching_or_wild=0
-  Win result: symbol=LV2, left2right=1, ways=1, pay=0, symbol_win=0
-Total ways win=25
+First reel active symbols: HV1, HAT, LV3
+Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
+First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=0, LV2=0, LV3=1, LV4=0
+Unique paying symbols on first active reel: HV1, LV3
+Evaluating symbol HV1
+  Reel 0 active slice: HV1, HAT, LV3 | matching_or_wild=1
+  Reel 1 active slice: LV3, HV2, HV4 | matching_or_wild=0
+  Win result: symbol=HV1, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV3
+  Reel 0 active slice: HV1, HAT, LV3 | matching_or_wild=1
+  Reel 1 active slice: LV3, HV2, HV4 | matching_or_wild=1
+  Reel 2 active slice: WILD, LV3, HV2 | matching_or_wild=2
+  Reel 3 active slice: LV2, LV2, HV2 | matching_or_wild=0
+  Win result: symbol=LV3, left2right=3, ways=2, pay=3, symbol_win=6
+Total ways win=6
 getActivePayWindow active_rows=3, returned_rows=3
 
 ===== ACTIVE PAY WINDOW BEFORE GIRDER =====
 rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV1    HV4    LV3    LV3    LV4    
-row 1 | LV2    LV1    HAT    HV1    HV3    
-row 2 | HV3    HV1    LV1    WILD   LV2    
+row 0 | HV1    LV3    WILD   LV2    LV2    
+row 1 | HAT    HV2    LV3    LV2    HAT    
+row 2 | LV3    HV4    HV2    HV2    HV1    
 ======================
-allHatCount rows=3, reels=5 -> 1
-Bonus pre-check hat_counts=1
-RNG uniform real [0.0, 1.0) -> 0.350996
-Girder probability p=0.350996, threshold=0.1
+allHatCount rows=3, reels=5 -> 2
+Bonus pre-check hat_counts=2
+RNG uniform real [0.0, 1.0) -> 0.491222
+Girder probability p=0.491222, threshold=0.1
 Girder trigger: NO
-allHatCount rows=3, reels=5 -> 1
-Bonus final hat_counts=1, free_game=0
-Spin summary: round_win=25, round_win_xbet=1.25, free_game=0
+allHatCount rows=3, reels=5 -> 2
+Bonus final hat_counts=2, free_game=0
+Spin summary: round_win=6, round_win_xbet=0.3, free_game=0
 
 ============================================================
 SPIN 5
@@ -295,415 +323,35 @@ SPIN 5
 Initial active_rows=3
 
 -- Generating pay window --
-RNG int [0, 17] -> 4
-Reel 0: size=18, start_idx=4, symbols=4:HAT -> 5:LV3 -> 6:HV2 -> 7:LV1 -> 8:LV2 -> 9:HV3
-RNG int [0, 15] -> 3
-Reel 1: size=16, start_idx=3, symbols=3:LV2 -> 4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4 -> 8:WILD
-RNG int [0, 19] -> 0
-Reel 2: size=20, start_idx=0, symbols=0:LV4 -> 1:HV4 -> 2:LV1 -> 3:HV1 -> 4:HAT -> 5:LV2
-RNG int [0, 16] -> 2
-Reel 3: size=17, start_idx=2, symbols=2:LV4 -> 3:HAT -> 4:LV3 -> 5:HV1 -> 6:WILD -> 7:LV1
-RNG int [0, 18] -> 6
-Reel 4: size=19, start_idx=6, symbols=6:HV1 -> 7:LV3 -> 8:WILD -> 9:LV2 -> 10:HV2 -> 11:LV1
-
-===== FULL PAY WINDOW =====
-rows=6, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | HAT    LV2    LV4    LV4    HV1    
-row 1 | LV3    LV3    HV4    HAT    LV3    
-row 2 | HV2    HAT    LV1    LV3    WILD   
-row 3 | LV1    HV2    HV1    HV1    LV2    
-row 4 | LV2    LV4    HAT    WILD   HV2    
-row 5 | HV3    WILD   LV2    LV1    LV1    
-======================
-
--- Explosive HAT evaluation --
-findSymbol XHAT: count=0, positions=none
-EXPHAT Info:0
-No EXPHAT present; active_rows remains 3
-
--- Ways win calculation --
-start_idx(active rows skipped)=3
-First reel active symbols: LV1, LV2, HV3
-First reel symbol counts: HV1=0, HV2=0, HV3=1, HV4=0, LV1=1, LV2=1, LV3=0, LV4=0
-Unique paying symbols on first active reel: HV3, LV1, LV2
-Evaluating symbol HV3
-  Reel 0 active slice: LV1, LV2, HV3 | matching_or_wild=1
-  Reel 1 active slice: HV2, LV4, WILD | matching_or_wild=1
-  Reel 2 active slice: HV1, HAT, LV2 | matching_or_wild=0
-  Win result: symbol=HV3, left2right=2, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV1
-  Reel 0 active slice: LV1, LV2, HV3 | matching_or_wild=1
-  Reel 1 active slice: HV2, LV4, WILD | matching_or_wild=1
-  Reel 2 active slice: HV1, HAT, LV2 | matching_or_wild=0
-  Win result: symbol=LV1, left2right=2, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV2
-  Reel 0 active slice: LV1, LV2, HV3 | matching_or_wild=1
-  Reel 1 active slice: HV2, LV4, WILD | matching_or_wild=1
-  Reel 2 active slice: HV1, HAT, LV2 | matching_or_wild=1
-  Reel 3 active slice: HV1, WILD, LV1 | matching_or_wild=1
-  Reel 4 active slice: LV2, HV2, LV1 | matching_or_wild=1
-  Win result: symbol=LV2, left2right=5, ways=1, pay=80, symbol_win=80
-Total ways win=80
-getActivePayWindow active_rows=3, returned_rows=3
-
-===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=3, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | LV1    HV2    HV1    HV1    LV2    
-row 1 | LV2    LV4    HAT    WILD   HV2    
-row 2 | HV3    WILD   LV2    LV1    LV1    
-======================
-allHatCount rows=3, reels=5 -> 1
-Bonus pre-check hat_counts=1
-RNG uniform real [0.0, 1.0) -> 0.185281
-Girder probability p=0.185281, threshold=0.1
-Girder trigger: NO
-allHatCount rows=3, reels=5 -> 1
-Bonus final hat_counts=1, free_game=0
-Spin summary: round_win=80, round_win_xbet=4, free_game=0
-
-============================================================
-SPIN 6
-============================================================
-Initial active_rows=3
-
--- Generating pay window --
-RNG int [0, 17] -> 16
-Reel 0: size=18, start_idx=16, symbols=16:HV4 -> 17:LV2 -> 0:LV1 -> 1:LV2 -> 2:HV1 -> 3:LV4
-RNG int [0, 15] -> 12
-Reel 1: size=16, start_idx=12, symbols=12:LV4 -> 13:HV1 -> 14:LV3 -> 15:HV2 -> 0:HV4 -> 1:LV1
-RNG int [0, 19] -> 19
-Reel 2: size=20, start_idx=19, symbols=19:LV4 -> 0:LV4 -> 1:HV4 -> 2:LV1 -> 3:HV1 -> 4:HAT
-RNG int [0, 16] -> 10
-Reel 3: size=17, start_idx=10, symbols=10:LV4 -> 11:HV2 -> 12:LV3 -> 13:HV4 -> 14:LV1 -> 15:HAT
-RNG int [0, 18] -> 8
-Reel 4: size=19, start_idx=8, symbols=8:WILD -> 9:LV2 -> 10:HV2 -> 11:LV1 -> 12:LV4 -> 13:HV3
-
-===== FULL PAY WINDOW =====
-rows=6, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | HV4    LV4    LV4    LV4    WILD   
-row 1 | LV2    HV1    LV4    HV2    LV2    
-row 2 | LV1    LV3    HV4    LV3    HV2    
-row 3 | LV2    HV2    LV1    HV4    LV1    
-row 4 | HV1    HV4    HV1    LV1    LV4    
-row 5 | LV4    LV1    HAT    HAT    HV3    
-======================
-
--- Explosive HAT evaluation --
-findSymbol XHAT: count=0, positions=none
-EXPHAT Info:0
-No EXPHAT present; active_rows remains 3
-
--- Ways win calculation --
-start_idx(active rows skipped)=3
-First reel active symbols: LV2, HV1, LV4
-First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=0, LV2=1, LV3=0, LV4=1
-Unique paying symbols on first active reel: HV1, LV2, LV4
-Evaluating symbol HV1
-  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
-  Reel 1 active slice: HV2, HV4, LV1 | matching_or_wild=0
-  Win result: symbol=HV1, left2right=1, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV2
-  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
-  Reel 1 active slice: HV2, HV4, LV1 | matching_or_wild=0
-  Win result: symbol=LV2, left2right=1, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV4
-  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
-  Reel 1 active slice: HV2, HV4, LV1 | matching_or_wild=0
-  Win result: symbol=LV4, left2right=1, ways=1, pay=0, symbol_win=0
-Total ways win=0
-getActivePayWindow active_rows=3, returned_rows=3
-
-===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=3, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | LV2    HV2    LV1    HV4    LV1    
-row 1 | HV1    HV4    HV1    LV1    LV4    
-row 2 | LV4    LV1    HAT    HAT    HV3    
-======================
-allHatCount rows=3, reels=5 -> 2
-Bonus pre-check hat_counts=2
-RNG uniform real [0.0, 1.0) -> 0.715803
-Girder probability p=0.715803, threshold=0.1
-Girder trigger: NO
-allHatCount rows=3, reels=5 -> 2
-Bonus final hat_counts=2, free_game=0
-Spin summary: round_win=0, round_win_xbet=0, free_game=0
-
-============================================================
-SPIN 7
-============================================================
-Initial active_rows=3
-
--- Generating pay window --
-RNG int [0, 17] -> 5
-Reel 0: size=18, start_idx=5, symbols=5:LV3 -> 6:HV2 -> 7:LV1 -> 8:LV2 -> 9:HV3 -> 10:XHAT
-RNG int [0, 15] -> 13
-Reel 1: size=16, start_idx=13, symbols=13:HV1 -> 14:LV3 -> 15:HV2 -> 0:HV4 -> 1:LV1 -> 2:HV1
-RNG int [0, 19] -> 8
-Reel 2: size=20, start_idx=8, symbols=8:LV3 -> 9:HV2 -> 10:LV1 -> 11:LV4 -> 12:HV1 -> 13:LV2
-RNG int [0, 16] -> 9
-Reel 3: size=17, start_idx=9, symbols=9:LV2 -> 10:LV4 -> 11:HV2 -> 12:LV3 -> 13:HV4 -> 14:LV1
-RNG int [0, 18] -> 18
-Reel 4: size=19, start_idx=18, symbols=18:HV4 -> 0:HV4 -> 1:LV2 -> 2:HV3 -> 3:LV1 -> 4:HAT
-
-===== FULL PAY WINDOW =====
-rows=6, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | LV3    HV1    LV3    LV2    HV4    
-row 1 | HV2    LV3    HV2    LV4    HV4    
-row 2 | LV1    HV2    LV1    HV2    LV2    
-row 3 | LV2    HV4    LV4    LV3    HV3    
-row 4 | HV3    LV1    HV1    HV4    LV1    
-row 5 | XHAT   HV1    LV2    LV1    HAT    
-======================
-
--- Explosive HAT evaluation --
-findSymbol XHAT: count=1, positions=25(row=5, reel=0)
-EXPHAT Info:1
-RNG uniform real [0.0, 1.0) -> 0.542065
-cumProbability p=0.542065, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
-cumProbability selected index=0
-Explosive HAT active_rows 3 -> 2
-
--- Ways win calculation --
-start_idx(active rows skipped)=2
-First reel active symbols: LV1, LV2, HV3, XHAT
-Ignoring non-paying first-reel symbol for ways seeding: XHAT (enum=10)
-First reel symbol counts: HV1=0, HV2=0, HV3=1, HV4=0, LV1=1, LV2=1, LV3=0, LV4=0
-Unique paying symbols on first active reel: HV3, LV1, LV2
-Evaluating symbol HV3
-  Reel 0 active slice: LV1, LV2, HV3, XHAT | matching_or_wild=1
-  Reel 1 active slice: HV2, HV4, LV1, HV1 | matching_or_wild=0
-  Win result: symbol=HV3, left2right=1, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV1
-  Reel 0 active slice: LV1, LV2, HV3, XHAT | matching_or_wild=1
-  Reel 1 active slice: HV2, HV4, LV1, HV1 | matching_or_wild=1
-  Reel 2 active slice: LV1, LV4, HV1, LV2 | matching_or_wild=1
-  Reel 3 active slice: HV2, LV3, HV4, LV1 | matching_or_wild=1
-  Reel 4 active slice: LV2, HV3, LV1, HAT | matching_or_wild=1
-  Win result: symbol=LV1, left2right=5, ways=1, pay=100, symbol_win=100
-Evaluating symbol LV2
-  Reel 0 active slice: LV1, LV2, HV3, XHAT | matching_or_wild=1
-  Reel 1 active slice: HV2, HV4, LV1, HV1 | matching_or_wild=0
-  Win result: symbol=LV2, left2right=1, ways=1, pay=0, symbol_win=0
-Total ways win=100
-getActivePayWindow active_rows=2, returned_rows=4
-
-===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=4, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | LV1    HV2    LV1    HV2    LV2    
-row 1 | LV2    HV4    LV4    LV3    HV3    
-row 2 | HV3    LV1    HV1    HV4    LV1    
-row 3 | XHAT   HV1    LV2    LV1    HAT    
-======================
-allHatCount rows=4, reels=5 -> 2
-Bonus pre-check hat_counts=2
-RNG uniform real [0.0, 1.0) -> 0.242295
-Girder probability p=0.242295, threshold=0.1
-Girder trigger: NO
-allHatCount rows=4, reels=5 -> 2
-Bonus final hat_counts=2, free_game=0
-Spin summary: round_win=100, round_win_xbet=5, free_game=0
-
-============================================================
-SPIN 8
-============================================================
-Initial active_rows=3
-
--- Generating pay window --
-RNG int [0, 17] -> 5
-Reel 0: size=18, start_idx=5, symbols=5:LV3 -> 6:HV2 -> 7:LV1 -> 8:LV2 -> 9:HV3 -> 10:XHAT
-RNG int [0, 15] -> 4
-Reel 1: size=16, start_idx=4, symbols=4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4 -> 8:WILD -> 9:LV1
-RNG int [0, 19] -> 9
-Reel 2: size=20, start_idx=9, symbols=9:HV2 -> 10:LV1 -> 11:LV4 -> 12:HV1 -> 13:LV2 -> 14:HV4
-RNG int [0, 16] -> 9
-Reel 3: size=17, start_idx=9, symbols=9:LV2 -> 10:LV4 -> 11:HV2 -> 12:LV3 -> 13:HV4 -> 14:LV1
-RNG int [0, 18] -> 11
-Reel 4: size=19, start_idx=11, symbols=11:LV1 -> 12:LV4 -> 13:HV3 -> 14:LV2 -> 15:HAT -> 16:HV1
-
-===== FULL PAY WINDOW =====
-rows=6, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | LV3    LV3    HV2    LV2    LV1    
-row 1 | HV2    HAT    LV1    LV4    LV4    
-row 2 | LV1    HV2    LV4    HV2    HV3    
-row 3 | LV2    LV4    HV1    LV3    LV2    
-row 4 | HV3    WILD   LV2    HV4    HAT    
-row 5 | XHAT   LV1    HV4    LV1    HV1    
-======================
-
--- Explosive HAT evaluation --
-findSymbol XHAT: count=1, positions=25(row=5, reel=0)
-EXPHAT Info:1
-RNG uniform real [0.0, 1.0) -> 0.0806933
-cumProbability p=0.0806933, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
-cumProbability selected index=0
-Explosive HAT active_rows 3 -> 2
-
--- Ways win calculation --
-start_idx(active rows skipped)=2
-First reel active symbols: LV1, LV2, HV3, XHAT
-Ignoring non-paying first-reel symbol for ways seeding: XHAT (enum=10)
-First reel symbol counts: HV1=0, HV2=0, HV3=1, HV4=0, LV1=1, LV2=1, LV3=0, LV4=0
-Unique paying symbols on first active reel: HV3, LV1, LV2
-Evaluating symbol HV3
-  Reel 0 active slice: LV1, LV2, HV3, XHAT | matching_or_wild=1
-  Reel 1 active slice: HV2, LV4, WILD, LV1 | matching_or_wild=1
-  Reel 2 active slice: LV4, HV1, LV2, HV4 | matching_or_wild=0
-  Win result: symbol=HV3, left2right=2, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV1
-  Reel 0 active slice: LV1, LV2, HV3, XHAT | matching_or_wild=1
-  Reel 1 active slice: HV2, LV4, WILD, LV1 | matching_or_wild=2
-  Reel 2 active slice: LV4, HV1, LV2, HV4 | matching_or_wild=0
-  Win result: symbol=LV1, left2right=2, ways=2, pay=0, symbol_win=0
-Evaluating symbol LV2
-  Reel 0 active slice: LV1, LV2, HV3, XHAT | matching_or_wild=1
-  Reel 1 active slice: HV2, LV4, WILD, LV1 | matching_or_wild=1
-  Reel 2 active slice: LV4, HV1, LV2, HV4 | matching_or_wild=1
-  Reel 3 active slice: HV2, LV3, HV4, LV1 | matching_or_wild=0
-  Win result: symbol=LV2, left2right=3, ways=1, pay=5, symbol_win=5
-Total ways win=5
-getActivePayWindow active_rows=2, returned_rows=4
-
-===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=4, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | LV1    HV2    LV4    HV2    HV3    
-row 1 | LV2    LV4    HV1    LV3    LV2    
-row 2 | HV3    WILD   LV2    HV4    HAT    
-row 3 | XHAT   LV1    HV4    LV1    HV1    
-======================
-allHatCount rows=4, reels=5 -> 2
-Bonus pre-check hat_counts=2
-RNG uniform real [0.0, 1.0) -> 0.921817
-Girder probability p=0.921817, threshold=0.1
-Girder trigger: NO
-allHatCount rows=4, reels=5 -> 2
-Bonus final hat_counts=2, free_game=0
-Spin summary: round_win=5, round_win_xbet=0.25, free_game=0
-
-============================================================
-SPIN 9
-============================================================
-Initial active_rows=3
-
--- Generating pay window --
-RNG int [0, 17] -> 8
-Reel 0: size=18, start_idx=8, symbols=8:LV2 -> 9:HV3 -> 10:XHAT -> 11:LV4 -> 12:LV1 -> 13:HV1
-RNG int [0, 15] -> 4
-Reel 1: size=16, start_idx=4, symbols=4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4 -> 8:WILD -> 9:LV1
-RNG int [0, 19] -> 5
-Reel 2: size=20, start_idx=5, symbols=5:LV2 -> 6:HV3 -> 7:WILD -> 8:LV3 -> 9:HV2 -> 10:LV1
-RNG int [0, 16] -> 4
-Reel 3: size=17, start_idx=4, symbols=4:LV3 -> 5:HV1 -> 6:WILD -> 7:LV1 -> 8:HV3 -> 9:LV2
-RNG int [0, 18] -> 16
-Reel 4: size=19, start_idx=16, symbols=16:HV1 -> 17:LV3 -> 18:HV4 -> 0:HV4 -> 1:LV2 -> 2:HV3
-
-===== FULL PAY WINDOW =====
-rows=6, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | LV2    LV3    LV2    LV3    HV1    
-row 1 | HV3    HAT    HV3    HV1    LV3    
-row 2 | XHAT   HV2    WILD   WILD   HV4    
-row 3 | LV4    LV4    LV3    LV1    HV4    
-row 4 | LV1    WILD   HV2    HV3    LV2    
-row 5 | HV1    LV1    LV1    LV2    HV3    
-======================
-
--- Explosive HAT evaluation --
-findSymbol XHAT: count=1, positions=10(row=2, reel=0)
-EXPHAT Info:1
-RNG uniform real [0.0, 1.0) -> 0.827632
-cumProbability p=0.827632, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
-cumProbability selected index=1
-Explosive HAT active_rows 3 -> 1
-
--- Ways win calculation --
-start_idx(active rows skipped)=1
-First reel active symbols: HV3, XHAT, LV4, LV1, HV1
-Ignoring non-paying first-reel symbol for ways seeding: XHAT (enum=10)
-First reel symbol counts: HV1=1, HV2=0, HV3=1, HV4=0, LV1=1, LV2=0, LV3=0, LV4=1
-Unique paying symbols on first active reel: HV1, HV3, LV1, LV4
-Evaluating symbol HV1
-  Reel 0 active slice: HV3, XHAT, LV4, LV1, HV1 | matching_or_wild=1
-  Reel 1 active slice: HAT, HV2, LV4, WILD, LV1 | matching_or_wild=1
-  Reel 2 active slice: HV3, WILD, LV3, HV2, LV1 | matching_or_wild=1
-  Reel 3 active slice: HV1, WILD, LV1, HV3, LV2 | matching_or_wild=2
-  Reel 4 active slice: LV3, HV4, HV4, LV2, HV3 | matching_or_wild=0
-  Win result: symbol=HV1, left2right=4, ways=2, pay=100, symbol_win=200
-Evaluating symbol HV3
-  Reel 0 active slice: HV3, XHAT, LV4, LV1, HV1 | matching_or_wild=1
-  Reel 1 active slice: HAT, HV2, LV4, WILD, LV1 | matching_or_wild=1
-  Reel 2 active slice: HV3, WILD, LV3, HV2, LV1 | matching_or_wild=2
-  Reel 3 active slice: HV1, WILD, LV1, HV3, LV2 | matching_or_wild=2
-  Reel 4 active slice: LV3, HV4, HV4, LV2, HV3 | matching_or_wild=1
-  Win result: symbol=HV3, left2right=5, ways=4, pay=300, symbol_win=1200
-Evaluating symbol LV1
-  Reel 0 active slice: HV3, XHAT, LV4, LV1, HV1 | matching_or_wild=1
-  Reel 1 active slice: HAT, HV2, LV4, WILD, LV1 | matching_or_wild=2
-  Reel 2 active slice: HV3, WILD, LV3, HV2, LV1 | matching_or_wild=2
-  Reel 3 active slice: HV1, WILD, LV1, HV3, LV2 | matching_or_wild=2
-  Reel 4 active slice: LV3, HV4, HV4, LV2, HV3 | matching_or_wild=0
-  Win result: symbol=LV1, left2right=4, ways=8, pay=25, symbol_win=200
-Evaluating symbol LV4
-  Reel 0 active slice: HV3, XHAT, LV4, LV1, HV1 | matching_or_wild=1
-  Reel 1 active slice: HAT, HV2, LV4, WILD, LV1 | matching_or_wild=2
-  Reel 2 active slice: HV3, WILD, LV3, HV2, LV1 | matching_or_wild=1
-  Reel 3 active slice: HV1, WILD, LV1, HV3, LV2 | matching_or_wild=1
-  Reel 4 active slice: LV3, HV4, HV4, LV2, HV3 | matching_or_wild=0
-  Win result: symbol=LV4, left2right=4, ways=2, pay=10, symbol_win=20
-Total ways win=1620
-getActivePayWindow active_rows=1, returned_rows=5
-
-===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=5, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | HV3    HAT    HV3    HV1    LV3    
-row 1 | XHAT   HV2    WILD   WILD   HV4    
-row 2 | LV4    LV4    LV3    LV1    HV4    
-row 3 | LV1    WILD   HV2    HV3    LV2    
-row 4 | HV1    LV1    LV1    LV2    HV3    
-======================
-allHatCount rows=5, reels=5 -> 2
-Bonus pre-check hat_counts=2
-RNG uniform real [0.0, 1.0) -> 0.97997
-Girder probability p=0.97997, threshold=0.1
-Girder trigger: NO
-allHatCount rows=5, reels=5 -> 2
-Bonus final hat_counts=2, free_game=0
-Spin summary: round_win=1620, round_win_xbet=81, free_game=0
-
-============================================================
-SPIN 10
-============================================================
-Initial active_rows=3
-
--- Generating pay window --
 RNG int [0, 17] -> 0
 Reel 0: size=18, start_idx=0, symbols=0:LV1 -> 1:LV2 -> 2:HV1 -> 3:LV4 -> 4:HAT -> 5:LV3
-RNG int [0, 15] -> 13
-Reel 1: size=16, start_idx=13, symbols=13:HV1 -> 14:LV3 -> 15:HV2 -> 0:HV4 -> 1:LV1 -> 2:HV1
-RNG int [0, 19] -> 2
-Reel 2: size=20, start_idx=2, symbols=2:LV1 -> 3:HV1 -> 4:HAT -> 5:LV2 -> 6:HV3 -> 7:WILD
+RNG int [0, 15] -> 5
+Reel 1: size=16, start_idx=5, symbols=5:HAT -> 6:HV2 -> 7:LV4 -> 8:WILD -> 9:LV1 -> 10:HV3
+RNG int [0, 19] -> 4
+Reel 2: size=20, start_idx=4, symbols=4:HAT -> 5:LV2 -> 6:HV3 -> 7:WILD -> 8:LV3 -> 9:HV2
 RNG int [0, 16] -> 3
 Reel 3: size=17, start_idx=3, symbols=3:HAT -> 4:LV3 -> 5:HV1 -> 6:WILD -> 7:LV1 -> 8:HV3
-RNG int [0, 18] -> 2
-Reel 4: size=19, start_idx=2, symbols=2:HV3 -> 3:LV1 -> 4:HAT -> 5:LV4 -> 6:HV1 -> 7:LV3
+RNG int [0, 18] -> 0
+Reel 4: size=19, start_idx=0, symbols=0:HV4 -> 1:LV2 -> 2:HV3 -> 3:LV1 -> 4:HAT -> 5:LV4
 
 ===== FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV1    HV1    LV1    HAT    HV3    
-row 1 | LV2    LV3    HV1    LV3    LV1    
-row 2 | HV1    HV2    HAT    HV1    HAT    
-row 3 | LV4    HV4    LV2    WILD   LV4    
-row 4 | HAT    LV1    HV3    LV1    HV1    
-row 5 | LV3    HV1    WILD   HV3    LV3    
+row 0 | LV1    HAT    HAT    HAT    HV4    
+row 1 | LV2    HV2    LV2    LV3    LV2    
+row 2 | HV1    LV4    HV3    HV1    HV3    
+row 3 | LV4    WILD   WILD   WILD   LV1    
+row 4 | HAT    LV1    LV3    LV1    HAT    
+row 5 | LV3    HV3    HV2    HV3    LV4    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV4    WILD   WILD   WILD   LV1    
+row 1 | HAT    LV1    LV3    LV1    HAT    
+row 2 | LV3    HV3    HV2    HV3    LV4    
 ======================
 
 -- Explosive HAT evaluation --
@@ -719,11 +367,174 @@ First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=0, LV1=0, LV2=0, LV3=1, LV4=1
 Unique paying symbols on first active reel: LV3, LV4
 Evaluating symbol LV3
   Reel 0 active slice: LV4, HAT, LV3 | matching_or_wild=1
-  Reel 1 active slice: HV4, LV1, HV1 | matching_or_wild=0
-  Win result: symbol=LV3, left2right=1, ways=1, pay=0, symbol_win=0
+  Reel 1 active slice: WILD, LV1, HV3 | matching_or_wild=1
+  Reel 2 active slice: WILD, LV3, HV2 | matching_or_wild=2
+  Reel 3 active slice: WILD, LV1, HV3 | matching_or_wild=1
+  Reel 4 active slice: LV1, HAT, LV4 | matching_or_wild=0
+  Win result: symbol=LV3, left2right=4, ways=2, pay=15, symbol_win=30
 Evaluating symbol LV4
   Reel 0 active slice: LV4, HAT, LV3 | matching_or_wild=1
-  Reel 1 active slice: HV4, LV1, HV1 | matching_or_wild=0
+  Reel 1 active slice: WILD, LV1, HV3 | matching_or_wild=1
+  Reel 2 active slice: WILD, LV3, HV2 | matching_or_wild=1
+  Reel 3 active slice: WILD, LV1, HV3 | matching_or_wild=1
+  Reel 4 active slice: LV1, HAT, LV4 | matching_or_wild=1
+  Win result: symbol=LV4, left2right=5, ways=1, pay=50, symbol_win=50
+Total ways win=80
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== ACTIVE PAY WINDOW BEFORE GIRDER =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV4    WILD   WILD   WILD   LV1    
+row 1 | HAT    LV1    LV3    LV1    HAT    
+row 2 | LV3    HV3    HV2    HV3    LV4    
+======================
+allHatCount rows=3, reels=5 -> 2
+Bonus pre-check hat_counts=2
+RNG uniform real [0.0, 1.0) -> 0.353542
+Girder probability p=0.353542, threshold=0.1
+Girder trigger: NO
+allHatCount rows=3, reels=5 -> 2
+Bonus final hat_counts=2, free_game=0
+Spin summary: round_win=80, round_win_xbet=4, free_game=0
+
+============================================================
+SPIN 6
+============================================================
+Initial active_rows=3
+
+-- Generating pay window --
+RNG int [0, 17] -> 3
+Reel 0: size=18, start_idx=3, symbols=3:LV4 -> 4:HAT -> 5:LV3 -> 6:HV2 -> 7:LV1 -> 8:LV2
+RNG int [0, 15] -> 2
+Reel 1: size=16, start_idx=2, symbols=2:HV1 -> 3:LV2 -> 4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4
+RNG int [0, 19] -> 18
+Reel 2: size=20, start_idx=18, symbols=18:HV2 -> 19:LV4 -> 0:LV4 -> 1:HV4 -> 2:LV1 -> 3:HV1
+RNG int [0, 16] -> 13
+Reel 3: size=17, start_idx=13, symbols=13:HV4 -> 14:LV1 -> 15:HAT -> 16:LV2 -> 0:LV2 -> 1:HV2
+RNG int [0, 18] -> 18
+Reel 4: size=19, start_idx=18, symbols=18:HV4 -> 0:HV4 -> 1:LV2 -> 2:HV3 -> 3:LV1 -> 4:HAT
+
+===== FULL PAY WINDOW =====
+rows=6, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV4    HV1    HV2    HV4    HV4    
+row 1 | HAT    LV2    LV4    LV1    HV4    
+row 2 | LV3    LV3    LV4    HAT    LV2    
+row 3 | HV2    HAT    HV4    LV2    HV3    
+row 4 | LV1    HV2    LV1    LV2    LV1    
+row 5 | LV2    LV4    HV1    HV2    HAT    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HV2    HAT    HV4    LV2    HV3    
+row 1 | LV1    HV2    LV1    LV2    LV1    
+row 2 | LV2    LV4    HV1    HV2    HAT    
+======================
+
+-- Explosive HAT evaluation --
+findSymbol XHAT: count=0, positions=none
+EXPHAT Info:0
+No EXPHAT present; active_rows remains 3
+
+-- Ways win calculation --
+start_idx(active rows skipped)=3
+First reel active symbols: HV2, LV1, LV2
+First reel symbol counts: HV1=0, HV2=1, HV3=0, HV4=0, LV1=1, LV2=1, LV3=0, LV4=0
+Unique paying symbols on first active reel: HV2, LV1, LV2
+Evaluating symbol HV2
+  Reel 0 active slice: HV2, LV1, LV2 | matching_or_wild=1
+  Reel 1 active slice: HAT, HV2, LV4 | matching_or_wild=1
+  Reel 2 active slice: HV4, LV1, HV1 | matching_or_wild=0
+  Win result: symbol=HV2, left2right=2, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV1
+  Reel 0 active slice: HV2, LV1, LV2 | matching_or_wild=1
+  Reel 1 active slice: HAT, HV2, LV4 | matching_or_wild=0
+  Win result: symbol=LV1, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV2
+  Reel 0 active slice: HV2, LV1, LV2 | matching_or_wild=1
+  Reel 1 active slice: HAT, HV2, LV4 | matching_or_wild=0
+  Win result: symbol=LV2, left2right=1, ways=1, pay=0, symbol_win=0
+Total ways win=0
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== ACTIVE PAY WINDOW BEFORE GIRDER =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HV2    HAT    HV4    LV2    HV3    
+row 1 | LV1    HV2    LV1    LV2    LV1    
+row 2 | LV2    LV4    HV1    HV2    HAT    
+======================
+allHatCount rows=3, reels=5 -> 2
+Bonus pre-check hat_counts=2
+RNG uniform real [0.0, 1.0) -> 0.428319
+Girder probability p=0.428319, threshold=0.1
+Girder trigger: NO
+allHatCount rows=3, reels=5 -> 2
+Bonus final hat_counts=2, free_game=0
+Spin summary: round_win=0, round_win_xbet=0, free_game=0
+
+============================================================
+SPIN 7
+============================================================
+Initial active_rows=3
+
+-- Generating pay window --
+RNG int [0, 17] -> 16
+Reel 0: size=18, start_idx=16, symbols=16:HV4 -> 17:LV2 -> 0:LV1 -> 1:LV2 -> 2:HV1 -> 3:LV4
+RNG int [0, 15] -> 11
+Reel 1: size=16, start_idx=11, symbols=11:LV2 -> 12:LV4 -> 13:HV1 -> 14:LV3 -> 15:HV2 -> 0:HV4
+RNG int [0, 19] -> 6
+Reel 2: size=20, start_idx=6, symbols=6:HV3 -> 7:WILD -> 8:LV3 -> 9:HV2 -> 10:LV1 -> 11:LV4
+RNG int [0, 16] -> 14
+Reel 3: size=17, start_idx=14, symbols=14:LV1 -> 15:HAT -> 16:LV2 -> 0:LV2 -> 1:HV2 -> 2:LV4
+RNG int [0, 18] -> 7
+Reel 4: size=19, start_idx=7, symbols=7:LV3 -> 8:WILD -> 9:LV2 -> 10:HV2 -> 11:LV1 -> 12:LV4
+
+===== FULL PAY WINDOW =====
+rows=6, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HV4    LV2    HV3    LV1    LV3    
+row 1 | LV2    LV4    WILD   HAT    WILD   
+row 2 | LV1    HV1    LV3    LV2    LV2    
+row 3 | LV2    LV3    HV2    LV2    HV2    
+row 4 | HV1    HV2    LV1    HV2    LV1    
+row 5 | LV4    HV4    LV4    LV4    LV4    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV2    LV3    HV2    LV2    HV2    
+row 1 | HV1    HV2    LV1    HV2    LV1    
+row 2 | LV4    HV4    LV4    LV4    LV4    
+======================
+
+-- Explosive HAT evaluation --
+findSymbol XHAT: count=0, positions=none
+EXPHAT Info:0
+No EXPHAT present; active_rows remains 3
+
+-- Ways win calculation --
+start_idx(active rows skipped)=3
+First reel active symbols: LV2, HV1, LV4
+First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=0, LV2=1, LV3=0, LV4=1
+Unique paying symbols on first active reel: HV1, LV2, LV4
+Evaluating symbol HV1
+  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
+  Reel 1 active slice: LV3, HV2, HV4 | matching_or_wild=0
+  Win result: symbol=HV1, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV2
+  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
+  Reel 1 active slice: LV3, HV2, HV4 | matching_or_wild=0
+  Win result: symbol=LV2, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV4
+  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
+  Reel 1 active slice: LV3, HV2, HV4 | matching_or_wild=0
   Win result: symbol=LV4, left2right=1, ways=1, pay=0, symbol_win=0
 Total ways win=0
 getActivePayWindow active_rows=3, returned_rows=3
@@ -731,17 +542,252 @@ getActivePayWindow active_rows=3, returned_rows=3
 ===== ACTIVE PAY WINDOW BEFORE GIRDER =====
 rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV4    HV4    LV2    WILD   LV4    
-row 1 | HAT    LV1    HV3    LV1    HV1    
-row 2 | LV3    HV1    WILD   HV3    LV3    
+row 0 | LV2    LV3    HV2    LV2    HV2    
+row 1 | HV1    HV2    LV1    HV2    LV1    
+row 2 | LV4    HV4    LV4    LV4    LV4    
 ======================
-allHatCount rows=3, reels=5 -> 1
-Bonus pre-check hat_counts=1
-RNG uniform real [0.0, 1.0) -> 0.545248
-Girder probability p=0.545248, threshold=0.1
+allHatCount rows=3, reels=5 -> 0
+Bonus pre-check hat_counts=0
+Girder trigger skipped because no hats are active
+allHatCount rows=3, reels=5 -> 0
+Bonus final hat_counts=0, free_game=0
+Spin summary: round_win=0, round_win_xbet=0, free_game=0
+
+============================================================
+SPIN 8
+============================================================
+Initial active_rows=3
+
+-- Generating pay window --
+RNG int [0, 17] -> 10
+Reel 0: size=18, start_idx=10, symbols=10:XHAT -> 11:LV4 -> 12:LV1 -> 13:HV1 -> 14:HAT -> 15:LV3
+RNG int [0, 15] -> 15
+Reel 1: size=16, start_idx=15, symbols=15:HV2 -> 0:HV4 -> 1:LV1 -> 2:HV1 -> 3:LV2 -> 4:LV3
+RNG int [0, 19] -> 12
+Reel 2: size=20, start_idx=12, symbols=12:HV1 -> 13:LV2 -> 14:HV4 -> 15:LV3 -> 16:HAT -> 17:LV1
+RNG int [0, 16] -> 9
+Reel 3: size=17, start_idx=9, symbols=9:LV2 -> 10:LV4 -> 11:HV2 -> 12:LV3 -> 13:HV4 -> 14:LV1
+RNG int [0, 18] -> 16
+Reel 4: size=19, start_idx=16, symbols=16:HV1 -> 17:LV3 -> 18:HV4 -> 0:HV4 -> 1:LV2 -> 2:HV3
+
+===== FULL PAY WINDOW =====
+rows=6, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | XHAT   HV2    HV1    LV2    HV1    
+row 1 | LV4    HV4    LV2    LV4    LV3    
+row 2 | LV1    LV1    HV4    HV2    HV4    
+row 3 | HV1    HV1    LV3    LV3    HV4    
+row 4 | HAT    LV2    HAT    HV4    LV2    
+row 5 | LV3    LV3    LV1    LV1    HV3    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HV1    HV1    LV3    LV3    HV4    
+row 1 | HAT    LV2    HAT    HV4    LV2    
+row 2 | LV3    LV3    LV1    LV1    HV3    
+======================
+
+-- Explosive HAT evaluation --
+findSymbol XHAT: count=0, positions=none
+EXPHAT Info:0
+No EXPHAT present; active_rows remains 3
+
+-- Ways win calculation --
+start_idx(active rows skipped)=3
+First reel active symbols: HV1, HAT, LV3
+Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
+First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=0, LV2=0, LV3=1, LV4=0
+Unique paying symbols on first active reel: HV1, LV3
+Evaluating symbol HV1
+  Reel 0 active slice: HV1, HAT, LV3 | matching_or_wild=1
+  Reel 1 active slice: HV1, LV2, LV3 | matching_or_wild=1
+  Reel 2 active slice: LV3, HAT, LV1 | matching_or_wild=0
+  Win result: symbol=HV1, left2right=2, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV3
+  Reel 0 active slice: HV1, HAT, LV3 | matching_or_wild=1
+  Reel 1 active slice: HV1, LV2, LV3 | matching_or_wild=1
+  Reel 2 active slice: LV3, HAT, LV1 | matching_or_wild=1
+  Reel 3 active slice: LV3, HV4, LV1 | matching_or_wild=1
+  Reel 4 active slice: HV4, LV2, HV3 | matching_or_wild=0
+  Win result: symbol=LV3, left2right=4, ways=1, pay=15, symbol_win=15
+Total ways win=15
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== ACTIVE PAY WINDOW BEFORE GIRDER =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HV1    HV1    LV3    LV3    HV4    
+row 1 | HAT    LV2    HAT    HV4    LV2    
+row 2 | LV3    LV3    LV1    LV1    HV3    
+======================
+allHatCount rows=3, reels=5 -> 2
+Bonus pre-check hat_counts=2
+RNG uniform real [0.0, 1.0) -> 0.321622
+Girder probability p=0.321622, threshold=0.1
 Girder trigger: NO
-allHatCount rows=3, reels=5 -> 1
-Bonus final hat_counts=1, free_game=0
+allHatCount rows=3, reels=5 -> 2
+Bonus final hat_counts=2, free_game=0
+Spin summary: round_win=15, round_win_xbet=0.75, free_game=0
+
+============================================================
+SPIN 9
+============================================================
+Initial active_rows=3
+
+-- Generating pay window --
+RNG int [0, 17] -> 4
+Reel 0: size=18, start_idx=4, symbols=4:HAT -> 5:LV3 -> 6:HV2 -> 7:LV1 -> 8:LV2 -> 9:HV3
+RNG int [0, 15] -> 7
+Reel 1: size=16, start_idx=7, symbols=7:LV4 -> 8:WILD -> 9:LV1 -> 10:HV3 -> 11:LV2 -> 12:LV4
+RNG int [0, 19] -> 11
+Reel 2: size=20, start_idx=11, symbols=11:LV4 -> 12:HV1 -> 13:LV2 -> 14:HV4 -> 15:LV3 -> 16:HAT
+RNG int [0, 16] -> 10
+Reel 3: size=17, start_idx=10, symbols=10:LV4 -> 11:HV2 -> 12:LV3 -> 13:HV4 -> 14:LV1 -> 15:HAT
+RNG int [0, 18] -> 2
+Reel 4: size=19, start_idx=2, symbols=2:HV3 -> 3:LV1 -> 4:HAT -> 5:LV4 -> 6:HV1 -> 7:LV3
+
+===== FULL PAY WINDOW =====
+rows=6, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HAT    LV4    LV4    LV4    HV3    
+row 1 | LV3    WILD   HV1    HV2    LV1    
+row 2 | HV2    LV1    LV2    LV3    HAT    
+row 3 | LV1    HV3    HV4    HV4    LV4    
+row 4 | LV2    LV2    LV3    LV1    HV1    
+row 5 | HV3    LV4    HAT    HAT    LV3    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV1    HV3    HV4    HV4    LV4    
+row 1 | LV2    LV2    LV3    LV1    HV1    
+row 2 | HV3    LV4    HAT    HAT    LV3    
+======================
+
+-- Explosive HAT evaluation --
+findSymbol XHAT: count=0, positions=none
+EXPHAT Info:0
+No EXPHAT present; active_rows remains 3
+
+-- Ways win calculation --
+start_idx(active rows skipped)=3
+First reel active symbols: LV1, LV2, HV3
+First reel symbol counts: HV1=0, HV2=0, HV3=1, HV4=0, LV1=1, LV2=1, LV3=0, LV4=0
+Unique paying symbols on first active reel: HV3, LV1, LV2
+Evaluating symbol HV3
+  Reel 0 active slice: LV1, LV2, HV3 | matching_or_wild=1
+  Reel 1 active slice: HV3, LV2, LV4 | matching_or_wild=1
+  Reel 2 active slice: HV4, LV3, HAT | matching_or_wild=0
+  Win result: symbol=HV3, left2right=2, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV1
+  Reel 0 active slice: LV1, LV2, HV3 | matching_or_wild=1
+  Reel 1 active slice: HV3, LV2, LV4 | matching_or_wild=0
+  Win result: symbol=LV1, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV2
+  Reel 0 active slice: LV1, LV2, HV3 | matching_or_wild=1
+  Reel 1 active slice: HV3, LV2, LV4 | matching_or_wild=1
+  Reel 2 active slice: HV4, LV3, HAT | matching_or_wild=0
+  Win result: symbol=LV2, left2right=2, ways=1, pay=0, symbol_win=0
+Total ways win=0
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== ACTIVE PAY WINDOW BEFORE GIRDER =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV1    HV3    HV4    HV4    LV4    
+row 1 | LV2    LV2    LV3    LV1    HV1    
+row 2 | HV3    LV4    HAT    HAT    LV3    
+======================
+allHatCount rows=3, reels=5 -> 2
+Bonus pre-check hat_counts=2
+RNG uniform real [0.0, 1.0) -> 0.876259
+Girder probability p=0.876259, threshold=0.1
+Girder trigger: NO
+allHatCount rows=3, reels=5 -> 2
+Bonus final hat_counts=2, free_game=0
+Spin summary: round_win=0, round_win_xbet=0, free_game=0
+
+============================================================
+SPIN 10
+============================================================
+Initial active_rows=3
+
+-- Generating pay window --
+RNG int [0, 17] -> 16
+Reel 0: size=18, start_idx=16, symbols=16:HV4 -> 17:LV2 -> 0:LV1 -> 1:LV2 -> 2:HV1 -> 3:LV4
+RNG int [0, 15] -> 7
+Reel 1: size=16, start_idx=7, symbols=7:LV4 -> 8:WILD -> 9:LV1 -> 10:HV3 -> 11:LV2 -> 12:LV4
+RNG int [0, 19] -> 5
+Reel 2: size=20, start_idx=5, symbols=5:LV2 -> 6:HV3 -> 7:WILD -> 8:LV3 -> 9:HV2 -> 10:LV1
+RNG int [0, 16] -> 4
+Reel 3: size=17, start_idx=4, symbols=4:LV3 -> 5:HV1 -> 6:WILD -> 7:LV1 -> 8:HV3 -> 9:LV2
+RNG int [0, 18] -> 5
+Reel 4: size=19, start_idx=5, symbols=5:LV4 -> 6:HV1 -> 7:LV3 -> 8:WILD -> 9:LV2 -> 10:HV2
+
+===== FULL PAY WINDOW =====
+rows=6, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HV4    LV4    LV2    LV3    LV4    
+row 1 | LV2    WILD   HV3    HV1    HV1    
+row 2 | LV1    LV1    WILD   WILD   LV3    
+row 3 | LV2    HV3    LV3    LV1    WILD   
+row 4 | HV1    LV2    HV2    HV3    LV2    
+row 5 | LV4    LV4    LV1    LV2    HV2    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV2    HV3    LV3    LV1    WILD   
+row 1 | HV1    LV2    HV2    HV3    LV2    
+row 2 | LV4    LV4    LV1    LV2    HV2    
+======================
+
+-- Explosive HAT evaluation --
+findSymbol XHAT: count=0, positions=none
+EXPHAT Info:0
+No EXPHAT present; active_rows remains 3
+
+-- Ways win calculation --
+start_idx(active rows skipped)=3
+First reel active symbols: LV2, HV1, LV4
+First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=0, LV2=1, LV3=0, LV4=1
+Unique paying symbols on first active reel: HV1, LV2, LV4
+Evaluating symbol HV1
+  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
+  Reel 1 active slice: HV3, LV2, LV4 | matching_or_wild=0
+  Win result: symbol=HV1, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV2
+  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
+  Reel 1 active slice: HV3, LV2, LV4 | matching_or_wild=1
+  Reel 2 active slice: LV3, HV2, LV1 | matching_or_wild=0
+  Win result: symbol=LV2, left2right=2, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV4
+  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
+  Reel 1 active slice: HV3, LV2, LV4 | matching_or_wild=1
+  Reel 2 active slice: LV3, HV2, LV1 | matching_or_wild=0
+  Win result: symbol=LV4, left2right=2, ways=1, pay=0, symbol_win=0
+Total ways win=0
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== ACTIVE PAY WINDOW BEFORE GIRDER =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV2    HV3    LV3    LV1    WILD   
+row 1 | HV1    LV2    HV2    HV3    LV2    
+row 2 | LV4    LV4    LV1    LV2    HV2    
+======================
+allHatCount rows=3, reels=5 -> 0
+Bonus pre-check hat_counts=0
+Girder trigger skipped because no hats are active
+allHatCount rows=3, reels=5 -> 0
+Bonus final hat_counts=0, free_game=0
 Spin summary: round_win=0, round_win_xbet=0, free_game=0
 
 ============================================================
@@ -750,26 +796,35 @@ SPIN 11
 Initial active_rows=3
 
 -- Generating pay window --
-RNG int [0, 17] -> 14
-Reel 0: size=18, start_idx=14, symbols=14:HAT -> 15:LV3 -> 16:HV4 -> 17:LV2 -> 0:LV1 -> 1:LV2
-RNG int [0, 15] -> 9
-Reel 1: size=16, start_idx=9, symbols=9:LV1 -> 10:HV3 -> 11:LV2 -> 12:LV4 -> 13:HV1 -> 14:LV3
-RNG int [0, 19] -> 14
-Reel 2: size=20, start_idx=14, symbols=14:HV4 -> 15:LV3 -> 16:HAT -> 17:LV1 -> 18:HV2 -> 19:LV4
-RNG int [0, 16] -> 0
-Reel 3: size=17, start_idx=0, symbols=0:LV2 -> 1:HV2 -> 2:LV4 -> 3:HAT -> 4:LV3 -> 5:HV1
-RNG int [0, 18] -> 17
-Reel 4: size=19, start_idx=17, symbols=17:LV3 -> 18:HV4 -> 0:HV4 -> 1:LV2 -> 2:HV3 -> 3:LV1
+RNG int [0, 17] -> 16
+Reel 0: size=18, start_idx=16, symbols=16:HV4 -> 17:LV2 -> 0:LV1 -> 1:LV2 -> 2:HV1 -> 3:LV4
+RNG int [0, 15] -> 14
+Reel 1: size=16, start_idx=14, symbols=14:LV3 -> 15:HV2 -> 0:HV4 -> 1:LV1 -> 2:HV1 -> 3:LV2
+RNG int [0, 19] -> 16
+Reel 2: size=20, start_idx=16, symbols=16:HAT -> 17:LV1 -> 18:HV2 -> 19:LV4 -> 0:LV4 -> 1:HV4
+RNG int [0, 16] -> 11
+Reel 3: size=17, start_idx=11, symbols=11:HV2 -> 12:LV3 -> 13:HV4 -> 14:LV1 -> 15:HAT -> 16:LV2
+RNG int [0, 18] -> 18
+Reel 4: size=19, start_idx=18, symbols=18:HV4 -> 0:HV4 -> 1:LV2 -> 2:HV3 -> 3:LV1 -> 4:HAT
 
 ===== FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HAT    LV1    HV4    LV2    LV3    
-row 1 | LV3    HV3    LV3    HV2    HV4    
-row 2 | HV4    LV2    HAT    LV4    HV4    
-row 3 | LV2    LV4    LV1    HAT    LV2    
-row 4 | LV1    HV1    HV2    LV3    HV3    
-row 5 | LV2    LV3    LV4    HV1    LV1    
+row 0 | HV4    LV3    HAT    HV2    HV4    
+row 1 | LV2    HV2    LV1    LV3    HV4    
+row 2 | LV1    HV4    HV2    HV4    LV2    
+row 3 | LV2    LV1    LV4    LV1    HV3    
+row 4 | HV1    HV1    LV4    HAT    LV1    
+row 5 | LV4    LV2    HV4    LV2    HAT    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV2    LV1    LV4    LV1    HV3    
+row 1 | HV1    HV1    LV4    HAT    LV1    
+row 2 | LV4    LV2    HV4    LV2    HAT    
 ======================
 
 -- Explosive HAT evaluation --
@@ -779,34 +834,40 @@ No EXPHAT present; active_rows remains 3
 
 -- Ways win calculation --
 start_idx(active rows skipped)=3
-First reel active symbols: LV2, LV1, LV2
-First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=0, LV1=1, LV2=2, LV3=0, LV4=0
-Unique paying symbols on first active reel: LV1, LV2
-Evaluating symbol LV1
-  Reel 0 active slice: LV2, LV1, LV2 | matching_or_wild=1
-  Reel 1 active slice: LV4, HV1, LV3 | matching_or_wild=0
-  Win result: symbol=LV1, left2right=1, ways=1, pay=0, symbol_win=0
+First reel active symbols: LV2, HV1, LV4
+First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=0, LV2=1, LV3=0, LV4=1
+Unique paying symbols on first active reel: HV1, LV2, LV4
+Evaluating symbol HV1
+  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
+  Reel 1 active slice: LV1, HV1, LV2 | matching_or_wild=1
+  Reel 2 active slice: LV4, LV4, HV4 | matching_or_wild=0
+  Win result: symbol=HV1, left2right=2, ways=1, pay=0, symbol_win=0
 Evaluating symbol LV2
-  Reel 0 active slice: LV2, LV1, LV2 | matching_or_wild=2
-  Reel 1 active slice: LV4, HV1, LV3 | matching_or_wild=0
-  Win result: symbol=LV2, left2right=1, ways=2, pay=0, symbol_win=0
+  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
+  Reel 1 active slice: LV1, HV1, LV2 | matching_or_wild=1
+  Reel 2 active slice: LV4, LV4, HV4 | matching_or_wild=0
+  Win result: symbol=LV2, left2right=2, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV4
+  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
+  Reel 1 active slice: LV1, HV1, LV2 | matching_or_wild=0
+  Win result: symbol=LV4, left2right=1, ways=1, pay=0, symbol_win=0
 Total ways win=0
 getActivePayWindow active_rows=3, returned_rows=3
 
 ===== ACTIVE PAY WINDOW BEFORE GIRDER =====
 rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV2    LV4    LV1    HAT    LV2    
-row 1 | LV1    HV1    HV2    LV3    HV3    
-row 2 | LV2    LV3    LV4    HV1    LV1    
+row 0 | LV2    LV1    LV4    LV1    HV3    
+row 1 | HV1    HV1    LV4    HAT    LV1    
+row 2 | LV4    LV2    HV4    LV2    HAT    
 ======================
-allHatCount rows=3, reels=5 -> 1
-Bonus pre-check hat_counts=1
-RNG uniform real [0.0, 1.0) -> 0.22047
-Girder probability p=0.22047, threshold=0.1
+allHatCount rows=3, reels=5 -> 2
+Bonus pre-check hat_counts=2
+RNG uniform real [0.0, 1.0) -> 0.867233
+Girder probability p=0.867233, threshold=0.1
 Girder trigger: NO
-allHatCount rows=3, reels=5 -> 1
-Bonus final hat_counts=1, free_game=0
+allHatCount rows=3, reels=5 -> 2
+Bonus final hat_counts=2, free_game=0
 Spin summary: round_win=0, round_win_xbet=0, free_game=0
 
 ============================================================
@@ -815,26 +876,35 @@ SPIN 12
 Initial active_rows=3
 
 -- Generating pay window --
-RNG int [0, 17] -> 1
-Reel 0: size=18, start_idx=1, symbols=1:LV2 -> 2:HV1 -> 3:LV4 -> 4:HAT -> 5:LV3 -> 6:HV2
-RNG int [0, 15] -> 15
-Reel 1: size=16, start_idx=15, symbols=15:HV2 -> 0:HV4 -> 1:LV1 -> 2:HV1 -> 3:LV2 -> 4:LV3
-RNG int [0, 19] -> 9
-Reel 2: size=20, start_idx=9, symbols=9:HV2 -> 10:LV1 -> 11:LV4 -> 12:HV1 -> 13:LV2 -> 14:HV4
-RNG int [0, 16] -> 10
-Reel 3: size=17, start_idx=10, symbols=10:LV4 -> 11:HV2 -> 12:LV3 -> 13:HV4 -> 14:LV1 -> 15:HAT
-RNG int [0, 18] -> 7
-Reel 4: size=19, start_idx=7, symbols=7:LV3 -> 8:WILD -> 9:LV2 -> 10:HV2 -> 11:LV1 -> 12:LV4
+RNG int [0, 17] -> 2
+Reel 0: size=18, start_idx=2, symbols=2:HV1 -> 3:LV4 -> 4:HAT -> 5:LV3 -> 6:HV2 -> 7:LV1
+RNG int [0, 15] -> 3
+Reel 1: size=16, start_idx=3, symbols=3:LV2 -> 4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4 -> 8:WILD
+RNG int [0, 19] -> 2
+Reel 2: size=20, start_idx=2, symbols=2:LV1 -> 3:HV1 -> 4:HAT -> 5:LV2 -> 6:HV3 -> 7:WILD
+RNG int [0, 16] -> 7
+Reel 3: size=17, start_idx=7, symbols=7:LV1 -> 8:HV3 -> 9:LV2 -> 10:LV4 -> 11:HV2 -> 12:LV3
+RNG int [0, 18] -> 10
+Reel 4: size=19, start_idx=10, symbols=10:HV2 -> 11:LV1 -> 12:LV4 -> 13:HV3 -> 14:LV2 -> 15:HAT
 
 ===== FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV2    HV2    HV2    LV4    LV3    
-row 1 | HV1    HV4    LV1    HV2    WILD   
-row 2 | LV4    LV1    LV4    LV3    LV2    
-row 3 | HAT    HV1    HV1    HV4    HV2    
-row 4 | LV3    LV2    LV2    LV1    LV1    
-row 5 | HV2    LV3    HV4    HAT    LV4    
+row 0 | HV1    LV2    LV1    LV1    HV2    
+row 1 | LV4    LV3    HV1    HV3    LV1    
+row 2 | HAT    HAT    HAT    LV2    LV4    
+row 3 | LV3    HV2    LV2    LV4    HV3    
+row 4 | HV2    LV4    HV3    HV2    LV2    
+row 5 | LV1    WILD   WILD   LV3    HAT    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV3    HV2    LV2    LV4    HV3    
+row 1 | HV2    LV4    HV3    HV2    LV2    
+row 2 | LV1    WILD   WILD   LV3    HAT    
 ======================
 
 -- Explosive HAT evaluation --
@@ -844,37 +914,47 @@ No EXPHAT present; active_rows remains 3
 
 -- Ways win calculation --
 start_idx(active rows skipped)=3
-First reel active symbols: HAT, LV3, HV2
-Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
-First reel symbol counts: HV1=0, HV2=1, HV3=0, HV4=0, LV1=0, LV2=0, LV3=1, LV4=0
-Unique paying symbols on first active reel: HV2, LV3
+First reel active symbols: LV3, HV2, LV1
+First reel symbol counts: HV1=0, HV2=1, HV3=0, HV4=0, LV1=1, LV2=0, LV3=1, LV4=0
+Unique paying symbols on first active reel: HV2, LV1, LV3
 Evaluating symbol HV2
-  Reel 0 active slice: HAT, LV3, HV2 | matching_or_wild=1
-  Reel 1 active slice: HV1, LV2, LV3 | matching_or_wild=0
-  Win result: symbol=HV2, left2right=1, ways=1, pay=0, symbol_win=0
+  Reel 0 active slice: LV3, HV2, LV1 | matching_or_wild=1
+  Reel 1 active slice: HV2, LV4, WILD | matching_or_wild=2
+  Reel 2 active slice: LV2, HV3, WILD | matching_or_wild=1
+  Reel 3 active slice: LV4, HV2, LV3 | matching_or_wild=1
+  Reel 4 active slice: HV3, LV2, HAT | matching_or_wild=0
+  Win result: symbol=HV2, left2right=4, ways=2, pay=80, symbol_win=160
+Evaluating symbol LV1
+  Reel 0 active slice: LV3, HV2, LV1 | matching_or_wild=1
+  Reel 1 active slice: HV2, LV4, WILD | matching_or_wild=1
+  Reel 2 active slice: LV2, HV3, WILD | matching_or_wild=1
+  Reel 3 active slice: LV4, HV2, LV3 | matching_or_wild=0
+  Win result: symbol=LV1, left2right=3, ways=1, pay=5, symbol_win=5
 Evaluating symbol LV3
-  Reel 0 active slice: HAT, LV3, HV2 | matching_or_wild=1
-  Reel 1 active slice: HV1, LV2, LV3 | matching_or_wild=1
-  Reel 2 active slice: HV1, LV2, HV4 | matching_or_wild=0
-  Win result: symbol=LV3, left2right=2, ways=1, pay=0, symbol_win=0
-Total ways win=0
+  Reel 0 active slice: LV3, HV2, LV1 | matching_or_wild=1
+  Reel 1 active slice: HV2, LV4, WILD | matching_or_wild=1
+  Reel 2 active slice: LV2, HV3, WILD | matching_or_wild=1
+  Reel 3 active slice: LV4, HV2, LV3 | matching_or_wild=1
+  Reel 4 active slice: HV3, LV2, HAT | matching_or_wild=0
+  Win result: symbol=LV3, left2right=4, ways=1, pay=15, symbol_win=15
+Total ways win=180
 getActivePayWindow active_rows=3, returned_rows=3
 
 ===== ACTIVE PAY WINDOW BEFORE GIRDER =====
 rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HAT    HV1    HV1    HV4    HV2    
-row 1 | LV3    LV2    LV2    LV1    LV1    
-row 2 | HV2    LV3    HV4    HAT    LV4    
+row 0 | LV3    HV2    LV2    LV4    HV3    
+row 1 | HV2    LV4    HV3    HV2    LV2    
+row 2 | LV1    WILD   WILD   LV3    HAT    
 ======================
-allHatCount rows=3, reels=5 -> 2
-Bonus pre-check hat_counts=2
-RNG uniform real [0.0, 1.0) -> 0.647604
-Girder probability p=0.647604, threshold=0.1
+allHatCount rows=3, reels=5 -> 1
+Bonus pre-check hat_counts=1
+RNG uniform real [0.0, 1.0) -> 0.57309
+Girder probability p=0.57309, threshold=0.1
 Girder trigger: NO
-allHatCount rows=3, reels=5 -> 2
-Bonus final hat_counts=2, free_game=0
-Spin summary: round_win=0, round_win_xbet=0, free_game=0
+allHatCount rows=3, reels=5 -> 1
+Bonus final hat_counts=1, free_game=0
+Spin summary: round_win=180, round_win_xbet=9, free_game=0
 
 ============================================================
 SPIN 13
@@ -882,235 +962,35 @@ SPIN 13
 Initial active_rows=3
 
 -- Generating pay window --
-RNG int [0, 17] -> 9
-Reel 0: size=18, start_idx=9, symbols=9:HV3 -> 10:XHAT -> 11:LV4 -> 12:LV1 -> 13:HV1 -> 14:HAT
-RNG int [0, 15] -> 0
-Reel 1: size=16, start_idx=0, symbols=0:HV4 -> 1:LV1 -> 2:HV1 -> 3:LV2 -> 4:LV3 -> 5:HAT
-RNG int [0, 19] -> 6
-Reel 2: size=20, start_idx=6, symbols=6:HV3 -> 7:WILD -> 8:LV3 -> 9:HV2 -> 10:LV1 -> 11:LV4
-RNG int [0, 16] -> 1
-Reel 3: size=17, start_idx=1, symbols=1:HV2 -> 2:LV4 -> 3:HAT -> 4:LV3 -> 5:HV1 -> 6:WILD
-RNG int [0, 18] -> 9
-Reel 4: size=19, start_idx=9, symbols=9:LV2 -> 10:HV2 -> 11:LV1 -> 12:LV4 -> 13:HV3 -> 14:LV2
-
-===== FULL PAY WINDOW =====
-rows=6, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | HV3    HV4    HV3    HV2    LV2    
-row 1 | XHAT   LV1    WILD   LV4    HV2    
-row 2 | LV4    HV1    LV3    HAT    LV1    
-row 3 | LV1    LV2    HV2    LV3    LV4    
-row 4 | HV1    LV3    LV1    HV1    HV3    
-row 5 | HAT    HAT    LV4    WILD   LV2    
-======================
-
--- Explosive HAT evaluation --
-findSymbol XHAT: count=1, positions=5(row=1, reel=0)
-EXPHAT Info:1
-RNG uniform real [0.0, 1.0) -> 0.533122
-cumProbability p=0.533122, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
-cumProbability selected index=0
-Explosive HAT active_rows 3 -> 2
-
--- Ways win calculation --
-start_idx(active rows skipped)=2
-First reel active symbols: LV4, LV1, HV1, HAT
-Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
-First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=1, LV2=0, LV3=0, LV4=1
-Unique paying symbols on first active reel: HV1, LV1, LV4
-Evaluating symbol HV1
-  Reel 0 active slice: LV4, LV1, HV1, HAT | matching_or_wild=1
-  Reel 1 active slice: HV1, LV2, LV3, HAT | matching_or_wild=1
-  Reel 2 active slice: LV3, HV2, LV1, LV4 | matching_or_wild=0
-  Win result: symbol=HV1, left2right=2, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV1
-  Reel 0 active slice: LV4, LV1, HV1, HAT | matching_or_wild=1
-  Reel 1 active slice: HV1, LV2, LV3, HAT | matching_or_wild=0
-  Win result: symbol=LV1, left2right=1, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV4
-  Reel 0 active slice: LV4, LV1, HV1, HAT | matching_or_wild=1
-  Reel 1 active slice: HV1, LV2, LV3, HAT | matching_or_wild=0
-  Win result: symbol=LV4, left2right=1, ways=1, pay=0, symbol_win=0
-Total ways win=0
-getActivePayWindow active_rows=2, returned_rows=4
-
-===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=4, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | LV4    HV1    LV3    HAT    LV1    
-row 1 | LV1    LV2    HV2    LV3    LV4    
-row 2 | HV1    LV3    LV1    HV1    HV3    
-row 3 | HAT    HAT    LV4    WILD   LV2    
-======================
-allHatCount rows=4, reels=5 -> 3
-Bonus pre-check hat_counts=3
-RNG uniform real [0.0, 1.0) -> 0.662513
-Girder probability p=0.662513, threshold=0.1
-Girder trigger: NO
-allHatCount rows=4, reels=5 -> 3
-Bonus final hat_counts=3, free_game=0
-Spin summary: round_win=0, round_win_xbet=0, free_game=0
-
-============================================================
-SPIN 14
-============================================================
-Initial active_rows=3
-
--- Generating pay window --
-RNG int [0, 17] -> 17
-Reel 0: size=18, start_idx=17, symbols=17:LV2 -> 0:LV1 -> 1:LV2 -> 2:HV1 -> 3:LV4 -> 4:HAT
-RNG int [0, 15] -> 7
-Reel 1: size=16, start_idx=7, symbols=7:LV4 -> 8:WILD -> 9:LV1 -> 10:HV3 -> 11:LV2 -> 12:LV4
-RNG int [0, 19] -> 16
-Reel 2: size=20, start_idx=16, symbols=16:HAT -> 17:LV1 -> 18:HV2 -> 19:LV4 -> 0:LV4 -> 1:HV4
-RNG int [0, 16] -> 1
-Reel 3: size=17, start_idx=1, symbols=1:HV2 -> 2:LV4 -> 3:HAT -> 4:LV3 -> 5:HV1 -> 6:WILD
-RNG int [0, 18] -> 9
-Reel 4: size=19, start_idx=9, symbols=9:LV2 -> 10:HV2 -> 11:LV1 -> 12:LV4 -> 13:HV3 -> 14:LV2
-
-===== FULL PAY WINDOW =====
-rows=6, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | LV2    LV4    HAT    HV2    LV2    
-row 1 | LV1    WILD   LV1    LV4    HV2    
-row 2 | LV2    LV1    HV2    HAT    LV1    
-row 3 | HV1    HV3    LV4    LV3    LV4    
-row 4 | LV4    LV2    LV4    HV1    HV3    
-row 5 | HAT    LV4    HV4    WILD   LV2    
-======================
-
--- Explosive HAT evaluation --
-findSymbol XHAT: count=0, positions=none
-EXPHAT Info:0
-No EXPHAT present; active_rows remains 3
-
--- Ways win calculation --
-start_idx(active rows skipped)=3
-First reel active symbols: HV1, LV4, HAT
-Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
-First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=0, LV2=0, LV3=0, LV4=1
-Unique paying symbols on first active reel: HV1, LV4
-Evaluating symbol HV1
-  Reel 0 active slice: HV1, LV4, HAT | matching_or_wild=1
-  Reel 1 active slice: HV3, LV2, LV4 | matching_or_wild=0
-  Win result: symbol=HV1, left2right=1, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV4
-  Reel 0 active slice: HV1, LV4, HAT | matching_or_wild=1
-  Reel 1 active slice: HV3, LV2, LV4 | matching_or_wild=1
-  Reel 2 active slice: LV4, LV4, HV4 | matching_or_wild=2
-  Reel 3 active slice: LV3, HV1, WILD | matching_or_wild=1
-  Reel 4 active slice: LV4, HV3, LV2 | matching_or_wild=1
-  Win result: symbol=LV4, left2right=5, ways=2, pay=50, symbol_win=100
-Total ways win=100
-getActivePayWindow active_rows=3, returned_rows=3
-
-===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=3, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | HV1    HV3    LV4    LV3    LV4    
-row 1 | LV4    LV2    LV4    HV1    HV3    
-row 2 | HAT    LV4    HV4    WILD   LV2    
-======================
-allHatCount rows=3, reels=5 -> 1
-Bonus pre-check hat_counts=1
-RNG uniform real [0.0, 1.0) -> 0.315945
-Girder probability p=0.315945, threshold=0.1
-Girder trigger: NO
-allHatCount rows=3, reels=5 -> 1
-Bonus final hat_counts=1, free_game=0
-Spin summary: round_win=100, round_win_xbet=5, free_game=0
-
-============================================================
-SPIN 15
-============================================================
-Initial active_rows=3
-
--- Generating pay window --
-RNG int [0, 17] -> 14
-Reel 0: size=18, start_idx=14, symbols=14:HAT -> 15:LV3 -> 16:HV4 -> 17:LV2 -> 0:LV1 -> 1:LV2
-RNG int [0, 15] -> 2
-Reel 1: size=16, start_idx=2, symbols=2:HV1 -> 3:LV2 -> 4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4
-RNG int [0, 19] -> 2
-Reel 2: size=20, start_idx=2, symbols=2:LV1 -> 3:HV1 -> 4:HAT -> 5:LV2 -> 6:HV3 -> 7:WILD
-RNG int [0, 16] -> 9
-Reel 3: size=17, start_idx=9, symbols=9:LV2 -> 10:LV4 -> 11:HV2 -> 12:LV3 -> 13:HV4 -> 14:LV1
-RNG int [0, 18] -> 15
-Reel 4: size=19, start_idx=15, symbols=15:HAT -> 16:HV1 -> 17:LV3 -> 18:HV4 -> 0:HV4 -> 1:LV2
-
-===== FULL PAY WINDOW =====
-rows=6, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | HAT    HV1    LV1    LV2    HAT    
-row 1 | LV3    LV2    HV1    LV4    HV1    
-row 2 | HV4    LV3    HAT    HV2    LV3    
-row 3 | LV2    HAT    LV2    LV3    HV4    
-row 4 | LV1    HV2    HV3    HV4    HV4    
-row 5 | LV2    LV4    WILD   LV1    LV2    
-======================
-
--- Explosive HAT evaluation --
-findSymbol XHAT: count=0, positions=none
-EXPHAT Info:0
-No EXPHAT present; active_rows remains 3
-
--- Ways win calculation --
-start_idx(active rows skipped)=3
-First reel active symbols: LV2, LV1, LV2
-First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=0, LV1=1, LV2=2, LV3=0, LV4=0
-Unique paying symbols on first active reel: LV1, LV2
-Evaluating symbol LV1
-  Reel 0 active slice: LV2, LV1, LV2 | matching_or_wild=1
-  Reel 1 active slice: HAT, HV2, LV4 | matching_or_wild=0
-  Win result: symbol=LV1, left2right=1, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV2
-  Reel 0 active slice: LV2, LV1, LV2 | matching_or_wild=2
-  Reel 1 active slice: HAT, HV2, LV4 | matching_or_wild=0
-  Win result: symbol=LV2, left2right=1, ways=2, pay=0, symbol_win=0
-Total ways win=0
-getActivePayWindow active_rows=3, returned_rows=3
-
-===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=3, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | LV2    HAT    LV2    LV3    HV4    
-row 1 | LV1    HV2    HV3    HV4    HV4    
-row 2 | LV2    LV4    WILD   LV1    LV2    
-======================
-allHatCount rows=3, reels=5 -> 1
-Bonus pre-check hat_counts=1
-RNG uniform real [0.0, 1.0) -> 0.402726
-Girder probability p=0.402726, threshold=0.1
-Girder trigger: NO
-allHatCount rows=3, reels=5 -> 1
-Bonus final hat_counts=1, free_game=0
-Spin summary: round_win=0, round_win_xbet=0, free_game=0
-
-============================================================
-SPIN 16
-============================================================
-Initial active_rows=3
-
--- Generating pay window --
 RNG int [0, 17] -> 13
 Reel 0: size=18, start_idx=13, symbols=13:HV1 -> 14:HAT -> 15:LV3 -> 16:HV4 -> 17:LV2 -> 0:LV1
-RNG int [0, 15] -> 6
-Reel 1: size=16, start_idx=6, symbols=6:HV2 -> 7:LV4 -> 8:WILD -> 9:LV1 -> 10:HV3 -> 11:LV2
-RNG int [0, 19] -> 3
-Reel 2: size=20, start_idx=3, symbols=3:HV1 -> 4:HAT -> 5:LV2 -> 6:HV3 -> 7:WILD -> 8:LV3
-RNG int [0, 16] -> 6
-Reel 3: size=17, start_idx=6, symbols=6:WILD -> 7:LV1 -> 8:HV3 -> 9:LV2 -> 10:LV4 -> 11:HV2
-RNG int [0, 18] -> 2
-Reel 4: size=19, start_idx=2, symbols=2:HV3 -> 3:LV1 -> 4:HAT -> 5:LV4 -> 6:HV1 -> 7:LV3
+RNG int [0, 15] -> 0
+Reel 1: size=16, start_idx=0, symbols=0:HV4 -> 1:LV1 -> 2:HV1 -> 3:LV2 -> 4:LV3 -> 5:HAT
+RNG int [0, 19] -> 18
+Reel 2: size=20, start_idx=18, symbols=18:HV2 -> 19:LV4 -> 0:LV4 -> 1:HV4 -> 2:LV1 -> 3:HV1
+RNG int [0, 16] -> 4
+Reel 3: size=17, start_idx=4, symbols=4:LV3 -> 5:HV1 -> 6:WILD -> 7:LV1 -> 8:HV3 -> 9:LV2
+RNG int [0, 18] -> 4
+Reel 4: size=19, start_idx=4, symbols=4:HAT -> 5:LV4 -> 6:HV1 -> 7:LV3 -> 8:WILD -> 9:LV2
 
 ===== FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HV1    HV2    HV1    WILD   HV3    
-row 1 | HAT    LV4    HAT    LV1    LV1    
-row 2 | LV3    WILD   LV2    HV3    HAT    
-row 3 | HV4    LV1    HV3    LV2    LV4    
-row 4 | LV2    HV3    WILD   LV4    HV1    
-row 5 | LV1    LV2    LV3    HV2    LV3    
+row 0 | HV1    HV4    HV2    LV3    HAT    
+row 1 | HAT    LV1    LV4    HV1    LV4    
+row 2 | LV3    HV1    LV4    WILD   HV1    
+row 3 | HV4    LV2    HV4    LV1    LV3    
+row 4 | LV2    LV3    LV1    HV3    WILD   
+row 5 | LV1    HAT    HV1    LV2    LV2    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HV4    LV2    HV4    LV1    LV3    
+row 1 | LV2    LV3    LV1    HV3    WILD   
+row 2 | LV1    HAT    HV1    LV2    LV2    
 ======================
 
 -- Explosive HAT evaluation --
@@ -1125,37 +1005,308 @@ First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=1, LV1=1, LV2=1, LV3=0, LV4=0
 Unique paying symbols on first active reel: HV4, LV1, LV2
 Evaluating symbol HV4
   Reel 0 active slice: HV4, LV2, LV1 | matching_or_wild=1
-  Reel 1 active slice: LV1, HV3, LV2 | matching_or_wild=0
+  Reel 1 active slice: LV2, LV3, HAT | matching_or_wild=0
   Win result: symbol=HV4, left2right=1, ways=1, pay=0, symbol_win=0
 Evaluating symbol LV1
   Reel 0 active slice: HV4, LV2, LV1 | matching_or_wild=1
-  Reel 1 active slice: LV1, HV3, LV2 | matching_or_wild=1
-  Reel 2 active slice: HV3, WILD, LV3 | matching_or_wild=1
-  Reel 3 active slice: LV2, LV4, HV2 | matching_or_wild=0
-  Win result: symbol=LV1, left2right=3, ways=1, pay=5, symbol_win=5
+  Reel 1 active slice: LV2, LV3, HAT | matching_or_wild=0
+  Win result: symbol=LV1, left2right=1, ways=1, pay=0, symbol_win=0
 Evaluating symbol LV2
   Reel 0 active slice: HV4, LV2, LV1 | matching_or_wild=1
-  Reel 1 active slice: LV1, HV3, LV2 | matching_or_wild=1
-  Reel 2 active slice: HV3, WILD, LV3 | matching_or_wild=1
-  Reel 3 active slice: LV2, LV4, HV2 | matching_or_wild=1
-  Reel 4 active slice: LV4, HV1, LV3 | matching_or_wild=0
-  Win result: symbol=LV2, left2right=4, ways=1, pay=20, symbol_win=20
-Total ways win=25
+  Reel 1 active slice: LV2, LV3, HAT | matching_or_wild=1
+  Reel 2 active slice: HV4, LV1, HV1 | matching_or_wild=0
+  Win result: symbol=LV2, left2right=2, ways=1, pay=0, symbol_win=0
+Total ways win=0
 getActivePayWindow active_rows=3, returned_rows=3
 
 ===== ACTIVE PAY WINDOW BEFORE GIRDER =====
 rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HV4    LV1    HV3    LV2    LV4    
-row 1 | LV2    HV3    WILD   LV4    HV1    
-row 2 | LV1    LV2    LV3    HV2    LV3    
+row 0 | HV4    LV2    HV4    LV1    LV3    
+row 1 | LV2    LV3    LV1    HV3    WILD   
+row 2 | LV1    HAT    HV1    LV2    LV2    
 ======================
-allHatCount rows=3, reels=5 -> 0
-Bonus pre-check hat_counts=0
-Girder trigger skipped because no hats are active
-allHatCount rows=3, reels=5 -> 0
-Bonus final hat_counts=0, free_game=0
-Spin summary: round_win=25, round_win_xbet=1.25, free_game=0
+allHatCount rows=3, reels=5 -> 1
+Bonus pre-check hat_counts=1
+RNG uniform real [0.0, 1.0) -> 0.997953
+Girder probability p=0.997953, threshold=0.1
+Girder trigger: NO
+allHatCount rows=3, reels=5 -> 1
+Bonus final hat_counts=1, free_game=0
+Spin summary: round_win=0, round_win_xbet=0, free_game=0
+
+============================================================
+SPIN 14
+============================================================
+Initial active_rows=3
+
+-- Generating pay window --
+RNG int [0, 17] -> 8
+Reel 0: size=18, start_idx=8, symbols=8:LV2 -> 9:HV3 -> 10:XHAT -> 11:LV4 -> 12:LV1 -> 13:HV1
+RNG int [0, 15] -> 9
+Reel 1: size=16, start_idx=9, symbols=9:LV1 -> 10:HV3 -> 11:LV2 -> 12:LV4 -> 13:HV1 -> 14:LV3
+RNG int [0, 19] -> 7
+Reel 2: size=20, start_idx=7, symbols=7:WILD -> 8:LV3 -> 9:HV2 -> 10:LV1 -> 11:LV4 -> 12:HV1
+RNG int [0, 16] -> 0
+Reel 3: size=17, start_idx=0, symbols=0:LV2 -> 1:HV2 -> 2:LV4 -> 3:HAT -> 4:LV3 -> 5:HV1
+RNG int [0, 18] -> 12
+Reel 4: size=19, start_idx=12, symbols=12:LV4 -> 13:HV3 -> 14:LV2 -> 15:HAT -> 16:HV1 -> 17:LV3
+
+===== FULL PAY WINDOW =====
+rows=6, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV2    LV1    WILD   LV2    LV4    
+row 1 | HV3    HV3    LV3    HV2    HV3    
+row 2 | XHAT   LV2    HV2    LV4    LV2    
+row 3 | LV4    LV4    LV1    HAT    HAT    
+row 4 | LV1    HV1    LV4    LV3    HV1    
+row 5 | HV1    LV3    HV1    HV1    LV3    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV4    LV4    LV1    HAT    HAT    
+row 1 | LV1    HV1    LV4    LV3    HV1    
+row 2 | HV1    LV3    HV1    HV1    LV3    
+======================
+
+-- Explosive HAT evaluation --
+findSymbol XHAT: count=0, positions=none
+EXPHAT Info:0
+No EXPHAT present; active_rows remains 3
+
+-- Ways win calculation --
+start_idx(active rows skipped)=3
+First reel active symbols: LV4, LV1, HV1
+First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=1, LV2=0, LV3=0, LV4=1
+Unique paying symbols on first active reel: HV1, LV1, LV4
+Evaluating symbol HV1
+  Reel 0 active slice: LV4, LV1, HV1 | matching_or_wild=1
+  Reel 1 active slice: LV4, HV1, LV3 | matching_or_wild=1
+  Reel 2 active slice: LV1, LV4, HV1 | matching_or_wild=1
+  Reel 3 active slice: HAT, LV3, HV1 | matching_or_wild=1
+  Reel 4 active slice: HAT, HV1, LV3 | matching_or_wild=1
+  Win result: symbol=HV1, left2right=5, ways=1, pay=500, symbol_win=500
+Evaluating symbol LV1
+  Reel 0 active slice: LV4, LV1, HV1 | matching_or_wild=1
+  Reel 1 active slice: LV4, HV1, LV3 | matching_or_wild=0
+  Win result: symbol=LV1, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV4
+  Reel 0 active slice: LV4, LV1, HV1 | matching_or_wild=1
+  Reel 1 active slice: LV4, HV1, LV3 | matching_or_wild=1
+  Reel 2 active slice: LV1, LV4, HV1 | matching_or_wild=1
+  Reel 3 active slice: HAT, LV3, HV1 | matching_or_wild=0
+  Win result: symbol=LV4, left2right=3, ways=1, pay=3, symbol_win=3
+Total ways win=503
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== ACTIVE PAY WINDOW BEFORE GIRDER =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV4    LV4    LV1    HAT    HAT    
+row 1 | LV1    HV1    LV4    LV3    HV1    
+row 2 | HV1    LV3    HV1    HV1    LV3    
+======================
+allHatCount rows=3, reels=5 -> 2
+Bonus pre-check hat_counts=2
+RNG uniform real [0.0, 1.0) -> 0.00760492
+Girder probability p=0.00760492, threshold=0.1
+Girder trigger: YES
+
+-- Girder trigger evaluation --
+allHatCount rows=3, reels=5 -> 2
+existing hats=2, required_hats=4
+SRSWOR requested=4, allowed_count=13
+SRSWOR allowed before shuffle: 0(row=0, reel=0), 1(row=0, reel=1), 2(row=0, reel=2), 5(row=1, reel=0), 6(row=1, reel=1), 7(row=1, reel=2), 8(row=1, reel=3), 9(row=1, reel=4), 10(row=2, reel=0), 11(row=2, reel=1), 12(row=2, reel=2), 13(row=2, reel=3), 14(row=2, reel=4)
+SRSWOR allowed after shuffle: 8(row=1, reel=3), 14(row=2, reel=4), 0(row=0, reel=0), 12(row=2, reel=2), 2(row=0, reel=2), 11(row=2, reel=1), 5(row=1, reel=0), 13(row=2, reel=3), 7(row=1, reel=2), 1(row=0, reel=1), 10(row=2, reel=0), 9(row=1, reel=4), 6(row=1, reel=1)
+SRSWOR selected: 8(row=1, reel=3), 14(row=2, reel=4), 0(row=0, reel=0), 12(row=2, reel=2)
+Girder adds HAT at row=1, reel=3
+Girder adds HAT at row=2, reel=4
+Girder adds HAT at row=0, reel=0
+Girder adds HAT at row=2, reel=2
+
+===== ACTIVE PAY WINDOW AFTER GIRDER =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HAT    LV4    LV1    HAT    HAT    
+row 1 | LV1    HV1    LV4    HAT    HV1    
+row 2 | HV1    LV3    HAT    HV1    HAT    
+======================
+allHatCount rows=3, reels=5 -> 6
+Bonus final hat_counts=6, free_game=1
+Spin summary: round_win=503, round_win_xbet=25.15, free_game=1
+
+============================================================
+SPIN 15
+============================================================
+Initial active_rows=3
+
+-- Generating pay window --
+RNG int [0, 17] -> 11
+Reel 0: size=18, start_idx=11, symbols=11:LV4 -> 12:LV1 -> 13:HV1 -> 14:HAT -> 15:LV3 -> 16:HV4
+RNG int [0, 15] -> 15
+Reel 1: size=16, start_idx=15, symbols=15:HV2 -> 0:HV4 -> 1:LV1 -> 2:HV1 -> 3:LV2 -> 4:LV3
+RNG int [0, 19] -> 9
+Reel 2: size=20, start_idx=9, symbols=9:HV2 -> 10:LV1 -> 11:LV4 -> 12:HV1 -> 13:LV2 -> 14:HV4
+RNG int [0, 16] -> 13
+Reel 3: size=17, start_idx=13, symbols=13:HV4 -> 14:LV1 -> 15:HAT -> 16:LV2 -> 0:LV2 -> 1:HV2
+RNG int [0, 18] -> 2
+Reel 4: size=19, start_idx=2, symbols=2:HV3 -> 3:LV1 -> 4:HAT -> 5:LV4 -> 6:HV1 -> 7:LV3
+
+===== FULL PAY WINDOW =====
+rows=6, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV4    HV2    HV2    HV4    HV3    
+row 1 | LV1    HV4    LV1    LV1    LV1    
+row 2 | HV1    LV1    LV4    HAT    HAT    
+row 3 | HAT    HV1    HV1    LV2    LV4    
+row 4 | LV3    LV2    LV2    LV2    HV1    
+row 5 | HV4    LV3    HV4    HV2    LV3    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HAT    HV1    HV1    LV2    LV4    
+row 1 | LV3    LV2    LV2    LV2    HV1    
+row 2 | HV4    LV3    HV4    HV2    LV3    
+======================
+
+-- Explosive HAT evaluation --
+findSymbol XHAT: count=0, positions=none
+EXPHAT Info:0
+No EXPHAT present; active_rows remains 3
+
+-- Ways win calculation --
+start_idx(active rows skipped)=3
+First reel active symbols: HAT, LV3, HV4
+Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
+First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=1, LV1=0, LV2=0, LV3=1, LV4=0
+Unique paying symbols on first active reel: HV4, LV3
+Evaluating symbol HV4
+  Reel 0 active slice: HAT, LV3, HV4 | matching_or_wild=1
+  Reel 1 active slice: HV1, LV2, LV3 | matching_or_wild=0
+  Win result: symbol=HV4, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV3
+  Reel 0 active slice: HAT, LV3, HV4 | matching_or_wild=1
+  Reel 1 active slice: HV1, LV2, LV3 | matching_or_wild=1
+  Reel 2 active slice: HV1, LV2, HV4 | matching_or_wild=0
+  Win result: symbol=LV3, left2right=2, ways=1, pay=0, symbol_win=0
+Total ways win=0
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== ACTIVE PAY WINDOW BEFORE GIRDER =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HAT    HV1    HV1    LV2    LV4    
+row 1 | LV3    LV2    LV2    LV2    HV1    
+row 2 | HV4    LV3    HV4    HV2    LV3    
+======================
+allHatCount rows=3, reels=5 -> 1
+Bonus pre-check hat_counts=1
+RNG uniform real [0.0, 1.0) -> 0.729938
+Girder probability p=0.729938, threshold=0.1
+Girder trigger: NO
+allHatCount rows=3, reels=5 -> 1
+Bonus final hat_counts=1, free_game=0
+Spin summary: round_win=0, round_win_xbet=0, free_game=0
+
+============================================================
+SPIN 16
+============================================================
+Initial active_rows=3
+
+-- Generating pay window --
+RNG int [0, 17] -> 5
+Reel 0: size=18, start_idx=5, symbols=5:LV3 -> 6:HV2 -> 7:LV1 -> 8:LV2 -> 9:HV3 -> 10:XHAT
+RNG int [0, 15] -> 12
+Reel 1: size=16, start_idx=12, symbols=12:LV4 -> 13:HV1 -> 14:LV3 -> 15:HV2 -> 0:HV4 -> 1:LV1
+RNG int [0, 19] -> 3
+Reel 2: size=20, start_idx=3, symbols=3:HV1 -> 4:HAT -> 5:LV2 -> 6:HV3 -> 7:WILD -> 8:LV3
+RNG int [0, 16] -> 2
+Reel 3: size=17, start_idx=2, symbols=2:LV4 -> 3:HAT -> 4:LV3 -> 5:HV1 -> 6:WILD -> 7:LV1
+RNG int [0, 18] -> 10
+Reel 4: size=19, start_idx=10, symbols=10:HV2 -> 11:LV1 -> 12:LV4 -> 13:HV3 -> 14:LV2 -> 15:HAT
+
+===== FULL PAY WINDOW =====
+rows=6, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV3    LV4    HV1    LV4    HV2    
+row 1 | HV2    HV1    HAT    HAT    LV1    
+row 2 | LV1    LV3    LV2    LV3    LV4    
+row 3 | LV2    HV2    HV3    HV1    HV3    
+row 4 | HV3    HV4    WILD   WILD   LV2    
+row 5 | XHAT   LV1    LV3    LV1    HAT    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV2    HV2    HV3    HV1    HV3    
+row 1 | HV3    HV4    WILD   WILD   LV2    
+row 2 | XHAT   LV1    LV3    LV1    HAT    
+======================
+
+-- Explosive HAT evaluation --
+findSymbol XHAT: count=1, positions=10(row=2, reel=0)
+EXPHAT Info:1
+RNG uniform real [0.0, 1.0) -> 0.844658
+cumProbability p=0.844658, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
+cumProbability selected index=1
+Explosive HAT active_rows 3 -> 1
+
+-- Ways win calculation --
+start_idx(active rows skipped)=1
+First reel active symbols: HV2, LV1, LV2, HV3, XHAT
+Ignoring non-paying first-reel symbol for ways seeding: XHAT (enum=10)
+First reel symbol counts: HV1=0, HV2=1, HV3=1, HV4=0, LV1=1, LV2=1, LV3=0, LV4=0
+Unique paying symbols on first active reel: HV2, HV3, LV1, LV2
+Evaluating symbol HV2
+  Reel 0 active slice: HV2, LV1, LV2, HV3, XHAT | matching_or_wild=1
+  Reel 1 active slice: HV1, LV3, HV2, HV4, LV1 | matching_or_wild=1
+  Reel 2 active slice: HAT, LV2, HV3, WILD, LV3 | matching_or_wild=1
+  Reel 3 active slice: HAT, LV3, HV1, WILD, LV1 | matching_or_wild=1
+  Reel 4 active slice: LV1, LV4, HV3, LV2, HAT | matching_or_wild=0
+  Win result: symbol=HV2, left2right=4, ways=1, pay=80, symbol_win=80
+Evaluating symbol HV3
+  Reel 0 active slice: HV2, LV1, LV2, HV3, XHAT | matching_or_wild=1
+  Reel 1 active slice: HV1, LV3, HV2, HV4, LV1 | matching_or_wild=0
+  Win result: symbol=HV3, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV1
+  Reel 0 active slice: HV2, LV1, LV2, HV3, XHAT | matching_or_wild=1
+  Reel 1 active slice: HV1, LV3, HV2, HV4, LV1 | matching_or_wild=1
+  Reel 2 active slice: HAT, LV2, HV3, WILD, LV3 | matching_or_wild=1
+  Reel 3 active slice: HAT, LV3, HV1, WILD, LV1 | matching_or_wild=2
+  Reel 4 active slice: LV1, LV4, HV3, LV2, HAT | matching_or_wild=1
+  Win result: symbol=LV1, left2right=5, ways=2, pay=100, symbol_win=200
+Evaluating symbol LV2
+  Reel 0 active slice: HV2, LV1, LV2, HV3, XHAT | matching_or_wild=1
+  Reel 1 active slice: HV1, LV3, HV2, HV4, LV1 | matching_or_wild=0
+  Win result: symbol=LV2, left2right=1, ways=1, pay=0, symbol_win=0
+Total ways win=280
+getActivePayWindow active_rows=1, returned_rows=5
+
+===== ACTIVE PAY WINDOW BEFORE GIRDER =====
+rows=5, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HV2    HV1    HAT    HAT    LV1    
+row 1 | LV1    LV3    LV2    LV3    LV4    
+row 2 | LV2    HV2    HV3    HV1    HV3    
+row 3 | HV3    HV4    WILD   WILD   LV2    
+row 4 | XHAT   LV1    LV3    LV1    HAT    
+======================
+allHatCount rows=5, reels=5 -> 4
+Bonus pre-check hat_counts=4
+RNG uniform real [0.0, 1.0) -> 0.737275
+Girder probability p=0.737275, threshold=0.1
+Girder trigger: NO
+allHatCount rows=5, reels=5 -> 4
+Bonus final hat_counts=4, free_game=0
+Spin summary: round_win=280, round_win_xbet=14, free_game=0
 
 ============================================================
 SPIN 17
@@ -1163,89 +1314,85 @@ SPIN 17
 Initial active_rows=3
 
 -- Generating pay window --
-RNG int [0, 17] -> 16
-Reel 0: size=18, start_idx=16, symbols=16:HV4 -> 17:LV2 -> 0:LV1 -> 1:LV2 -> 2:HV1 -> 3:LV4
-RNG int [0, 15] -> 12
-Reel 1: size=16, start_idx=12, symbols=12:LV4 -> 13:HV1 -> 14:LV3 -> 15:HV2 -> 0:HV4 -> 1:LV1
-RNG int [0, 19] -> 9
-Reel 2: size=20, start_idx=9, symbols=9:HV2 -> 10:LV1 -> 11:LV4 -> 12:HV1 -> 13:LV2 -> 14:HV4
-RNG int [0, 16] -> 13
-Reel 3: size=17, start_idx=13, symbols=13:HV4 -> 14:LV1 -> 15:HAT -> 16:LV2 -> 0:LV2 -> 1:HV2
-RNG int [0, 18] -> 18
-Reel 4: size=19, start_idx=18, symbols=18:HV4 -> 0:HV4 -> 1:LV2 -> 2:HV3 -> 3:LV1 -> 4:HAT
+RNG int [0, 17] -> 7
+Reel 0: size=18, start_idx=7, symbols=7:LV1 -> 8:LV2 -> 9:HV3 -> 10:XHAT -> 11:LV4 -> 12:LV1
+RNG int [0, 15] -> 2
+Reel 1: size=16, start_idx=2, symbols=2:HV1 -> 3:LV2 -> 4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4
+RNG int [0, 19] -> 7
+Reel 2: size=20, start_idx=7, symbols=7:WILD -> 8:LV3 -> 9:HV2 -> 10:LV1 -> 11:LV4 -> 12:HV1
+RNG int [0, 16] -> 2
+Reel 3: size=17, start_idx=2, symbols=2:LV4 -> 3:HAT -> 4:LV3 -> 5:HV1 -> 6:WILD -> 7:LV1
+RNG int [0, 18] -> 17
+Reel 4: size=19, start_idx=17, symbols=17:LV3 -> 18:HV4 -> 0:HV4 -> 1:LV2 -> 2:HV3 -> 3:LV1
 
 ===== FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HV4    LV4    HV2    HV4    HV4    
-row 1 | LV2    HV1    LV1    LV1    HV4    
-row 2 | LV1    LV3    LV4    HAT    LV2    
-row 3 | LV2    HV2    HV1    LV2    HV3    
-row 4 | HV1    HV4    LV2    LV2    LV1    
-row 5 | LV4    LV1    HV4    HV2    HAT    
+row 0 | LV1    HV1    WILD   LV4    LV3    
+row 1 | LV2    LV2    LV3    HAT    HV4    
+row 2 | HV3    LV3    HV2    LV3    HV4    
+row 3 | XHAT   HAT    LV1    HV1    LV2    
+row 4 | LV4    HV2    LV4    WILD   HV3    
+row 5 | LV1    LV4    HV1    LV1    LV1    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | XHAT   HAT    LV1    HV1    LV2    
+row 1 | LV4    HV2    LV4    WILD   HV3    
+row 2 | LV1    LV4    HV1    LV1    LV1    
 ======================
 
 -- Explosive HAT evaluation --
-findSymbol XHAT: count=0, positions=none
-EXPHAT Info:0
-No EXPHAT present; active_rows remains 3
+findSymbol XHAT: count=1, positions=0(row=0, reel=0)
+EXPHAT Info:1
+RNG uniform real [0.0, 1.0) -> 0.490679
+cumProbability p=0.490679, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
+cumProbability selected index=0
+Explosive HAT active_rows 3 -> 2
 
 -- Ways win calculation --
-start_idx(active rows skipped)=3
-First reel active symbols: LV2, HV1, LV4
-First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=0, LV2=1, LV3=0, LV4=1
-Unique paying symbols on first active reel: HV1, LV2, LV4
-Evaluating symbol HV1
-  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
-  Reel 1 active slice: HV2, HV4, LV1 | matching_or_wild=0
-  Win result: symbol=HV1, left2right=1, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV2
-  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
-  Reel 1 active slice: HV2, HV4, LV1 | matching_or_wild=0
-  Win result: symbol=LV2, left2right=1, ways=1, pay=0, symbol_win=0
+start_idx(active rows skipped)=2
+First reel active symbols: HV3, XHAT, LV4, LV1
+Ignoring non-paying first-reel symbol for ways seeding: XHAT (enum=10)
+First reel symbol counts: HV1=0, HV2=0, HV3=1, HV4=0, LV1=1, LV2=0, LV3=0, LV4=1
+Unique paying symbols on first active reel: HV3, LV1, LV4
+Evaluating symbol HV3
+  Reel 0 active slice: HV3, XHAT, LV4, LV1 | matching_or_wild=1
+  Reel 1 active slice: LV3, HAT, HV2, LV4 | matching_or_wild=0
+  Win result: symbol=HV3, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV1
+  Reel 0 active slice: HV3, XHAT, LV4, LV1 | matching_or_wild=1
+  Reel 1 active slice: LV3, HAT, HV2, LV4 | matching_or_wild=0
+  Win result: symbol=LV1, left2right=1, ways=1, pay=0, symbol_win=0
 Evaluating symbol LV4
-  Reel 0 active slice: LV2, HV1, LV4 | matching_or_wild=1
-  Reel 1 active slice: HV2, HV4, LV1 | matching_or_wild=0
-  Win result: symbol=LV4, left2right=1, ways=1, pay=0, symbol_win=0
-Total ways win=0
-getActivePayWindow active_rows=3, returned_rows=3
+  Reel 0 active slice: HV3, XHAT, LV4, LV1 | matching_or_wild=1
+  Reel 1 active slice: LV3, HAT, HV2, LV4 | matching_or_wild=1
+  Reel 2 active slice: HV2, LV1, LV4, HV1 | matching_or_wild=1
+  Reel 3 active slice: LV3, HV1, WILD, LV1 | matching_or_wild=1
+  Reel 4 active slice: HV4, LV2, HV3, LV1 | matching_or_wild=0
+  Win result: symbol=LV4, left2right=4, ways=1, pay=10, symbol_win=10
+Total ways win=10
+getActivePayWindow active_rows=2, returned_rows=4
 
 ===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=3, reels=5
+rows=4, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV2    HV2    HV1    LV2    HV3    
-row 1 | HV1    HV4    LV2    LV2    LV1    
-row 2 | LV4    LV1    HV4    HV2    HAT    
+row 0 | HV3    LV3    HV2    LV3    HV4    
+row 1 | XHAT   HAT    LV1    HV1    LV2    
+row 2 | LV4    HV2    LV4    WILD   HV3    
+row 3 | LV1    LV4    HV1    LV1    LV1    
 ======================
-allHatCount rows=3, reels=5 -> 1
-Bonus pre-check hat_counts=1
-RNG uniform real [0.0, 1.0) -> 0.069721
-Girder probability p=0.069721, threshold=0.1
-Girder trigger: YES
-
--- Girder trigger evaluation --
-allHatCount rows=3, reels=5 -> 1
-existing hats=1, required_hats=5
-SRSWOR requested=5, allowed_count=14
-SRSWOR allowed before shuffle: 0(row=0, reel=0), 1(row=0, reel=1), 2(row=0, reel=2), 3(row=0, reel=3), 4(row=0, reel=4), 5(row=1, reel=0), 6(row=1, reel=1), 7(row=1, reel=2), 8(row=1, reel=3), 9(row=1, reel=4), 10(row=2, reel=0), 11(row=2, reel=1), 12(row=2, reel=2), 13(row=2, reel=3)
-SRSWOR allowed after shuffle: 6(row=1, reel=1), 2(row=0, reel=2), 7(row=1, reel=2), 12(row=2, reel=2), 0(row=0, reel=0), 3(row=0, reel=3), 8(row=1, reel=3), 9(row=1, reel=4), 11(row=2, reel=1), 4(row=0, reel=4), 1(row=0, reel=1), 13(row=2, reel=3), 10(row=2, reel=0), 5(row=1, reel=0)
-SRSWOR selected: 6(row=1, reel=1), 2(row=0, reel=2), 7(row=1, reel=2), 12(row=2, reel=2), 0(row=0, reel=0)
-Girder adds HAT at row=1, reel=1
-Girder adds HAT at row=0, reel=2
-Girder adds HAT at row=1, reel=2
-Girder adds HAT at row=2, reel=2
-Girder adds HAT at row=0, reel=0
-
-===== ACTIVE PAY WINDOW AFTER GIRDER =====
-rows=3, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | HAT    HV2    HAT    LV2    HV3    
-row 1 | HV1    HAT    HAT    LV2    LV1    
-row 2 | LV4    LV1    HAT    HV2    HAT    
-======================
-allHatCount rows=3, reels=5 -> 6
-Bonus final hat_counts=6, free_game=1
-Spin summary: round_win=0, round_win_xbet=0, free_game=1
+allHatCount rows=4, reels=5 -> 2
+Bonus pre-check hat_counts=2
+RNG uniform real [0.0, 1.0) -> 0.965988
+Girder probability p=0.965988, threshold=0.1
+Girder trigger: NO
+allHatCount rows=4, reels=5 -> 2
+Bonus final hat_counts=2, free_game=0
+Spin summary: round_win=10, round_win_xbet=0.5, free_game=0
 
 ============================================================
 SPIN 18
@@ -1253,115 +1400,35 @@ SPIN 18
 Initial active_rows=3
 
 -- Generating pay window --
-RNG int [0, 17] -> 7
-Reel 0: size=18, start_idx=7, symbols=7:LV1 -> 8:LV2 -> 9:HV3 -> 10:XHAT -> 11:LV4 -> 12:LV1
-RNG int [0, 15] -> 8
-Reel 1: size=16, start_idx=8, symbols=8:WILD -> 9:LV1 -> 10:HV3 -> 11:LV2 -> 12:LV4 -> 13:HV1
-RNG int [0, 19] -> 4
-Reel 2: size=20, start_idx=4, symbols=4:HAT -> 5:LV2 -> 6:HV3 -> 7:WILD -> 8:LV3 -> 9:HV2
-RNG int [0, 16] -> 12
-Reel 3: size=17, start_idx=12, symbols=12:LV3 -> 13:HV4 -> 14:LV1 -> 15:HAT -> 16:LV2 -> 0:LV2
-RNG int [0, 18] -> 3
-Reel 4: size=19, start_idx=3, symbols=3:LV1 -> 4:HAT -> 5:LV4 -> 6:HV1 -> 7:LV3 -> 8:WILD
+RNG int [0, 17] -> 4
+Reel 0: size=18, start_idx=4, symbols=4:HAT -> 5:LV3 -> 6:HV2 -> 7:LV1 -> 8:LV2 -> 9:HV3
+RNG int [0, 15] -> 1
+Reel 1: size=16, start_idx=1, symbols=1:LV1 -> 2:HV1 -> 3:LV2 -> 4:LV3 -> 5:HAT -> 6:HV2
+RNG int [0, 19] -> 5
+Reel 2: size=20, start_idx=5, symbols=5:LV2 -> 6:HV3 -> 7:WILD -> 8:LV3 -> 9:HV2 -> 10:LV1
+RNG int [0, 16] -> 6
+Reel 3: size=17, start_idx=6, symbols=6:WILD -> 7:LV1 -> 8:HV3 -> 9:LV2 -> 10:LV4 -> 11:HV2
+RNG int [0, 18] -> 8
+Reel 4: size=19, start_idx=8, symbols=8:WILD -> 9:LV2 -> 10:HV2 -> 11:LV1 -> 12:LV4 -> 13:HV3
 
 ===== FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV1    WILD   HAT    LV3    LV1    
-row 1 | LV2    LV1    LV2    HV4    HAT    
-row 2 | HV3    HV3    HV3    LV1    LV4    
-row 3 | XHAT   LV2    WILD   HAT    HV1    
-row 4 | LV4    LV4    LV3    LV2    LV3    
-row 5 | LV1    HV1    HV2    LV2    WILD   
+row 0 | HAT    LV1    LV2    WILD   WILD   
+row 1 | LV3    HV1    HV3    LV1    LV2    
+row 2 | HV2    LV2    WILD   HV3    HV2    
+row 3 | LV1    LV3    LV3    LV2    LV1    
+row 4 | LV2    HAT    HV2    LV4    LV4    
+row 5 | HV3    HV2    LV1    HV2    HV3    
 ======================
+getActivePayWindow active_rows=3, returned_rows=3
 
--- Explosive HAT evaluation --
-findSymbol XHAT: count=1, positions=15(row=3, reel=0)
-EXPHAT Info:1
-RNG uniform real [0.0, 1.0) -> 0.934802
-cumProbability p=0.934802, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
-cumProbability selected index=1
-Explosive HAT active_rows 3 -> 1
-
--- Ways win calculation --
-start_idx(active rows skipped)=1
-First reel active symbols: LV2, HV3, XHAT, LV4, LV1
-Ignoring non-paying first-reel symbol for ways seeding: XHAT (enum=10)
-First reel symbol counts: HV1=0, HV2=0, HV3=1, HV4=0, LV1=1, LV2=1, LV3=0, LV4=1
-Unique paying symbols on first active reel: HV3, LV1, LV2, LV4
-Evaluating symbol HV3
-  Reel 0 active slice: LV2, HV3, XHAT, LV4, LV1 | matching_or_wild=1
-  Reel 1 active slice: LV1, HV3, LV2, LV4, HV1 | matching_or_wild=1
-  Reel 2 active slice: LV2, HV3, WILD, LV3, HV2 | matching_or_wild=2
-  Reel 3 active slice: HV4, LV1, HAT, LV2, LV2 | matching_or_wild=0
-  Win result: symbol=HV3, left2right=3, ways=2, pay=10, symbol_win=20
-Evaluating symbol LV1
-  Reel 0 active slice: LV2, HV3, XHAT, LV4, LV1 | matching_or_wild=1
-  Reel 1 active slice: LV1, HV3, LV2, LV4, HV1 | matching_or_wild=1
-  Reel 2 active slice: LV2, HV3, WILD, LV3, HV2 | matching_or_wild=1
-  Reel 3 active slice: HV4, LV1, HAT, LV2, LV2 | matching_or_wild=1
-  Reel 4 active slice: HAT, LV4, HV1, LV3, WILD | matching_or_wild=1
-  Win result: symbol=LV1, left2right=5, ways=1, pay=100, symbol_win=100
-Evaluating symbol LV2
-  Reel 0 active slice: LV2, HV3, XHAT, LV4, LV1 | matching_or_wild=1
-  Reel 1 active slice: LV1, HV3, LV2, LV4, HV1 | matching_or_wild=1
-  Reel 2 active slice: LV2, HV3, WILD, LV3, HV2 | matching_or_wild=2
-  Reel 3 active slice: HV4, LV1, HAT, LV2, LV2 | matching_or_wild=2
-  Reel 4 active slice: HAT, LV4, HV1, LV3, WILD | matching_or_wild=1
-  Win result: symbol=LV2, left2right=5, ways=4, pay=80, symbol_win=320
-Evaluating symbol LV4
-  Reel 0 active slice: LV2, HV3, XHAT, LV4, LV1 | matching_or_wild=1
-  Reel 1 active slice: LV1, HV3, LV2, LV4, HV1 | matching_or_wild=1
-  Reel 2 active slice: LV2, HV3, WILD, LV3, HV2 | matching_or_wild=1
-  Reel 3 active slice: HV4, LV1, HAT, LV2, LV2 | matching_or_wild=0
-  Win result: symbol=LV4, left2right=3, ways=1, pay=3, symbol_win=3
-Total ways win=443
-getActivePayWindow active_rows=1, returned_rows=5
-
-===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=5, reels=5
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV2    LV1    LV2    HV4    HAT    
-row 1 | HV3    HV3    HV3    LV1    LV4    
-row 2 | XHAT   LV2    WILD   HAT    HV1    
-row 3 | LV4    LV4    LV3    LV2    LV3    
-row 4 | LV1    HV1    HV2    LV2    WILD   
-======================
-allHatCount rows=5, reels=5 -> 3
-Bonus pre-check hat_counts=3
-RNG uniform real [0.0, 1.0) -> 0.577047
-Girder probability p=0.577047, threshold=0.1
-Girder trigger: NO
-allHatCount rows=5, reels=5 -> 3
-Bonus final hat_counts=3, free_game=0
-Spin summary: round_win=443, round_win_xbet=22.15, free_game=0
-
-============================================================
-SPIN 19
-============================================================
-Initial active_rows=3
-
--- Generating pay window --
-RNG int [0, 17] -> 0
-Reel 0: size=18, start_idx=0, symbols=0:LV1 -> 1:LV2 -> 2:HV1 -> 3:LV4 -> 4:HAT -> 5:LV3
-RNG int [0, 15] -> 9
-Reel 1: size=16, start_idx=9, symbols=9:LV1 -> 10:HV3 -> 11:LV2 -> 12:LV4 -> 13:HV1 -> 14:LV3
-RNG int [0, 19] -> 7
-Reel 2: size=20, start_idx=7, symbols=7:WILD -> 8:LV3 -> 9:HV2 -> 10:LV1 -> 11:LV4 -> 12:HV1
-RNG int [0, 16] -> 14
-Reel 3: size=17, start_idx=14, symbols=14:LV1 -> 15:HAT -> 16:LV2 -> 0:LV2 -> 1:HV2 -> 2:LV4
-RNG int [0, 18] -> 11
-Reel 4: size=19, start_idx=11, symbols=11:LV1 -> 12:LV4 -> 13:HV3 -> 14:LV2 -> 15:HAT -> 16:HV1
-
-===== FULL PAY WINDOW =====
-rows=6, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | LV1    LV1    WILD   LV1    LV1    
-row 1 | LV2    HV3    LV3    HAT    LV4    
-row 2 | HV1    LV2    HV2    LV2    HV3    
-row 3 | LV4    LV4    LV1    LV2    LV2    
-row 4 | HAT    HV1    LV4    HV2    HAT    
-row 5 | LV3    LV3    HV1    LV4    HV1    
+row 0 | LV1    LV3    LV3    LV2    LV1    
+row 1 | LV2    HAT    HV2    LV4    LV4    
+row 2 | HV3    HV2    LV1    HV2    HV3    
 ======================
 
 -- Explosive HAT evaluation --
@@ -1371,43 +1438,215 @@ No EXPHAT present; active_rows remains 3
 
 -- Ways win calculation --
 start_idx(active rows skipped)=3
-First reel active symbols: LV4, HAT, LV3
-Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
-First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=0, LV1=0, LV2=0, LV3=1, LV4=1
-Unique paying symbols on first active reel: LV3, LV4
-Evaluating symbol LV3
-  Reel 0 active slice: LV4, HAT, LV3 | matching_or_wild=1
-  Reel 1 active slice: LV4, HV1, LV3 | matching_or_wild=1
-  Reel 2 active slice: LV1, LV4, HV1 | matching_or_wild=0
-  Win result: symbol=LV3, left2right=2, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV4
-  Reel 0 active slice: LV4, HAT, LV3 | matching_or_wild=1
-  Reel 1 active slice: LV4, HV1, LV3 | matching_or_wild=1
-  Reel 2 active slice: LV1, LV4, HV1 | matching_or_wild=1
-  Reel 3 active slice: LV2, HV2, LV4 | matching_or_wild=1
-  Reel 4 active slice: LV2, HAT, HV1 | matching_or_wild=0
-  Win result: symbol=LV4, left2right=4, ways=1, pay=10, symbol_win=10
-Total ways win=10
+First reel active symbols: LV1, LV2, HV3
+First reel symbol counts: HV1=0, HV2=0, HV3=1, HV4=0, LV1=1, LV2=1, LV3=0, LV4=0
+Unique paying symbols on first active reel: HV3, LV1, LV2
+Evaluating symbol HV3
+  Reel 0 active slice: LV1, LV2, HV3 | matching_or_wild=1
+  Reel 1 active slice: LV3, HAT, HV2 | matching_or_wild=0
+  Win result: symbol=HV3, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV1
+  Reel 0 active slice: LV1, LV2, HV3 | matching_or_wild=1
+  Reel 1 active slice: LV3, HAT, HV2 | matching_or_wild=0
+  Win result: symbol=LV1, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV2
+  Reel 0 active slice: LV1, LV2, HV3 | matching_or_wild=1
+  Reel 1 active slice: LV3, HAT, HV2 | matching_or_wild=0
+  Win result: symbol=LV2, left2right=1, ways=1, pay=0, symbol_win=0
+Total ways win=0
 getActivePayWindow active_rows=3, returned_rows=3
 
 ===== ACTIVE PAY WINDOW BEFORE GIRDER =====
 rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV4    LV4    LV1    LV2    LV2    
-row 1 | HAT    HV1    LV4    HV2    HAT    
-row 2 | LV3    LV3    HV1    LV4    HV1    
+row 0 | LV1    LV3    LV3    LV2    LV1    
+row 1 | LV2    HAT    HV2    LV4    LV4    
+row 2 | HV3    HV2    LV1    HV2    HV3    
 ======================
-allHatCount rows=3, reels=5 -> 2
-Bonus pre-check hat_counts=2
-RNG uniform real [0.0, 1.0) -> 0.194452
-Girder probability p=0.194452, threshold=0.1
+allHatCount rows=3, reels=5 -> 1
+Bonus pre-check hat_counts=1
+RNG uniform real [0.0, 1.0) -> 0.745781
+Girder probability p=0.745781, threshold=0.1
 Girder trigger: NO
-allHatCount rows=3, reels=5 -> 2
-Bonus final hat_counts=2, free_game=0
-Spin summary: round_win=10, round_win_xbet=0.5, free_game=0
+allHatCount rows=3, reels=5 -> 1
+Bonus final hat_counts=1, free_game=0
+Spin summary: round_win=0, round_win_xbet=0, free_game=0
+
+============================================================
+SPIN 19
+============================================================
+Initial active_rows=3
+
+-- Generating pay window --
+RNG int [0, 17] -> 6
+Reel 0: size=18, start_idx=6, symbols=6:HV2 -> 7:LV1 -> 8:LV2 -> 9:HV3 -> 10:XHAT -> 11:LV4
+RNG int [0, 15] -> 4
+Reel 1: size=16, start_idx=4, symbols=4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4 -> 8:WILD -> 9:LV1
+RNG int [0, 19] -> 8
+Reel 2: size=20, start_idx=8, symbols=8:LV3 -> 9:HV2 -> 10:LV1 -> 11:LV4 -> 12:HV1 -> 13:LV2
+RNG int [0, 16] -> 8
+Reel 3: size=17, start_idx=8, symbols=8:HV3 -> 9:LV2 -> 10:LV4 -> 11:HV2 -> 12:LV3 -> 13:HV4
+RNG int [0, 18] -> 4
+Reel 4: size=19, start_idx=4, symbols=4:HAT -> 5:LV4 -> 6:HV1 -> 7:LV3 -> 8:WILD -> 9:LV2
+
+===== FULL PAY WINDOW =====
+rows=6, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HV2    LV3    LV3    HV3    HAT    
+row 1 | LV1    HAT    HV2    LV2    LV4    
+row 2 | LV2    HV2    LV1    LV4    HV1    
+row 3 | HV3    LV4    LV4    HV2    LV3    
+row 4 | XHAT   WILD   HV1    LV3    WILD   
+row 5 | LV4    LV1    LV2    HV4    LV2    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HV3    LV4    LV4    HV2    LV3    
+row 1 | XHAT   WILD   HV1    LV3    WILD   
+row 2 | LV4    LV1    LV2    HV4    LV2    
+======================
+
+-- Explosive HAT evaluation --
+findSymbol XHAT: count=1, positions=5(row=1, reel=0)
+EXPHAT Info:1
+RNG uniform real [0.0, 1.0) -> 0.203743
+cumProbability p=0.203743, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
+cumProbability selected index=0
+Explosive HAT active_rows 3 -> 2
+
+-- Ways win calculation --
+start_idx(active rows skipped)=2
+First reel active symbols: LV2, HV3, XHAT, LV4
+Ignoring non-paying first-reel symbol for ways seeding: XHAT (enum=10)
+First reel symbol counts: HV1=0, HV2=0, HV3=1, HV4=0, LV1=0, LV2=1, LV3=0, LV4=1
+Unique paying symbols on first active reel: HV3, LV2, LV4
+Evaluating symbol HV3
+  Reel 0 active slice: LV2, HV3, XHAT, LV4 | matching_or_wild=1
+  Reel 1 active slice: HV2, LV4, WILD, LV1 | matching_or_wild=1
+  Reel 2 active slice: LV1, LV4, HV1, LV2 | matching_or_wild=0
+  Win result: symbol=HV3, left2right=2, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV2
+  Reel 0 active slice: LV2, HV3, XHAT, LV4 | matching_or_wild=1
+  Reel 1 active slice: HV2, LV4, WILD, LV1 | matching_or_wild=1
+  Reel 2 active slice: LV1, LV4, HV1, LV2 | matching_or_wild=1
+  Reel 3 active slice: LV4, HV2, LV3, HV4 | matching_or_wild=0
+  Win result: symbol=LV2, left2right=3, ways=1, pay=5, symbol_win=5
+Evaluating symbol LV4
+  Reel 0 active slice: LV2, HV3, XHAT, LV4 | matching_or_wild=1
+  Reel 1 active slice: HV2, LV4, WILD, LV1 | matching_or_wild=2
+  Reel 2 active slice: LV1, LV4, HV1, LV2 | matching_or_wild=1
+  Reel 3 active slice: LV4, HV2, LV3, HV4 | matching_or_wild=1
+  Reel 4 active slice: HV1, LV3, WILD, LV2 | matching_or_wild=1
+  Win result: symbol=LV4, left2right=5, ways=2, pay=50, symbol_win=100
+Total ways win=105
+getActivePayWindow active_rows=2, returned_rows=4
+
+===== ACTIVE PAY WINDOW BEFORE GIRDER =====
+rows=4, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV2    HV2    LV1    LV4    HV1    
+row 1 | HV3    LV4    LV4    HV2    LV3    
+row 2 | XHAT   WILD   HV1    LV3    WILD   
+row 3 | LV4    LV1    LV2    HV4    LV2    
+======================
+allHatCount rows=4, reels=5 -> 1
+Bonus pre-check hat_counts=1
+RNG uniform real [0.0, 1.0) -> 0.934802
+Girder probability p=0.934802, threshold=0.1
+Girder trigger: NO
+allHatCount rows=4, reels=5 -> 1
+Bonus final hat_counts=1, free_game=0
+Spin summary: round_win=105, round_win_xbet=5.25, free_game=0
 
 ============================================================
 SPIN 20
+============================================================
+Initial active_rows=3
+
+-- Generating pay window --
+RNG int [0, 17] -> 7
+Reel 0: size=18, start_idx=7, symbols=7:LV1 -> 8:LV2 -> 9:HV3 -> 10:XHAT -> 11:LV4 -> 12:LV1
+RNG int [0, 15] -> 9
+Reel 1: size=16, start_idx=9, symbols=9:LV1 -> 10:HV3 -> 11:LV2 -> 12:LV4 -> 13:HV1 -> 14:LV3
+RNG int [0, 19] -> 0
+Reel 2: size=20, start_idx=0, symbols=0:LV4 -> 1:HV4 -> 2:LV1 -> 3:HV1 -> 4:HAT -> 5:LV2
+RNG int [0, 16] -> 10
+Reel 3: size=17, start_idx=10, symbols=10:LV4 -> 11:HV2 -> 12:LV3 -> 13:HV4 -> 14:LV1 -> 15:HAT
+RNG int [0, 18] -> 7
+Reel 4: size=19, start_idx=7, symbols=7:LV3 -> 8:WILD -> 9:LV2 -> 10:HV2 -> 11:LV1 -> 12:LV4
+
+===== FULL PAY WINDOW =====
+rows=6, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV1    LV1    LV4    LV4    LV3    
+row 1 | LV2    HV3    HV4    HV2    WILD   
+row 2 | HV3    LV2    LV1    LV3    LV2    
+row 3 | XHAT   LV4    HV1    HV4    HV2    
+row 4 | LV4    HV1    HAT    LV1    LV1    
+row 5 | LV1    LV3    LV2    HAT    LV4    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | XHAT   LV4    HV1    HV4    HV2    
+row 1 | LV4    HV1    HAT    LV1    LV1    
+row 2 | LV1    LV3    LV2    HAT    LV4    
+======================
+
+-- Explosive HAT evaluation --
+findSymbol XHAT: count=1, positions=0(row=0, reel=0)
+EXPHAT Info:1
+RNG uniform real [0.0, 1.0) -> 0.59393
+cumProbability p=0.59393, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
+cumProbability selected index=0
+Explosive HAT active_rows 3 -> 2
+
+-- Ways win calculation --
+start_idx(active rows skipped)=2
+First reel active symbols: HV3, XHAT, LV4, LV1
+Ignoring non-paying first-reel symbol for ways seeding: XHAT (enum=10)
+First reel symbol counts: HV1=0, HV2=0, HV3=1, HV4=0, LV1=1, LV2=0, LV3=0, LV4=1
+Unique paying symbols on first active reel: HV3, LV1, LV4
+Evaluating symbol HV3
+  Reel 0 active slice: HV3, XHAT, LV4, LV1 | matching_or_wild=1
+  Reel 1 active slice: LV2, LV4, HV1, LV3 | matching_or_wild=0
+  Win result: symbol=HV3, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV1
+  Reel 0 active slice: HV3, XHAT, LV4, LV1 | matching_or_wild=1
+  Reel 1 active slice: LV2, LV4, HV1, LV3 | matching_or_wild=0
+  Win result: symbol=LV1, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV4
+  Reel 0 active slice: HV3, XHAT, LV4, LV1 | matching_or_wild=1
+  Reel 1 active slice: LV2, LV4, HV1, LV3 | matching_or_wild=1
+  Reel 2 active slice: LV1, HV1, HAT, LV2 | matching_or_wild=0
+  Win result: symbol=LV4, left2right=2, ways=1, pay=0, symbol_win=0
+Total ways win=0
+getActivePayWindow active_rows=2, returned_rows=4
+
+===== ACTIVE PAY WINDOW BEFORE GIRDER =====
+rows=4, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HV3    LV2    LV1    LV3    LV2    
+row 1 | XHAT   LV4    HV1    HV4    HV2    
+row 2 | LV4    HV1    HAT    LV1    LV1    
+row 3 | LV1    LV3    LV2    HAT    LV4    
+======================
+allHatCount rows=4, reels=5 -> 3
+Bonus pre-check hat_counts=3
+RNG uniform real [0.0, 1.0) -> 0.194452
+Girder probability p=0.194452, threshold=0.1
+Girder trigger: NO
+allHatCount rows=4, reels=5 -> 3
+Bonus final hat_counts=3, free_game=0
+Spin summary: round_win=0, round_win_xbet=0, free_game=0
+
+============================================================
+SPIN 21
 ============================================================
 Initial active_rows=3
 
@@ -1432,6 +1671,15 @@ row 2 | LV2    HV1    WILD   LV1    LV3
 row 3 | LV1    LV3    LV3    HV3    HV4    
 row 4 | LV2    HV2    HV2    LV2    HV4    
 row 5 | HV1    HV4    LV1    LV4    LV2    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV1    LV3    LV3    HV3    HV4    
+row 1 | LV2    HV2    HV2    LV2    HV4    
+row 2 | HV1    HV4    LV1    LV4    LV2    
 ======================
 
 -- Explosive HAT evaluation --
@@ -1474,7 +1722,7 @@ Bonus final hat_counts=0, free_game=0
 Spin summary: round_win=0, round_win_xbet=0, free_game=0
 
 ============================================================
-SPIN 21
+SPIN 22
 ============================================================
 Initial active_rows=3
 
@@ -1500,242 +1748,14 @@ row 3 | LV1    HV1    LV1    LV3    HV4
 row 4 | HV1    LV2    HV1    HV1    HV4    
 row 5 | HAT    LV3    HAT    WILD   LV2    
 ======================
+getActivePayWindow active_rows=3, returned_rows=3
 
--- Explosive HAT evaluation --
-findSymbol XHAT: count=1, positions=5(row=1, reel=0)
-EXPHAT Info:1
-RNG uniform real [0.0, 1.0) -> 0.294606
-cumProbability p=0.294606, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
-cumProbability selected index=0
-Explosive HAT active_rows 3 -> 2
-
--- Ways win calculation --
-start_idx(active rows skipped)=2
-First reel active symbols: LV4, LV1, HV1, HAT
-Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
-First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=1, LV2=0, LV3=0, LV4=1
-Unique paying symbols on first active reel: HV1, LV1, LV4
-Evaluating symbol HV1
-  Reel 0 active slice: LV4, LV1, HV1, HAT | matching_or_wild=1
-  Reel 1 active slice: LV1, HV1, LV2, LV3 | matching_or_wild=1
-  Reel 2 active slice: HV4, LV1, HV1, HAT | matching_or_wild=1
-  Reel 3 active slice: HAT, LV3, HV1, WILD | matching_or_wild=2
-  Reel 4 active slice: LV3, HV4, HV4, LV2 | matching_or_wild=0
-  Win result: symbol=HV1, left2right=4, ways=2, pay=100, symbol_win=200
-Evaluating symbol LV1
-  Reel 0 active slice: LV4, LV1, HV1, HAT | matching_or_wild=1
-  Reel 1 active slice: LV1, HV1, LV2, LV3 | matching_or_wild=1
-  Reel 2 active slice: HV4, LV1, HV1, HAT | matching_or_wild=1
-  Reel 3 active slice: HAT, LV3, HV1, WILD | matching_or_wild=1
-  Reel 4 active slice: LV3, HV4, HV4, LV2 | matching_or_wild=0
-  Win result: symbol=LV1, left2right=4, ways=1, pay=25, symbol_win=25
-Evaluating symbol LV4
-  Reel 0 active slice: LV4, LV1, HV1, HAT | matching_or_wild=1
-  Reel 1 active slice: LV1, HV1, LV2, LV3 | matching_or_wild=0
-  Win result: symbol=LV4, left2right=1, ways=1, pay=0, symbol_win=0
-Total ways win=225
-getActivePayWindow active_rows=2, returned_rows=4
-
-===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=4, reels=5
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV4    LV1    HV4    HAT    LV3    
-row 1 | LV1    HV1    LV1    LV3    HV4    
-row 2 | HV1    LV2    HV1    HV1    HV4    
-row 3 | HAT    LV3    HAT    WILD   LV2    
-======================
-allHatCount rows=4, reels=5 -> 3
-Bonus pre-check hat_counts=3
-RNG uniform real [0.0, 1.0) -> 0.268461
-Girder probability p=0.268461, threshold=0.1
-Girder trigger: NO
-allHatCount rows=4, reels=5 -> 3
-Bonus final hat_counts=3, free_game=0
-Spin summary: round_win=225, round_win_xbet=11.25, free_game=0
-
-============================================================
-SPIN 22
-============================================================
-Initial active_rows=3
-
--- Generating pay window --
-RNG int [0, 17] -> 10
-Reel 0: size=18, start_idx=10, symbols=10:XHAT -> 11:LV4 -> 12:LV1 -> 13:HV1 -> 14:HAT -> 15:LV3
-RNG int [0, 15] -> 0
-Reel 1: size=16, start_idx=0, symbols=0:HV4 -> 1:LV1 -> 2:HV1 -> 3:LV2 -> 4:LV3 -> 5:HAT
-RNG int [0, 19] -> 1
-Reel 2: size=20, start_idx=1, symbols=1:HV4 -> 2:LV1 -> 3:HV1 -> 4:HAT -> 5:LV2 -> 6:HV3
-RNG int [0, 16] -> 4
-Reel 3: size=17, start_idx=4, symbols=4:LV3 -> 5:HV1 -> 6:WILD -> 7:LV1 -> 8:HV3 -> 9:LV2
-RNG int [0, 18] -> 4
-Reel 4: size=19, start_idx=4, symbols=4:HAT -> 5:LV4 -> 6:HV1 -> 7:LV3 -> 8:WILD -> 9:LV2
-
-===== FULL PAY WINDOW =====
-rows=6, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | XHAT   HV4    HV4    LV3    HAT    
-row 1 | LV4    LV1    LV1    HV1    LV4    
-row 2 | LV1    HV1    HV1    WILD   HV1    
-row 3 | HV1    LV2    HAT    LV1    LV3    
-row 4 | HAT    LV3    LV2    HV3    WILD   
-row 5 | LV3    HAT    HV3    LV2    LV2    
-======================
-
--- Explosive HAT evaluation --
-findSymbol XHAT: count=1, positions=0(row=0, reel=0)
-EXPHAT Info:1
-RNG uniform real [0.0, 1.0) -> 0.172187
-cumProbability p=0.172187, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
-cumProbability selected index=0
-Explosive HAT active_rows 3 -> 2
-
--- Ways win calculation --
-start_idx(active rows skipped)=2
-First reel active symbols: LV1, HV1, HAT, LV3
-Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
-First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=1, LV2=0, LV3=1, LV4=0
-Unique paying symbols on first active reel: HV1, LV1, LV3
-Evaluating symbol HV1
-  Reel 0 active slice: LV1, HV1, HAT, LV3 | matching_or_wild=1
-  Reel 1 active slice: HV1, LV2, LV3, HAT | matching_or_wild=1
-  Reel 2 active slice: HV1, HAT, LV2, HV3 | matching_or_wild=1
-  Reel 3 active slice: WILD, LV1, HV3, LV2 | matching_or_wild=1
-  Reel 4 active slice: HV1, LV3, WILD, LV2 | matching_or_wild=2
-  Win result: symbol=HV1, left2right=5, ways=2, pay=500, symbol_win=1000
-Evaluating symbol LV1
-  Reel 0 active slice: LV1, HV1, HAT, LV3 | matching_or_wild=1
-  Reel 1 active slice: HV1, LV2, LV3, HAT | matching_or_wild=0
-  Win result: symbol=LV1, left2right=1, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV3
-  Reel 0 active slice: LV1, HV1, HAT, LV3 | matching_or_wild=1
-  Reel 1 active slice: HV1, LV2, LV3, HAT | matching_or_wild=1
-  Reel 2 active slice: HV1, HAT, LV2, HV3 | matching_or_wild=0
-  Win result: symbol=LV3, left2right=2, ways=1, pay=0, symbol_win=0
-Total ways win=1000
-getActivePayWindow active_rows=2, returned_rows=4
-
-===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=4, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | LV1    HV1    HV1    WILD   HV1    
-row 1 | HV1    LV2    HAT    LV1    LV3    
-row 2 | HAT    LV3    LV2    HV3    WILD   
-row 3 | LV3    HAT    HV3    LV2    LV2    
-======================
-allHatCount rows=4, reels=5 -> 3
-Bonus pre-check hat_counts=3
-RNG uniform real [0.0, 1.0) -> 0.973149
-Girder probability p=0.973149, threshold=0.1
-Girder trigger: NO
-allHatCount rows=4, reels=5 -> 3
-Bonus final hat_counts=3, free_game=0
-Spin summary: round_win=1000, round_win_xbet=50, free_game=0
-
-============================================================
-SPIN 23
-============================================================
-Initial active_rows=3
-
--- Generating pay window --
-RNG int [0, 17] -> 10
-Reel 0: size=18, start_idx=10, symbols=10:XHAT -> 11:LV4 -> 12:LV1 -> 13:HV1 -> 14:HAT -> 15:LV3
-RNG int [0, 15] -> 3
-Reel 1: size=16, start_idx=3, symbols=3:LV2 -> 4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4 -> 8:WILD
-RNG int [0, 19] -> 14
-Reel 2: size=20, start_idx=14, symbols=14:HV4 -> 15:LV3 -> 16:HAT -> 17:LV1 -> 18:HV2 -> 19:LV4
-RNG int [0, 16] -> 3
-Reel 3: size=17, start_idx=3, symbols=3:HAT -> 4:LV3 -> 5:HV1 -> 6:WILD -> 7:LV1 -> 8:HV3
-RNG int [0, 18] -> 8
-Reel 4: size=19, start_idx=8, symbols=8:WILD -> 9:LV2 -> 10:HV2 -> 11:LV1 -> 12:LV4 -> 13:HV3
-
-===== FULL PAY WINDOW =====
-rows=6, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | XHAT   LV2    HV4    HAT    WILD   
-row 1 | LV4    LV3    LV3    LV3    LV2    
-row 2 | LV1    HAT    HAT    HV1    HV2    
-row 3 | HV1    HV2    LV1    WILD   LV1    
-row 4 | HAT    LV4    HV2    LV1    LV4    
-row 5 | LV3    WILD   LV4    HV3    HV3    
-======================
-
--- Explosive HAT evaluation --
-findSymbol XHAT: count=1, positions=0(row=0, reel=0)
-EXPHAT Info:1
-RNG uniform real [0.0, 1.0) -> 0.623001
-cumProbability p=0.623001, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
-cumProbability selected index=0
-Explosive HAT active_rows 3 -> 2
-
--- Ways win calculation --
-start_idx(active rows skipped)=2
-First reel active symbols: LV1, HV1, HAT, LV3
-Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
-First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=1, LV2=0, LV3=1, LV4=0
-Unique paying symbols on first active reel: HV1, LV1, LV3
-Evaluating symbol HV1
-  Reel 0 active slice: LV1, HV1, HAT, LV3 | matching_or_wild=1
-  Reel 1 active slice: HAT, HV2, LV4, WILD | matching_or_wild=1
-  Reel 2 active slice: HAT, LV1, HV2, LV4 | matching_or_wild=0
-  Win result: symbol=HV1, left2right=2, ways=1, pay=0, symbol_win=0
-Evaluating symbol LV1
-  Reel 0 active slice: LV1, HV1, HAT, LV3 | matching_or_wild=1
-  Reel 1 active slice: HAT, HV2, LV4, WILD | matching_or_wild=1
-  Reel 2 active slice: HAT, LV1, HV2, LV4 | matching_or_wild=1
-  Reel 3 active slice: HV1, WILD, LV1, HV3 | matching_or_wild=2
-  Reel 4 active slice: HV2, LV1, LV4, HV3 | matching_or_wild=1
-  Win result: symbol=LV1, left2right=5, ways=2, pay=100, symbol_win=200
-Evaluating symbol LV3
-  Reel 0 active slice: LV1, HV1, HAT, LV3 | matching_or_wild=1
-  Reel 1 active slice: HAT, HV2, LV4, WILD | matching_or_wild=1
-  Reel 2 active slice: HAT, LV1, HV2, LV4 | matching_or_wild=0
-  Win result: symbol=LV3, left2right=2, ways=1, pay=0, symbol_win=0
-Total ways win=200
-getActivePayWindow active_rows=2, returned_rows=4
-
-===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=4, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | LV1    HAT    HAT    HV1    HV2    
-row 1 | HV1    HV2    LV1    WILD   LV1    
-row 2 | HAT    LV4    HV2    LV1    LV4    
-row 3 | LV3    WILD   LV4    HV3    HV3    
-======================
-allHatCount rows=4, reels=5 -> 3
-Bonus pre-check hat_counts=3
-RNG uniform real [0.0, 1.0) -> 0.897891
-Girder probability p=0.897891, threshold=0.1
-Girder trigger: NO
-allHatCount rows=4, reels=5 -> 3
-Bonus final hat_counts=3, free_game=0
-Spin summary: round_win=200, round_win_xbet=10, free_game=0
-
-============================================================
-SPIN 24
-============================================================
-Initial active_rows=3
-
--- Generating pay window --
-RNG int [0, 17] -> 14
-Reel 0: size=18, start_idx=14, symbols=14:HAT -> 15:LV3 -> 16:HV4 -> 17:LV2 -> 0:LV1 -> 1:LV2
-RNG int [0, 15] -> 9
-Reel 1: size=16, start_idx=9, symbols=9:LV1 -> 10:HV3 -> 11:LV2 -> 12:LV4 -> 13:HV1 -> 14:LV3
-RNG int [0, 19] -> 3
-Reel 2: size=20, start_idx=3, symbols=3:HV1 -> 4:HAT -> 5:LV2 -> 6:HV3 -> 7:WILD -> 8:LV3
-RNG int [0, 16] -> 7
-Reel 3: size=17, start_idx=7, symbols=7:LV1 -> 8:HV3 -> 9:LV2 -> 10:LV4 -> 11:HV2 -> 12:LV3
-RNG int [0, 18] -> 5
-Reel 4: size=19, start_idx=5, symbols=5:LV4 -> 6:HV1 -> 7:LV3 -> 8:WILD -> 9:LV2 -> 10:HV2
-
-===== FULL PAY WINDOW =====
-rows=6, reels=5
-        R0      R1      R2      R3      R4      
-row 0 | HAT    LV1    HV1    LV1    LV4    
-row 1 | LV3    HV3    HAT    HV3    HV1    
-row 2 | HV4    LV2    LV2    LV2    LV3    
-row 3 | LV2    LV4    HV3    LV4    WILD   
-row 4 | LV1    HV1    WILD   HV2    LV2    
-row 5 | LV2    LV3    LV3    LV3    HV2    
+row 0 | LV1    HV1    LV1    LV3    HV4    
+row 1 | HV1    LV2    HV1    HV1    HV4    
+row 2 | HAT    LV3    HAT    WILD   LV2    
 ======================
 
 -- Explosive HAT evaluation --
@@ -1745,32 +1765,195 @@ No EXPHAT present; active_rows remains 3
 
 -- Ways win calculation --
 start_idx(active rows skipped)=3
-First reel active symbols: LV2, LV1, LV2
-First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=0, LV1=1, LV2=2, LV3=0, LV4=0
-Unique paying symbols on first active reel: LV1, LV2
+First reel active symbols: LV1, HV1, HAT
+Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
+First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=1, LV2=0, LV3=0, LV4=0
+Unique paying symbols on first active reel: HV1, LV1
+Evaluating symbol HV1
+  Reel 0 active slice: LV1, HV1, HAT | matching_or_wild=1
+  Reel 1 active slice: HV1, LV2, LV3 | matching_or_wild=1
+  Reel 2 active slice: LV1, HV1, HAT | matching_or_wild=1
+  Reel 3 active slice: LV3, HV1, WILD | matching_or_wild=2
+  Reel 4 active slice: HV4, HV4, LV2 | matching_or_wild=0
+  Win result: symbol=HV1, left2right=4, ways=2, pay=100, symbol_win=200
 Evaluating symbol LV1
-  Reel 0 active slice: LV2, LV1, LV2 | matching_or_wild=1
-  Reel 1 active slice: LV4, HV1, LV3 | matching_or_wild=0
+  Reel 0 active slice: LV1, HV1, HAT | matching_or_wild=1
+  Reel 1 active slice: HV1, LV2, LV3 | matching_or_wild=0
+  Win result: symbol=LV1, left2right=1, ways=1, pay=0, symbol_win=0
+Total ways win=200
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== ACTIVE PAY WINDOW BEFORE GIRDER =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV1    HV1    LV1    LV3    HV4    
+row 1 | HV1    LV2    HV1    HV1    HV4    
+row 2 | HAT    LV3    HAT    WILD   LV2    
+======================
+allHatCount rows=3, reels=5 -> 2
+Bonus pre-check hat_counts=2
+RNG uniform real [0.0, 1.0) -> 0.294606
+Girder probability p=0.294606, threshold=0.1
+Girder trigger: NO
+allHatCount rows=3, reels=5 -> 2
+Bonus final hat_counts=2, free_game=0
+Spin summary: round_win=200, round_win_xbet=10, free_game=0
+
+============================================================
+SPIN 23
+============================================================
+Initial active_rows=3
+
+-- Generating pay window --
+RNG int [0, 17] -> 0
+Reel 0: size=18, start_idx=0, symbols=0:LV1 -> 1:LV2 -> 2:HV1 -> 3:LV4 -> 4:HAT -> 5:LV3
+RNG int [0, 15] -> 4
+Reel 1: size=16, start_idx=4, symbols=4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4 -> 8:WILD -> 9:LV1
+RNG int [0, 19] -> 11
+Reel 2: size=20, start_idx=11, symbols=11:LV4 -> 12:HV1 -> 13:LV2 -> 14:HV4 -> 15:LV3 -> 16:HAT
+RNG int [0, 16] -> 0
+Reel 3: size=17, start_idx=0, symbols=0:LV2 -> 1:HV2 -> 2:LV4 -> 3:HAT -> 4:LV3 -> 5:HV1
+RNG int [0, 18] -> 1
+Reel 4: size=19, start_idx=1, symbols=1:LV2 -> 2:HV3 -> 3:LV1 -> 4:HAT -> 5:LV4 -> 6:HV1
+
+===== FULL PAY WINDOW =====
+rows=6, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV1    LV3    LV4    LV2    LV2    
+row 1 | LV2    HAT    HV1    HV2    HV3    
+row 2 | HV1    HV2    LV2    LV4    LV1    
+row 3 | LV4    LV4    HV4    HAT    HAT    
+row 4 | HAT    WILD   LV3    LV3    LV4    
+row 5 | LV3    LV1    HAT    HV1    HV1    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV4    LV4    HV4    HAT    HAT    
+row 1 | HAT    WILD   LV3    LV3    LV4    
+row 2 | LV3    LV1    HAT    HV1    HV1    
+======================
+
+-- Explosive HAT evaluation --
+findSymbol XHAT: count=0, positions=none
+EXPHAT Info:0
+No EXPHAT present; active_rows remains 3
+
+-- Ways win calculation --
+start_idx(active rows skipped)=3
+First reel active symbols: LV4, HAT, LV3
+Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
+First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=0, LV1=0, LV2=0, LV3=1, LV4=1
+Unique paying symbols on first active reel: LV3, LV4
+Evaluating symbol LV3
+  Reel 0 active slice: LV4, HAT, LV3 | matching_or_wild=1
+  Reel 1 active slice: LV4, WILD, LV1 | matching_or_wild=1
+  Reel 2 active slice: HV4, LV3, HAT | matching_or_wild=1
+  Reel 3 active slice: HAT, LV3, HV1 | matching_or_wild=1
+  Reel 4 active slice: HAT, LV4, HV1 | matching_or_wild=0
+  Win result: symbol=LV3, left2right=4, ways=1, pay=15, symbol_win=15
+Evaluating symbol LV4
+  Reel 0 active slice: LV4, HAT, LV3 | matching_or_wild=1
+  Reel 1 active slice: LV4, WILD, LV1 | matching_or_wild=2
+  Reel 2 active slice: HV4, LV3, HAT | matching_or_wild=0
+  Win result: symbol=LV4, left2right=2, ways=2, pay=0, symbol_win=0
+Total ways win=15
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== ACTIVE PAY WINDOW BEFORE GIRDER =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV4    LV4    HV4    HAT    HAT    
+row 1 | HAT    WILD   LV3    LV3    LV4    
+row 2 | LV3    LV1    HAT    HV1    HV1    
+======================
+allHatCount rows=3, reels=5 -> 4
+Bonus pre-check hat_counts=4
+RNG uniform real [0.0, 1.0) -> 0.213255
+Girder probability p=0.213255, threshold=0.1
+Girder trigger: NO
+allHatCount rows=3, reels=5 -> 4
+Bonus final hat_counts=4, free_game=0
+Spin summary: round_win=15, round_win_xbet=0.75, free_game=0
+
+============================================================
+SPIN 24
+============================================================
+Initial active_rows=3
+
+-- Generating pay window --
+RNG int [0, 17] -> 15
+Reel 0: size=18, start_idx=15, symbols=15:LV3 -> 16:HV4 -> 17:LV2 -> 0:LV1 -> 1:LV2 -> 2:HV1
+RNG int [0, 15] -> 2
+Reel 1: size=16, start_idx=2, symbols=2:HV1 -> 3:LV2 -> 4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4
+RNG int [0, 19] -> 3
+Reel 2: size=20, start_idx=3, symbols=3:HV1 -> 4:HAT -> 5:LV2 -> 6:HV3 -> 7:WILD -> 8:LV3
+RNG int [0, 16] -> 16
+Reel 3: size=17, start_idx=16, symbols=16:LV2 -> 0:LV2 -> 1:HV2 -> 2:LV4 -> 3:HAT -> 4:LV3
+RNG int [0, 18] -> 10
+Reel 4: size=19, start_idx=10, symbols=10:HV2 -> 11:LV1 -> 12:LV4 -> 13:HV3 -> 14:LV2 -> 15:HAT
+
+===== FULL PAY WINDOW =====
+rows=6, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV3    HV1    HV1    LV2    HV2    
+row 1 | HV4    LV2    HAT    LV2    LV1    
+row 2 | LV2    LV3    LV2    HV2    LV4    
+row 3 | LV1    HAT    HV3    LV4    HV3    
+row 4 | LV2    HV2    WILD   HAT    LV2    
+row 5 | HV1    LV4    LV3    LV3    HAT    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | LV1    HAT    HV3    LV4    HV3    
+row 1 | LV2    HV2    WILD   HAT    LV2    
+row 2 | HV1    LV4    LV3    LV3    HAT    
+======================
+
+-- Explosive HAT evaluation --
+findSymbol XHAT: count=0, positions=none
+EXPHAT Info:0
+No EXPHAT present; active_rows remains 3
+
+-- Ways win calculation --
+start_idx(active rows skipped)=3
+First reel active symbols: LV1, LV2, HV1
+First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=1, LV2=1, LV3=0, LV4=0
+Unique paying symbols on first active reel: HV1, LV1, LV2
+Evaluating symbol HV1
+  Reel 0 active slice: LV1, LV2, HV1 | matching_or_wild=1
+  Reel 1 active slice: HAT, HV2, LV4 | matching_or_wild=0
+  Win result: symbol=HV1, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV1
+  Reel 0 active slice: LV1, LV2, HV1 | matching_or_wild=1
+  Reel 1 active slice: HAT, HV2, LV4 | matching_or_wild=0
   Win result: symbol=LV1, left2right=1, ways=1, pay=0, symbol_win=0
 Evaluating symbol LV2
-  Reel 0 active slice: LV2, LV1, LV2 | matching_or_wild=2
-  Reel 1 active slice: LV4, HV1, LV3 | matching_or_wild=0
-  Win result: symbol=LV2, left2right=1, ways=2, pay=0, symbol_win=0
+  Reel 0 active slice: LV1, LV2, HV1 | matching_or_wild=1
+  Reel 1 active slice: HAT, HV2, LV4 | matching_or_wild=0
+  Win result: symbol=LV2, left2right=1, ways=1, pay=0, symbol_win=0
 Total ways win=0
 getActivePayWindow active_rows=3, returned_rows=3
 
 ===== ACTIVE PAY WINDOW BEFORE GIRDER =====
 rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV2    LV4    HV3    LV4    WILD   
-row 1 | LV1    HV1    WILD   HV2    LV2    
-row 2 | LV2    LV3    LV3    LV3    HV2    
+row 0 | LV1    HAT    HV3    LV4    HV3    
+row 1 | LV2    HV2    WILD   HAT    LV2    
+row 2 | HV1    LV4    LV3    LV3    HAT    
 ======================
-allHatCount rows=3, reels=5 -> 0
-Bonus pre-check hat_counts=0
-Girder trigger skipped because no hats are active
-allHatCount rows=3, reels=5 -> 0
-Bonus final hat_counts=0, free_game=0
+allHatCount rows=3, reels=5 -> 3
+Bonus pre-check hat_counts=3
+RNG uniform real [0.0, 1.0) -> 0.743182
+Girder probability p=0.743182, threshold=0.1
+Girder trigger: NO
+allHatCount rows=3, reels=5 -> 3
+Bonus final hat_counts=3, free_game=0
 Spin summary: round_win=0, round_win_xbet=0, free_game=0
 
 ============================================================
@@ -1779,104 +1962,107 @@ SPIN 25
 Initial active_rows=3
 
 -- Generating pay window --
-RNG int [0, 17] -> 7
-Reel 0: size=18, start_idx=7, symbols=7:LV1 -> 8:LV2 -> 9:HV3 -> 10:XHAT -> 11:LV4 -> 12:LV1
-RNG int [0, 15] -> 7
-Reel 1: size=16, start_idx=7, symbols=7:LV4 -> 8:WILD -> 9:LV1 -> 10:HV3 -> 11:LV2 -> 12:LV4
-RNG int [0, 19] -> 17
-Reel 2: size=20, start_idx=17, symbols=17:LV1 -> 18:HV2 -> 19:LV4 -> 0:LV4 -> 1:HV4 -> 2:LV1
-RNG int [0, 16] -> 13
-Reel 3: size=17, start_idx=13, symbols=13:HV4 -> 14:LV1 -> 15:HAT -> 16:LV2 -> 0:LV2 -> 1:HV2
-RNG int [0, 18] -> 15
-Reel 4: size=19, start_idx=15, symbols=15:HAT -> 16:HV1 -> 17:LV3 -> 18:HV4 -> 0:HV4 -> 1:LV2
+RNG int [0, 17] -> 3
+Reel 0: size=18, start_idx=3, symbols=3:LV4 -> 4:HAT -> 5:LV3 -> 6:HV2 -> 7:LV1 -> 8:LV2
+RNG int [0, 15] -> 6
+Reel 1: size=16, start_idx=6, symbols=6:HV2 -> 7:LV4 -> 8:WILD -> 9:LV1 -> 10:HV3 -> 11:LV2
+RNG int [0, 19] -> 5
+Reel 2: size=20, start_idx=5, symbols=5:LV2 -> 6:HV3 -> 7:WILD -> 8:LV3 -> 9:HV2 -> 10:LV1
+RNG int [0, 16] -> 10
+Reel 3: size=17, start_idx=10, symbols=10:LV4 -> 11:HV2 -> 12:LV3 -> 13:HV4 -> 14:LV1 -> 15:HAT
+RNG int [0, 18] -> 5
+Reel 4: size=19, start_idx=5, symbols=5:LV4 -> 6:HV1 -> 7:LV3 -> 8:WILD -> 9:LV2 -> 10:HV2
 
 ===== FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV1    LV4    LV1    HV4    HAT    
-row 1 | LV2    WILD   HV2    LV1    HV1    
-row 2 | HV3    LV1    LV4    HAT    LV3    
-row 3 | XHAT   HV3    LV4    LV2    HV4    
-row 4 | LV4    LV2    HV4    LV2    HV4    
-row 5 | LV1    LV4    LV1    HV2    LV2    
+row 0 | LV4    HV2    LV2    LV4    LV4    
+row 1 | HAT    LV4    HV3    HV2    HV1    
+row 2 | LV3    WILD   WILD   LV3    LV3    
+row 3 | HV2    LV1    LV3    HV4    WILD   
+row 4 | LV1    HV3    HV2    LV1    LV2    
+row 5 | LV2    LV2    LV1    HAT    HV2    
+======================
+getActivePayWindow active_rows=3, returned_rows=3
+
+===== INITIAL ACTIVE PAY WINDOW FOR EXPHAT CHECK =====
+rows=3, reels=5
+        R0      R1      R2      R3      R4      
+row 0 | HV2    LV1    LV3    HV4    WILD   
+row 1 | LV1    HV3    HV2    LV1    LV2    
+row 2 | LV2    LV2    LV1    HAT    HV2    
 ======================
 
 -- Explosive HAT evaluation --
-findSymbol XHAT: count=1, positions=15(row=3, reel=0)
-EXPHAT Info:1
-RNG uniform real [0.0, 1.0) -> 0.707731
-cumProbability p=0.707731, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
-cumProbability selected index=0
-Explosive HAT active_rows 3 -> 2
+findSymbol XHAT: count=0, positions=none
+EXPHAT Info:0
+No EXPHAT present; active_rows remains 3
 
 -- Ways win calculation --
-start_idx(active rows skipped)=2
-First reel active symbols: HV3, XHAT, LV4, LV1
-Ignoring non-paying first-reel symbol for ways seeding: XHAT (enum=10)
-First reel symbol counts: HV1=0, HV2=0, HV3=1, HV4=0, LV1=1, LV2=0, LV3=0, LV4=1
-Unique paying symbols on first active reel: HV3, LV1, LV4
-Evaluating symbol HV3
-  Reel 0 active slice: HV3, XHAT, LV4, LV1 | matching_or_wild=1
-  Reel 1 active slice: LV1, HV3, LV2, LV4 | matching_or_wild=1
-  Reel 2 active slice: LV4, LV4, HV4, LV1 | matching_or_wild=0
-  Win result: symbol=HV3, left2right=2, ways=1, pay=0, symbol_win=0
+start_idx(active rows skipped)=3
+First reel active symbols: HV2, LV1, LV2
+First reel symbol counts: HV1=0, HV2=1, HV3=0, HV4=0, LV1=1, LV2=1, LV3=0, LV4=0
+Unique paying symbols on first active reel: HV2, LV1, LV2
+Evaluating symbol HV2
+  Reel 0 active slice: HV2, LV1, LV2 | matching_or_wild=1
+  Reel 1 active slice: LV1, HV3, LV2 | matching_or_wild=0
+  Win result: symbol=HV2, left2right=1, ways=1, pay=0, symbol_win=0
 Evaluating symbol LV1
-  Reel 0 active slice: HV3, XHAT, LV4, LV1 | matching_or_wild=1
-  Reel 1 active slice: LV1, HV3, LV2, LV4 | matching_or_wild=1
-  Reel 2 active slice: LV4, LV4, HV4, LV1 | matching_or_wild=1
-  Reel 3 active slice: HAT, LV2, LV2, HV2 | matching_or_wild=0
-  Win result: symbol=LV1, left2right=3, ways=1, pay=5, symbol_win=5
-Evaluating symbol LV4
-  Reel 0 active slice: HV3, XHAT, LV4, LV1 | matching_or_wild=1
-  Reel 1 active slice: LV1, HV3, LV2, LV4 | matching_or_wild=1
-  Reel 2 active slice: LV4, LV4, HV4, LV1 | matching_or_wild=2
-  Reel 3 active slice: HAT, LV2, LV2, HV2 | matching_or_wild=0
-  Win result: symbol=LV4, left2right=3, ways=2, pay=3, symbol_win=6
-Total ways win=11
-getActivePayWindow active_rows=2, returned_rows=4
+  Reel 0 active slice: HV2, LV1, LV2 | matching_or_wild=1
+  Reel 1 active slice: LV1, HV3, LV2 | matching_or_wild=1
+  Reel 2 active slice: LV3, HV2, LV1 | matching_or_wild=1
+  Reel 3 active slice: HV4, LV1, HAT | matching_or_wild=1
+  Reel 4 active slice: WILD, LV2, HV2 | matching_or_wild=1
+  Win result: symbol=LV1, left2right=5, ways=1, pay=100, symbol_win=100
+Evaluating symbol LV2
+  Reel 0 active slice: HV2, LV1, LV2 | matching_or_wild=1
+  Reel 1 active slice: LV1, HV3, LV2 | matching_or_wild=1
+  Reel 2 active slice: LV3, HV2, LV1 | matching_or_wild=0
+  Win result: symbol=LV2, left2right=2, ways=1, pay=0, symbol_win=0
+Total ways win=100
+getActivePayWindow active_rows=3, returned_rows=3
 
 ===== ACTIVE PAY WINDOW BEFORE GIRDER =====
-rows=4, reels=5
+rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HV3    LV1    LV4    HAT    LV3    
-row 1 | XHAT   HV3    LV4    LV2    HV4    
-row 2 | LV4    LV2    HV4    LV2    HV4    
-row 3 | LV1    LV4    LV1    HV2    LV2    
+row 0 | HV2    LV1    LV3    HV4    WILD   
+row 1 | LV1    HV3    HV2    LV1    LV2    
+row 2 | LV2    LV2    LV1    HAT    HV2    
 ======================
-allHatCount rows=4, reels=5 -> 2
-Bonus pre-check hat_counts=2
-RNG uniform real [0.0, 1.0) -> 0.118271
-Girder probability p=0.118271, threshold=0.1
+allHatCount rows=3, reels=5 -> 1
+Bonus pre-check hat_counts=1
+RNG uniform real [0.0, 1.0) -> 0.805299
+Girder probability p=0.805299, threshold=0.1
 Girder trigger: NO
-allHatCount rows=4, reels=5 -> 2
-Bonus final hat_counts=2, free_game=0
-Spin summary: round_win=11, round_win_xbet=0.55, free_game=0
+allHatCount rows=3, reels=5 -> 1
+Bonus final hat_counts=1, free_game=0
+Spin summary: round_win=100, round_win_xbet=5, free_game=0
 
 ===== SIMULATION SUMMARY =====
 total_free_games=1
 Free Games:25
-RTP:7.888
-Var:332.696
+RTP:2.998
+Var:34.1965
 
 ===== HIT TABLE =====
-HV1: 0x=0, 1x=4, 2x=2, 3x=0, 4x=3, 5x=1
-HV2: 0x=0, 1x=1, 2x=0, 3x=0, 4x=0, 5x=0
-HV3: 0x=0, 1x=2, 2x=3, 3x=1, 4x=0, 5x=1
+HV1: 0x=0, 1x=5, 2x=3, 3x=0, 4x=1, 5x=1
+HV2: 0x=0, 1x=2, 2x=2, 3x=0, 4x=2, 5x=0
+HV3: 0x=0, 1x=4, 2x=2, 3x=0, 4x=0, 5x=0
 HV4: 0x=0, 1x=2, 2x=0, 3x=0, 4x=0, 5x=0
-LV1: 0x=0, 1x=6, 2x=4, 3x=2, 4x=3, 5x=3
-LV2: 0x=0, 1x=9, 2x=1, 3x=1, 4x=1, 5x=2
-LV3: 0x=0, 1x=2, 2x=4, 3x=0, 4x=0, 5x=0
-LV4: 0x=0, 1x=6, 2x=0, 3x=2, 4x=2, 5x=1
+LV1: 0x=0, 1x=11, 2x=1, 3x=2, 4x=0, 5x=2
+LV2: 0x=0, 1x=6, 2x=5, 3x=1, 4x=0, 5x=0
+LV3: 0x=0, 1x=1, 2x=2, 3x=1, 4x=4, 5x=0
+LV4: 0x=0, 1x=2, 2x=3, 3x=1, 4x=1, 5x=2
 
 ===== WIN TABLE =====
-HV1: 0x=0, 1x=0, 2x=0, 3x=0, 4x=200, 5x=1000
-HV2: 0x=0, 1x=0, 2x=0, 3x=0, 4x=0, 5x=0
-HV3: 0x=0, 1x=0, 2x=0, 3x=20, 4x=0, 5x=1200
+HV1: 0x=0, 1x=0, 2x=0, 3x=0, 4x=200, 5x=500
+HV2: 0x=0, 1x=0, 2x=0, 3x=0, 4x=80, 5x=0
+HV3: 0x=0, 1x=0, 2x=0, 3x=0, 4x=0, 5x=0
 HV4: 0x=0, 1x=0, 2x=0, 3x=0, 4x=0, 5x=0
-LV1: 0x=0, 1x=0, 2x=0, 3x=5, 4x=25, 5x=200
-LV2: 0x=0, 1x=0, 2x=0, 3x=5, 4x=20, 5x=320
-LV3: 0x=0, 1x=0, 2x=0, 3x=0, 4x=0, 5x=0
-LV4: 0x=0, 1x=0, 2x=0, 3x=6, 4x=10, 5x=100
+LV1: 0x=0, 1x=0, 2x=0, 3x=5, 4x=0, 5x=100
+LV2: 0x=0, 1x=0, 2x=0, 3x=5, 4x=0, 5x=0
+LV3: 0x=0, 1x=0, 2x=0, 3x=6, 4x=15, 5x=0
+LV4: 0x=0, 1x=0, 2x=0, 3x=3, 4x=10, 5x=100
 
 
 ============================================================
@@ -1888,158 +2074,148 @@ FEATURE TEST: FORCED GIRDER VIA INJECTED HAT
 ############################################################
 
 -- Generating pay window --
-RNG int [0, 17] -> 2
-Reel 0: size=18, start_idx=2, symbols=2:HV1 -> 3:LV4 -> 4:HAT -> 5:LV3 -> 6:HV2 -> 7:LV1
-RNG int [0, 15] -> 4
-Reel 1: size=16, start_idx=4, symbols=4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4 -> 8:WILD -> 9:LV1
-RNG int [0, 19] -> 13
-Reel 2: size=20, start_idx=13, symbols=13:LV2 -> 14:HV4 -> 15:LV3 -> 16:HAT -> 17:LV1 -> 18:HV2
-RNG int [0, 16] -> 9
-Reel 3: size=17, start_idx=9, symbols=9:LV2 -> 10:LV4 -> 11:HV2 -> 12:LV3 -> 13:HV4 -> 14:LV1
-RNG int [0, 18] -> 13
-Reel 4: size=19, start_idx=13, symbols=13:HV3 -> 14:LV2 -> 15:HAT -> 16:HV1 -> 17:LV3 -> 18:HV4
+RNG int [0, 17] -> 10
+Reel 0: size=18, start_idx=10, symbols=10:XHAT -> 11:LV4 -> 12:LV1 -> 13:HV1 -> 14:HAT -> 15:LV3
+RNG int [0, 15] -> 2
+Reel 1: size=16, start_idx=2, symbols=2:HV1 -> 3:LV2 -> 4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4
+RNG int [0, 19] -> 8
+Reel 2: size=20, start_idx=8, symbols=8:LV3 -> 9:HV2 -> 10:LV1 -> 11:LV4 -> 12:HV1 -> 13:LV2
+RNG int [0, 16] -> 5
+Reel 3: size=17, start_idx=5, symbols=5:HV1 -> 6:WILD -> 7:LV1 -> 8:HV3 -> 9:LV2 -> 10:LV4
+RNG int [0, 18] -> 8
+Reel 4: size=19, start_idx=8, symbols=8:WILD -> 9:LV2 -> 10:HV2 -> 11:LV1 -> 12:LV4 -> 13:HV3
 
 ===== FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HV1    LV3    LV2    LV2    HV3    
-row 1 | LV4    HAT    HV4    LV4    LV2    
-row 2 | HAT    HV2    LV3    HV2    HAT    
-row 3 | LV3    LV4    HAT    LV3    HV1    
-row 4 | HV2    WILD   LV1    HV4    LV3    
-row 5 | LV1    LV1    HV2    LV1    HV4    
+row 0 | XHAT   HV1    LV3    HV1    WILD   
+row 1 | LV4    LV2    HV2    WILD   LV2    
+row 2 | LV1    LV3    LV1    LV1    HV2    
+row 3 | HV1    HAT    LV4    HV3    LV1    
+row 4 | HAT    HV2    HV1    LV2    LV4    
+row 5 | LV3    LV4    LV2    LV4    HV3    
 ======================
 
 ===== GIRDER TEST ORIGINAL FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HV1    LV3    LV2    LV2    HV3    
-row 1 | LV4    HAT    HV4    LV4    LV2    
-row 2 | HAT    HV2    LV3    HV2    HAT    
-row 3 | LV3    LV4    HAT    LV3    HV1    
-row 4 | HV2    WILD   LV1    HV4    LV3    
-row 5 | LV1    LV1    HV2    LV1    HV4    
+row 0 | XHAT   HV1    LV3    HV1    WILD   
+row 1 | LV4    LV2    HV2    WILD   LV2    
+row 2 | LV1    LV3    LV1    LV1    HV2    
+row 3 | HV1    HAT    LV4    HV3    LV1    
+row 4 | HAT    HV2    HV1    LV2    LV4    
+row 5 | LV3    LV4    LV2    LV4    HV3    
 ======================
 
 -- Ways win calculation --
 start_idx(active rows skipped)=3
-First reel active symbols: LV3, HV2, LV1
-First reel symbol counts: HV1=0, HV2=1, HV3=0, HV4=0, LV1=1, LV2=0, LV3=1, LV4=0
-Unique paying symbols on first active reel: HV2, LV1, LV3
-Evaluating symbol HV2
-  Reel 0 active slice: LV3, HV2, LV1 | matching_or_wild=1
-  Reel 1 active slice: LV4, WILD, LV1 | matching_or_wild=1
-  Reel 2 active slice: HAT, LV1, HV2 | matching_or_wild=1
-  Reel 3 active slice: LV3, HV4, LV1 | matching_or_wild=0
-  Win result: symbol=HV2, left2right=3, ways=1, pay=15, symbol_win=15
-Evaluating symbol LV1
-  Reel 0 active slice: LV3, HV2, LV1 | matching_or_wild=1
-  Reel 1 active slice: LV4, WILD, LV1 | matching_or_wild=2
-  Reel 2 active slice: HAT, LV1, HV2 | matching_or_wild=1
-  Reel 3 active slice: LV3, HV4, LV1 | matching_or_wild=1
-  Reel 4 active slice: HV1, LV3, HV4 | matching_or_wild=0
-  Win result: symbol=LV1, left2right=4, ways=2, pay=25, symbol_win=50
+First reel active symbols: HV1, HAT, LV3
+Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
+First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=0, LV2=0, LV3=1, LV4=0
+Unique paying symbols on first active reel: HV1, LV3
+Evaluating symbol HV1
+  Reel 0 active slice: HV1, HAT, LV3 | matching_or_wild=1
+  Reel 1 active slice: HAT, HV2, LV4 | matching_or_wild=0
+  Win result: symbol=HV1, left2right=1, ways=1, pay=0, symbol_win=0
 Evaluating symbol LV3
-  Reel 0 active slice: LV3, HV2, LV1 | matching_or_wild=1
-  Reel 1 active slice: LV4, WILD, LV1 | matching_or_wild=1
-  Reel 2 active slice: HAT, LV1, HV2 | matching_or_wild=0
-  Win result: symbol=LV3, left2right=2, ways=1, pay=0, symbol_win=0
-Total ways win=65
-GIRDER TEST payout before feature: round_win=65, round_win_xbet=3.25
+  Reel 0 active slice: HV1, HAT, LV3 | matching_or_wild=1
+  Reel 1 active slice: HAT, HV2, LV4 | matching_or_wild=0
+  Win result: symbol=LV3, left2right=1, ways=1, pay=0, symbol_win=0
+Total ways win=0
+GIRDER TEST payout before feature: round_win=0, round_win_xbet=0
 getActivePayWindow active_rows=3, returned_rows=3
 
 ===== GIRDER TEST ORIGINAL ACTIVE PAY WINDOW =====
 rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV3    LV4    HAT    LV3    HV1    
-row 1 | HV2    WILD   LV1    HV4    LV3    
-row 2 | LV1    LV1    HV2    LV1    HV4    
+row 0 | HV1    HAT    LV4    HV3    LV1    
+row 1 | HAT    HV2    HV1    LV2    LV4    
+row 2 | LV3    LV4    LV2    LV4    HV3    
 ======================
 GIRDER TEST injected symbol positions:
-Injected HAT at row=0, reel=0 replacing LV3
-Injected HAT at row=1, reel=2 replacing LV1
+Injected HAT at row=0, reel=0 replacing HV1
+Injected HAT at row=1, reel=2 replacing HV1
 
 ===== GIRDER TEST MODIFIED ACTIVE PAY WINDOW =====
 rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HAT    LV4    HAT    LV3    HV1    
-row 1 | HV2    WILD   HAT    HV4    LV3    
-row 2 | LV1    LV1    HV2    LV1    HV4    
+row 0 | HAT    HAT    LV4    HV3    LV1    
+row 1 | HAT    HV2    HAT    LV2    LV4    
+row 2 | LV3    LV4    LV2    LV4    HV3    
 ======================
-allHatCount rows=3, reels=5 -> 3
+allHatCount rows=3, reels=5 -> 4
 GIRDER TEST forced trigger: calling girderTrigger directly
 
 -- Girder trigger evaluation --
-allHatCount rows=3, reels=5 -> 3
-existing hats=3, required_hats=3
-SRSWOR requested=3, allowed_count=12
-SRSWOR allowed before shuffle: 1(row=0, reel=1), 3(row=0, reel=3), 4(row=0, reel=4), 5(row=1, reel=0), 6(row=1, reel=1), 8(row=1, reel=3), 9(row=1, reel=4), 10(row=2, reel=0), 11(row=2, reel=1), 12(row=2, reel=2), 13(row=2, reel=3), 14(row=2, reel=4)
-SRSWOR allowed after shuffle: 12(row=2, reel=2), 9(row=1, reel=4), 14(row=2, reel=4), 3(row=0, reel=3), 6(row=1, reel=1), 10(row=2, reel=0), 1(row=0, reel=1), 5(row=1, reel=0), 4(row=0, reel=4), 13(row=2, reel=3), 11(row=2, reel=1), 8(row=1, reel=3)
-SRSWOR selected: 12(row=2, reel=2), 9(row=1, reel=4), 14(row=2, reel=4)
-Girder adds HAT at row=2, reel=2
-Girder adds HAT at row=1, reel=4
-Girder adds HAT at row=2, reel=4
+allHatCount rows=3, reels=5 -> 4
+existing hats=4, required_hats=2
+SRSWOR requested=2, allowed_count=11
+SRSWOR allowed before shuffle: 2(row=0, reel=2), 3(row=0, reel=3), 4(row=0, reel=4), 6(row=1, reel=1), 8(row=1, reel=3), 9(row=1, reel=4), 10(row=2, reel=0), 11(row=2, reel=1), 12(row=2, reel=2), 13(row=2, reel=3), 14(row=2, reel=4)
+SRSWOR allowed after shuffle: 3(row=0, reel=3), 2(row=0, reel=2), 14(row=2, reel=4), 6(row=1, reel=1), 9(row=1, reel=4), 12(row=2, reel=2), 11(row=2, reel=1), 4(row=0, reel=4), 13(row=2, reel=3), 10(row=2, reel=0), 8(row=1, reel=3)
+SRSWOR selected: 3(row=0, reel=3), 2(row=0, reel=2)
+Girder adds HAT at row=0, reel=3
+Girder adds HAT at row=0, reel=2
 
 ===== ACTIVE PAY WINDOW AFTER GIRDER =====
 rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HAT    LV4    HAT    LV3    HV1    
-row 1 | HV2    WILD   HAT    HV4    HAT    
-row 2 | LV1    LV1    HAT    LV1    HAT    
+row 0 | HAT    HAT    HAT    HAT    LV1    
+row 1 | HAT    HV2    HAT    LV2    LV4    
+row 2 | LV3    LV4    LV2    LV4    HV3    
 ======================
 allHatCount rows=3, reels=5 -> 6
-GIRDER TEST state change: hats_before=3, hats_after=6, free_game=1
-GIRDER TEST payout after feature: round_win remains 65 because core ways payout is calculated before girder logic
+GIRDER TEST state change: hats_before=4, hats_after=6, free_game=1
+GIRDER TEST payout after feature: round_win remains 0 because core ways payout is calculated before girder logic
 
 ############################################################
 FEATURE TEST: FORCED EXPHAT/HAT ACTIVE ROW EXPANSION
 ############################################################
 
 -- Generating pay window --
-RNG int [0, 17] -> 2
-Reel 0: size=18, start_idx=2, symbols=2:HV1 -> 3:LV4 -> 4:HAT -> 5:LV3 -> 6:HV2 -> 7:LV1
-RNG int [0, 15] -> 13
-Reel 1: size=16, start_idx=13, symbols=13:HV1 -> 14:LV3 -> 15:HV2 -> 0:HV4 -> 1:LV1 -> 2:HV1
-RNG int [0, 19] -> 4
-Reel 2: size=20, start_idx=4, symbols=4:HAT -> 5:LV2 -> 6:HV3 -> 7:WILD -> 8:LV3 -> 9:HV2
-RNG int [0, 16] -> 7
-Reel 3: size=17, start_idx=7, symbols=7:LV1 -> 8:HV3 -> 9:LV2 -> 10:LV4 -> 11:HV2 -> 12:LV3
-RNG int [0, 18] -> 12
-Reel 4: size=19, start_idx=12, symbols=12:LV4 -> 13:HV3 -> 14:LV2 -> 15:HAT -> 16:HV1 -> 17:LV3
+RNG int [0, 17] -> 12
+Reel 0: size=18, start_idx=12, symbols=12:LV1 -> 13:HV1 -> 14:HAT -> 15:LV3 -> 16:HV4 -> 17:LV2
+RNG int [0, 15] -> 3
+Reel 1: size=16, start_idx=3, symbols=3:LV2 -> 4:LV3 -> 5:HAT -> 6:HV2 -> 7:LV4 -> 8:WILD
+RNG int [0, 19] -> 2
+Reel 2: size=20, start_idx=2, symbols=2:LV1 -> 3:HV1 -> 4:HAT -> 5:LV2 -> 6:HV3 -> 7:WILD
+RNG int [0, 16] -> 2
+Reel 3: size=17, start_idx=2, symbols=2:LV4 -> 3:HAT -> 4:LV3 -> 5:HV1 -> 6:WILD -> 7:LV1
+RNG int [0, 18] -> 5
+Reel 4: size=19, start_idx=5, symbols=5:LV4 -> 6:HV1 -> 7:LV3 -> 8:WILD -> 9:LV2 -> 10:HV2
 
 ===== FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HV1    HV1    HAT    LV1    LV4    
-row 1 | LV4    LV3    LV2    HV3    HV3    
-row 2 | HAT    HV2    HV3    LV2    LV2    
-row 3 | LV3    HV4    WILD   LV4    HAT    
-row 4 | HV2    LV1    LV3    HV2    HV1    
-row 5 | LV1    HV1    HV2    LV3    LV3    
+row 0 | LV1    LV2    LV1    LV4    LV4    
+row 1 | HV1    LV3    HV1    HAT    HV1    
+row 2 | HAT    HAT    HAT    LV3    LV3    
+row 3 | LV3    HV2    LV2    HV1    WILD   
+row 4 | HV4    LV4    HV3    WILD   LV2    
+row 5 | LV2    WILD   WILD   LV1    HV2    
 ======================
 
 ===== EXPHAT TEST ORIGINAL FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HV1    HV1    HAT    LV1    LV4    
-row 1 | LV4    LV3    LV2    HV3    HV3    
-row 2 | HAT    HV2    HV3    LV2    LV2    
-row 3 | LV3    HV4    WILD   LV4    HAT    
-row 4 | HV2    LV1    LV3    HV2    HV1    
-row 5 | LV1    HV1    HV2    LV3    LV3    
+row 0 | LV1    LV2    LV1    LV4    LV4    
+row 1 | HV1    LV3    HV1    HAT    HV1    
+row 2 | HAT    HAT    HAT    LV3    LV3    
+row 3 | LV3    HV2    LV2    HV1    WILD   
+row 4 | HV4    LV4    HV3    WILD   LV2    
+row 5 | LV2    WILD   WILD   LV1    HV2    
 ======================
 EXPHAT TEST injected symbol positions:
-Injected XHAT at row=4, reel=0 replacing HV2
+Injected XHAT at row=4, reel=0 replacing HV4
 
 ===== EXPHAT TEST MODIFIED FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HV1    HV1    HAT    LV1    LV4    
-row 1 | LV4    LV3    LV2    HV3    HV3    
-row 2 | HAT    HV2    HV3    LV2    LV2    
-row 3 | LV3    HV4    WILD   LV4    HAT    
-row 4 | XHAT   LV1    LV3    HV2    HV1    
-row 5 | LV1    HV1    HV2    LV3    LV3    
+row 0 | LV1    LV2    LV1    LV4    LV4    
+row 1 | HV1    LV3    HV1    HAT    HV1    
+row 2 | HAT    HAT    HAT    LV3    LV3    
+row 3 | LV3    HV2    LV2    HV1    WILD   
+row 4 | XHAT   LV4    HV3    WILD   LV2    
+row 5 | LV2    WILD   WILD   LV1    HV2    
 ======================
 EXPHAT TEST forced trigger: EXPHAT present, forced p=0.1
 cumProbability p=0.1, thresholds=0.75,0.2,0.05, cumulative=0.75,0.95,1
@@ -2048,136 +2224,147 @@ EXPHAT TEST active_rows 3 -> 2 using exp_threshold index=0
 
 -- Ways win calculation --
 start_idx(active rows skipped)=3
-First reel active symbols: LV3, XHAT, LV1
+First reel active symbols: LV3, XHAT, LV2
 Ignoring non-paying first-reel symbol for ways seeding: XHAT (enum=10)
-First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=0, LV1=1, LV2=0, LV3=1, LV4=0
-Unique paying symbols on first active reel: LV1, LV3
-Evaluating symbol LV1
-  Reel 0 active slice: LV3, XHAT, LV1 | matching_or_wild=1
-  Reel 1 active slice: HV4, LV1, HV1 | matching_or_wild=1
-  Reel 2 active slice: WILD, LV3, HV2 | matching_or_wild=1
-  Reel 3 active slice: LV4, HV2, LV3 | matching_or_wild=0
-  Win result: symbol=LV1, left2right=3, ways=1, pay=5, symbol_win=5
+First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=0, LV1=0, LV2=1, LV3=1, LV4=0
+Unique paying symbols on first active reel: LV2, LV3
+Evaluating symbol LV2
+  Reel 0 active slice: LV3, XHAT, LV2 | matching_or_wild=1
+  Reel 1 active slice: HV2, LV4, WILD | matching_or_wild=1
+  Reel 2 active slice: LV2, HV3, WILD | matching_or_wild=2
+  Reel 3 active slice: HV1, WILD, LV1 | matching_or_wild=1
+  Reel 4 active slice: WILD, LV2, HV2 | matching_or_wild=2
+  Win result: symbol=LV2, left2right=5, ways=4, pay=80, symbol_win=320
 Evaluating symbol LV3
-  Reel 0 active slice: LV3, XHAT, LV1 | matching_or_wild=1
-  Reel 1 active slice: HV4, LV1, HV1 | matching_or_wild=0
-  Win result: symbol=LV3, left2right=1, ways=1, pay=0, symbol_win=0
-Total ways win=5
+  Reel 0 active slice: LV3, XHAT, LV2 | matching_or_wild=1
+  Reel 1 active slice: HV2, LV4, WILD | matching_or_wild=1
+  Reel 2 active slice: LV2, HV3, WILD | matching_or_wild=1
+  Reel 3 active slice: HV1, WILD, LV1 | matching_or_wild=1
+  Reel 4 active slice: WILD, LV2, HV2 | matching_or_wild=1
+  Win result: symbol=LV3, left2right=5, ways=1, pay=60, symbol_win=60
+Total ways win=380
 getActivePayWindow active_rows=3, returned_rows=3
 
 ===== EXPHAT TEST ACTIVE WINDOW BEFORE EXPANSION =====
 rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | LV3    HV4    WILD   LV4    HAT    
-row 1 | XHAT   LV1    LV3    HV2    HV1    
-row 2 | LV1    HV1    HV2    LV3    LV3    
+row 0 | LV3    HV2    LV2    HV1    WILD   
+row 1 | XHAT   LV4    HV3    WILD   LV2    
+row 2 | LV2    WILD   WILD   LV1    HV2    
 ======================
-allHatCount rows=3, reels=5 -> 2
+allHatCount rows=3, reels=5 -> 1
 
 -- Ways win calculation --
 start_idx(active rows skipped)=2
-First reel active symbols: HAT, LV3, XHAT, LV1
+First reel active symbols: HAT, LV3, XHAT, LV2
 Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
 Ignoring non-paying first-reel symbol for ways seeding: XHAT (enum=10)
-First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=0, LV1=1, LV2=0, LV3=1, LV4=0
-Unique paying symbols on first active reel: LV1, LV3
-Evaluating symbol LV1
-  Reel 0 active slice: HAT, LV3, XHAT, LV1 | matching_or_wild=1
-  Reel 1 active slice: HV2, HV4, LV1, HV1 | matching_or_wild=1
-  Reel 2 active slice: HV3, WILD, LV3, HV2 | matching_or_wild=1
-  Reel 3 active slice: LV2, LV4, HV2, LV3 | matching_or_wild=0
-  Win result: symbol=LV1, left2right=3, ways=1, pay=5, symbol_win=5
+First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=0, LV1=0, LV2=1, LV3=1, LV4=0
+Unique paying symbols on first active reel: LV2, LV3
+Evaluating symbol LV2
+  Reel 0 active slice: HAT, LV3, XHAT, LV2 | matching_or_wild=1
+  Reel 1 active slice: HAT, HV2, LV4, WILD | matching_or_wild=1
+  Reel 2 active slice: HAT, LV2, HV3, WILD | matching_or_wild=2
+  Reel 3 active slice: LV3, HV1, WILD, LV1 | matching_or_wild=1
+  Reel 4 active slice: LV3, WILD, LV2, HV2 | matching_or_wild=2
+  Win result: symbol=LV2, left2right=5, ways=4, pay=80, symbol_win=320
 Evaluating symbol LV3
-  Reel 0 active slice: HAT, LV3, XHAT, LV1 | matching_or_wild=1
-  Reel 1 active slice: HV2, HV4, LV1, HV1 | matching_or_wild=0
-  Win result: symbol=LV3, left2right=1, ways=1, pay=0, symbol_win=0
-Total ways win=5
+  Reel 0 active slice: HAT, LV3, XHAT, LV2 | matching_or_wild=1
+  Reel 1 active slice: HAT, HV2, LV4, WILD | matching_or_wild=1
+  Reel 2 active slice: HAT, LV2, HV3, WILD | matching_or_wild=1
+  Reel 3 active slice: LV3, HV1, WILD, LV1 | matching_or_wild=2
+  Reel 4 active slice: LV3, WILD, LV2, HV2 | matching_or_wild=2
+  Win result: symbol=LV3, left2right=5, ways=4, pay=60, symbol_win=240
+Total ways win=560
 getActivePayWindow active_rows=2, returned_rows=4
 
 ===== EXPHAT TEST ACTIVE WINDOW AFTER EXPANSION =====
 rows=4, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HAT    HV2    HV3    LV2    LV2    
-row 1 | LV3    HV4    WILD   LV4    HAT    
-row 2 | XHAT   LV1    LV3    HV2    HV1    
-row 3 | LV1    HV1    HV2    LV3    LV3    
+row 0 | HAT    HAT    HAT    LV3    LV3    
+row 1 | LV3    HV2    LV2    HV1    WILD   
+row 2 | XHAT   LV4    HV3    WILD   LV2    
+row 3 | LV2    WILD   WILD   LV1    HV2    
 ======================
-allHatCount rows=4, reels=5 -> 3
-EXPHAT TEST payout/state change: round_win_before=5, round_win_after=5, hats_before=2, hats_after=3, free_game=0
+allHatCount rows=4, reels=5 -> 4
+EXPHAT TEST payout/state change: round_win_before=380, round_win_after=560, hats_before=1, hats_after=4, free_game=0
 
 ############################################################
 FEATURE TEST: INJECTED HAT ON FIRST ACTIVE REEL
 ############################################################
 
 -- Generating pay window --
-RNG int [0, 17] -> 9
-Reel 0: size=18, start_idx=9, symbols=9:HV3 -> 10:XHAT -> 11:LV4 -> 12:LV1 -> 13:HV1 -> 14:HAT
-RNG int [0, 15] -> 15
-Reel 1: size=16, start_idx=15, symbols=15:HV2 -> 0:HV4 -> 1:LV1 -> 2:HV1 -> 3:LV2 -> 4:LV3
-RNG int [0, 19] -> 13
-Reel 2: size=20, start_idx=13, symbols=13:LV2 -> 14:HV4 -> 15:LV3 -> 16:HAT -> 17:LV1 -> 18:HV2
-RNG int [0, 16] -> 16
-Reel 3: size=17, start_idx=16, symbols=16:LV2 -> 0:LV2 -> 1:HV2 -> 2:LV4 -> 3:HAT -> 4:LV3
-RNG int [0, 18] -> 9
-Reel 4: size=19, start_idx=9, symbols=9:LV2 -> 10:HV2 -> 11:LV1 -> 12:LV4 -> 13:HV3 -> 14:LV2
+RNG int [0, 17] -> 12
+Reel 0: size=18, start_idx=12, symbols=12:LV1 -> 13:HV1 -> 14:HAT -> 15:LV3 -> 16:HV4 -> 17:LV2
+RNG int [0, 15] -> 8
+Reel 1: size=16, start_idx=8, symbols=8:WILD -> 9:LV1 -> 10:HV3 -> 11:LV2 -> 12:LV4 -> 13:HV1
+RNG int [0, 19] -> 14
+Reel 2: size=20, start_idx=14, symbols=14:HV4 -> 15:LV3 -> 16:HAT -> 17:LV1 -> 18:HV2 -> 19:LV4
+RNG int [0, 16] -> 4
+Reel 3: size=17, start_idx=4, symbols=4:LV3 -> 5:HV1 -> 6:WILD -> 7:LV1 -> 8:HV3 -> 9:LV2
+RNG int [0, 18] -> 3
+Reel 4: size=19, start_idx=3, symbols=3:LV1 -> 4:HAT -> 5:LV4 -> 6:HV1 -> 7:LV3 -> 8:WILD
 
 ===== FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HV3    HV2    LV2    LV2    LV2    
-row 1 | XHAT   HV4    HV4    LV2    HV2    
-row 2 | LV4    LV1    LV3    HV2    LV1    
-row 3 | LV1    HV1    HAT    LV4    LV4    
-row 4 | HV1    LV2    LV1    HAT    HV3    
-row 5 | HAT    LV3    HV2    LV3    LV2    
+row 0 | LV1    WILD   HV4    LV3    LV1    
+row 1 | HV1    LV1    LV3    HV1    HAT    
+row 2 | HAT    HV3    HAT    WILD   LV4    
+row 3 | LV3    LV2    LV1    LV1    HV1    
+row 4 | HV4    LV4    HV2    HV3    LV3    
+row 5 | LV2    HV1    LV4    LV2    WILD   
 ======================
 
 ===== HAT TEST ORIGINAL FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HV3    HV2    LV2    LV2    LV2    
-row 1 | XHAT   HV4    HV4    LV2    HV2    
-row 2 | LV4    LV1    LV3    HV2    LV1    
-row 3 | LV1    HV1    HAT    LV4    LV4    
-row 4 | HV1    LV2    LV1    HAT    HV3    
-row 5 | HAT    LV3    HV2    LV3    LV2    
+row 0 | LV1    WILD   HV4    LV3    LV1    
+row 1 | HV1    LV1    LV3    HV1    HAT    
+row 2 | HAT    HV3    HAT    WILD   LV4    
+row 3 | LV3    LV2    LV1    LV1    HV1    
+row 4 | HV4    LV4    HV2    HV3    LV3    
+row 5 | LV2    HV1    LV4    LV2    WILD   
 ======================
 HAT TEST injected symbol positions:
-Injected HAT at row=3, reel=0 replacing LV1
+Injected HAT at row=3, reel=0 replacing LV3
 
 ===== HAT TEST MODIFIED FULL PAY WINDOW =====
 rows=6, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HV3    HV2    LV2    LV2    LV2    
-row 1 | XHAT   HV4    HV4    LV2    HV2    
-row 2 | LV4    LV1    LV3    HV2    LV1    
-row 3 | HAT    HV1    HAT    LV4    LV4    
-row 4 | HV1    LV2    LV1    HAT    HV3    
-row 5 | HAT    LV3    HV2    LV3    LV2    
+row 0 | LV1    WILD   HV4    LV3    LV1    
+row 1 | HV1    LV1    LV3    HV1    HAT    
+row 2 | HAT    HV3    HAT    WILD   LV4    
+row 3 | HAT    LV2    LV1    LV1    HV1    
+row 4 | HV4    LV4    HV2    HV3    LV3    
+row 5 | LV2    HV1    LV4    LV2    WILD   
 ======================
 HAT TEST triggered feature: ways calculation with HAT on first active reel
 
 -- Ways win calculation --
 start_idx(active rows skipped)=3
-First reel active symbols: HAT, HV1, HAT
+First reel active symbols: HAT, HV4, LV2
 Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
-Ignoring non-paying first-reel symbol for ways seeding: HAT (enum=9)
-First reel symbol counts: HV1=1, HV2=0, HV3=0, HV4=0, LV1=0, LV2=0, LV3=0, LV4=0
-Unique paying symbols on first active reel: HV1
-Evaluating symbol HV1
-  Reel 0 active slice: HAT, HV1, HAT | matching_or_wild=1
-  Reel 1 active slice: HV1, LV2, LV3 | matching_or_wild=1
-  Reel 2 active slice: HAT, LV1, HV2 | matching_or_wild=0
-  Win result: symbol=HV1, left2right=2, ways=1, pay=0, symbol_win=0
+First reel symbol counts: HV1=0, HV2=0, HV3=0, HV4=1, LV1=0, LV2=1, LV3=0, LV4=0
+Unique paying symbols on first active reel: HV4, LV2
+Evaluating symbol HV4
+  Reel 0 active slice: HAT, HV4, LV2 | matching_or_wild=1
+  Reel 1 active slice: LV2, LV4, HV1 | matching_or_wild=0
+  Win result: symbol=HV4, left2right=1, ways=1, pay=0, symbol_win=0
+Evaluating symbol LV2
+  Reel 0 active slice: HAT, HV4, LV2 | matching_or_wild=1
+  Reel 1 active slice: LV2, LV4, HV1 | matching_or_wild=1
+  Reel 2 active slice: LV1, HV2, LV4 | matching_or_wild=0
+  Win result: symbol=LV2, left2right=2, ways=1, pay=0, symbol_win=0
 Total ways win=0
 getActivePayWindow active_rows=3, returned_rows=3
 
 ===== HAT TEST ACTIVE PAY WINDOW =====
 rows=3, reels=5
         R0      R1      R2      R3      R4      
-row 0 | HAT    HV1    HAT    LV4    LV4    
-row 1 | HV1    LV2    LV1    HAT    HV3    
-row 2 | HAT    LV3    HV2    LV3    LV2    
+row 0 | HAT    LV2    LV1    LV1    HV1    
+row 1 | HV4    LV4    HV2    HV3    LV3    
+row 2 | LV2    HV1    LV4    LV2    WILD   
 ======================
-allHatCount rows=3, reels=5 -> 4
-HAT TEST state: round_win=0, hats_active=4, note=HAT is counted for bonus state but not seeded as a paying ways symbol
+allHatCount rows=3, reels=5 -> 1
+HAT TEST state: round_win=0, hats_active=1, note=HAT is counted for bonus state but not seeded as a paying ways symbol

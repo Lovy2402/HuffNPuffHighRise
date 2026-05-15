@@ -15,7 +15,7 @@
 - Keep validation scripts/tools under `validation/`.
 - Preserve gameplay order:
   1. Generate 6x5 pay window.
-  2. Apply EXPHAT active-row adjustment.
+  2. Build the initial active pay window and apply EXPHAT active-row adjustment only if EXPHAT is active.
   3. Calculate ways win.
   4. Build active pay window.
   5. Evaluate/apply GIRDER if hats are active.
@@ -69,6 +69,8 @@ Optimization choices:
 - Replaced position-vector symbol scans with direct count/boolean scans.
 - Stored reel strips and paytable as compile-time constants.
 - Kept RNG distribution APIs conservative to preserve probability behavior.
+- Scans only the active window for EXPHAT expansion, matching current `core/core.cpp`.
+- Accumulates symbol win totals for reporting with `WinTable[symbol][left2right] += symbol_win`.
 - Kept debug logging out of the optimized hot path.
 - Implemented simple optional threading with thread-local aggregates and joined worker threads.
 
@@ -114,9 +116,67 @@ Thread smoke test:
 /tmp/efficient_core --spins 1000 --seed 123456789 --threads 2 --output outputs/efficient_thread_smoke.txt
 ```
 
+## Task 3 Current State
+
+Artifacts:
+
+- `game.cpp`: playable and simulation-ready runner using `efficient_core/efficient_core.cpp` as backend.
+- `validation/validate_game.py`: checks 25-spin fixed-seed game reports against `outputs/test.txt` and validates CSV headers.
+- `outputs/rtp_report.txt`: generated RTP report.
+- `outputs/symbol_distribution.csv`: generated symbol distribution report matching `gameRule/example_symbol_dist.csv` columns.
+
+Compile:
+
+```bash
+g++ -O3 -std=c++17 -Wall -Wextra game.cpp -o /tmp/game
+```
+
+Play spin by spin:
+
+```bash
+/tmp/game --interactive
+/tmp/game --interactive --seed 123456789
+/tmp/game --interactive --seed 123456789 --show-stats
+```
+
+When `--seed` is omitted, `game.cpp` generates a random startup seed for playable use and prints the chosen seed in the session/report.
+
+Interactive commands:
+
+- Press `Enter`, `s`, or type `spin` to spin.
+- Type `stats` to print running RTP, total wager, total payout, and hit frequency.
+- Type `q`, `quit`, or `exit` to leave.
+
+Run simulations:
+
+```bash
+/tmp/game --spins 1000000 --seed 123456789 --single-thread
+/tmp/game --spins 1000000 --seed 123456789 --threads 4
+/tmp/game --spins 1000000 --threads 4
+/tmp/game --spins 1000000 --threads 4 --rtp-output outputs/rtp_report.txt --symbol-output outputs/symbol_distribution.csv
+```
+
+Reports:
+
+- `outputs/rtp_report.txt` includes spins, seed, threads, wager, payout, net, RTP, variance, hit frequency, free-game count, and throughput.
+- `outputs/symbol_distribution.csv` uses columns `Symbol,Occurrence,Win,Mode,Hits,RTP` plus metric rows.
+- Current engine reports base-game paid spins and free-game triggers; no separate free-spin loop exists yet.
+
+Game validation:
+
+```bash
+python3 validation/validate_game.py
+```
+
+Expected result:
+
+```text
+validation passed: game.cpp reports match outputs/test.txt and CSV schema
+```
+
 ## Notes For Fresh Sessions
 
-- Start by reading `AGENTS.md`, `core/core.cpp`, `core/core_test.cpp`, `efficient_core/optimization_config.md`, and this file.
+- Start by reading `AGENTS.md`, `core/core.cpp`, `core/core_test.cpp`, `efficient_core/optimization_config.md`, `game.cpp`, and this file.
 - If core behavior changes, update `core/core_test.cpp` first, regenerate `outputs/test.txt`, then update/validate `efficient_core/efficient_core.cpp`.
 - Use `outputs/test.txt` as the observable behavior reference for deterministic tests.
 - Do not run extremely large simulations automatically. Use 1,000,000 spins only for development benchmarking.

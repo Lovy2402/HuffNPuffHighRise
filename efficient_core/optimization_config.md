@@ -81,12 +81,12 @@ General lesson: copy data only when the algorithm truly needs an independent mut
 
 ### Direct hat and EXPHAT scans
 
-Reference-style code returns structs/vectors of positions for symbol lookup. The optimized simulation only needs to know whether EXPHAT exists and how many hats are active.
+Reference-style code returns structs/vectors of positions for symbol lookup. The optimized simulation only needs to know whether EXPHAT exists in the active window and how many hats are active.
 
 Optimized functions:
 
 ```cpp
-bool hasExplosiveHat(const Window& window);
+bool hasExplosiveHat(const Window& window, int start_row);
 int countHatWindow(const Window& window, int start_row);
 int countHatActive(const ActiveWindow& window, int rows);
 ```
@@ -140,6 +140,23 @@ Why this helps:
 
 General lesson: for simulations, prefer independent worker state and final reduction over shared mutable counters.
 
+### Symbol win totals are accumulated for reports
+
+The aggregate tables now keep cumulative distribution data:
+
+```cpp
+HitTable[symbol][left2right]++;
+WinTable[symbol][left2right] += symbol_win;
+```
+
+Why this matters:
+
+- Hit counts and win totals are report data, not gameplay state.
+- Cumulative win totals allow `game.cpp` to calculate symbol-level RTP.
+- The change does not alter RNG order, pay-window generation, ways calculation, GIRDER, EXPHAT, or final spin payouts.
+
+General lesson: separate game result logic from reporting aggregation, and make aggregation semantics explicit.
+
 ### Debug output removed from the hot path
 
 The debug implementation logs every intermediate state. The optimized implementation writes only summaries by default and feature-test output only when `--feature-tests` is requested.
@@ -154,6 +171,7 @@ General lesson: keep observability builds and performance builds separate, but v
 ## Behavior-Preservation Notes
 
 - The optimized code preserves the gameplay order from `core/core.cpp`.
+- EXPHAT expansion is evaluated only when EXPHAT appears in the current active window.
 - Ways wins are calculated before GIRDER modifies the active window.
 - HAT, EXPHAT, HORHAT, and VERTHAT count for bonus state but are not paying ways symbols.
 - WILD substitutes for paying symbols but is not seeded as its own paying symbol.
@@ -187,6 +205,7 @@ g++ -O3 -std=c++17 efficient_core/efficient_core.cpp -o /tmp/efficient_core
 - Single-thread validation with seed `123456789` is intended to match the debug test sequence.
 - Multi-thread mode derives one independent deterministic seed per worker from the base seed and worker index.
 - Multi-thread results are deterministic for the same seed, spin count, and thread count, but are not expected to be spin-by-spin identical to single-thread mode because RNG streams are partitioned.
+- `game.cpp` uses a random startup seed when `--seed` is omitted, so playable sessions do not repeat by default.
 
 ## Validation Strategy
 
@@ -214,3 +233,21 @@ python3 validation/validate_efficient_core.py
 - `--benchmark`: use 1,000,000 development spins.
 - `--feature-tests`: append forced GIRDER, EXPHAT, and HAT feature checks to the output.
 - `--output PATH`: write summary output to the selected path under `outputs/`.
+
+## Game Runner
+
+Task 3 adds `game.cpp`, which reuses this implementation by compiling the optimized core as a library-style backend. It provides:
+
+- Interactive spin-by-spin play.
+- Simulation runs with the same threading policy.
+- RTP report output.
+- Symbol distribution CSV output using cumulative hit and win totals.
+
+Example commands:
+
+```bash
+g++ -O3 -std=c++17 -Wall -Wextra game.cpp -o /tmp/game
+/tmp/game --interactive --seed 123456789 --show-stats
+/tmp/game --spins 1000000 --seed 123456789 --threads 4 --rtp-output outputs/rtp_report.txt --symbol-output outputs/symbol_distribution.csv
+python3 validation/validate_game.py
+```
