@@ -1,0 +1,21 @@
+{
+    "feature_name": "FREE SPINS FEATURE",
+    "written_rules": [
+        "Each position without BRICK FRAME that a saw touches (excluding the initial position) will be evaluated as if HARD HAT symbol had landed there during the FREE SPINS FEATURE, one at a time.",
+        "Saws will be generated only after all other frame updates have occurred.",
+        "During free spin, before each reel spin initiates, a number of positions may be randomly replaced with HARD HAT, HORIZONTAL SAW HARD HAT, VERTICAL SAW HARD HAT or HAZARD HARD HAT symbols.",
+        "During the FREE SPINS FEATURE, if HAZARD HARD HAT symbol lands on an active row, then 1 or more additional rows will become active and remain active for the remainder of the FREE SPINS FEATURE.",
+        "During the FREE SPINS FEATURE, if 3 or more SCATTER symbols land on active rows then 1 additional free spin is awarded."
+    ],
+    "symbol_frame_progression": {
+        "HARD HAT": "BRICK FRAME",
+        "HORIZONTAL SAW HARD HAT": "BRICK FRAME",
+        "VERTICAL SAW HARD HAT": "BRICK FRAME",
+        "HAZARD HARD HAT": "BRICK FRAME"
+    },
+    "table_mappings": {},
+    "conditions_triggers": {
+        "HAZARD HARD HAT": "active row",
+        "SCATTER": "active rows"
+    }
+}

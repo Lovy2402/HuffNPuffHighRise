@@ -1,0 +1,15 @@
+{
+    "feature_name": "FREE SPINS FEATURE",
+    "written_rules": [
+        "Any combination of SCATTER symbols of 6 or more in active rows, except the SUPER SAW HARD HAT during the base game, triggers the FREE SPINS FEATURE and awards 6 free spins.",
+        "Before the FREE SPINS FEATURE begins, STRAW FRAME is added to the position of each triggering SCATTER symbol.",
+        "Before the FREE SPINS FEATURE begins and during each free spin, every HORIZONTAL SAW HARD HAT symbol in active rows generates a saw that moves left/right and every VERTICAL SAW HARD HAT symbol in active rows generates a saw that moves up/down until it exits the active grid."
+    ],
+    "symbol_frame_progression": {
+        "SCATTER": "STRAW FRAME"
+    },
+    "table_mappings": {},
+    "conditions_triggers": {
+        "SCATTER": "6 or more in active rows, except SUPER SAW HARD HAT during the base game"
+    }
+}

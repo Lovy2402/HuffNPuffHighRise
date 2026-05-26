@@ -30,6 +30,7 @@
 Artifacts:
 
 - `core/core_test.cpp`: deterministic debug/testing clone of the core logic.
+- `core/core_flow.md`: detailed reference-flow documentation for `core/core.cpp`.
 - `core/edge_cases.md`: documented gameplay and implementation edge cases.
 - `outputs/test.txt`: generated debug log.
 
@@ -174,9 +175,56 @@ Expected result:
 validation passed: game.cpp reports match outputs/test.txt and CSV schema
 ```
 
+## Core New Task 4/2/3 Current State
+
+Artifacts:
+
+- `core_new.cpp`: standalone simulator built from `Game_Rules/*.json` and `Huff_N_Puff_Highrise_Math_Model_12_Reelsets.xlsx`.
+- `efficient_core/efficient_core_new.cpp`: optimized/thread-capable implementation of `core_new.cpp` behavior.
+- `game_new.cpp`: interactive and simulation runner using `efficient_core_new.cpp` as backend.
+
+Important assumptions:
+
+- Final reel strips are not present in the workbook; `core_new.cpp` and `efficient_core_new.cpp` use documented placeholder 100-stop strips from the workbook skeleton counts.
+- Final symbol paytable is not present in the workbook; base ways wins are instrumented but return zero.
+- Free-spin hazard expansion reuses Base Table D because no separate free-spin hazard table is supplied.
+- Full RTP/math validation is blocked until final reel strips and paytable are supplied.
+
+Compile:
+
+```bash
+g++ -std=c++17 -Wall -Wextra core_new.cpp -o /tmp/core_new
+g++ -O3 -std=c++17 -Wall -Wextra efficient_core/efficient_core_new.cpp -o /tmp/efficient_core_new
+g++ -O3 -std=c++17 -Wall -Wextra game_new.cpp -o /tmp/game_new
+```
+
+Smoke validation performed:
+
+```bash
+/tmp/core_new --spins 1000 --seed 123456789 --output /tmp/RTP_summary_core_new.md
+/tmp/efficient_core_new --spins 1000 --seed 123456789 --single-thread --output /tmp/RTP_summary_new.md --symbol-output /tmp/symbol_distribution_new.csv
+/tmp/game_new --spins 1000 --seed 123456789 --single-thread --rtp-output /tmp/rtp_report_new.md --symbol-output /tmp/symbol_win_distribution_new.csv
+/tmp/efficient_core_new --spins 1000 --seed 123456789 --threads 2 --output /tmp/RTP_summary_new_threads.md --symbol-output /tmp/symbol_distribution_new_threads.csv
+```
+
+Fixed-seed single-thread result for all three new executables:
+
+- Spins: `1000`
+- Total bet: `20000`
+- Total win: `14795`
+- Total RTP: `73.9750%`
+- Normal FS triggers: `4`
+- Super Saw FS triggers: `1`
+- Girder triggers: `2`
+- Mystery Stack triggers: `132`
+
+Recommended next step:
+
+- Supply final reel strips and base paytable from the math model, then replace placeholder strip/paytable TODOs and rerun equivalence checks.
+
 ## Notes For Fresh Sessions
 
-- Start by reading `AGENTS.md`, `core/core.cpp`, `core/core_test.cpp`, `efficient_core/optimization_config.md`, `game.cpp`, and this file.
+- Start by reading `AGENTS.md`, `core/core.cpp`, `core/core_flow.md`, `core/core_test.cpp`, `core_new.cpp`, `efficient_core/optimization_config.md`, `efficient_core/efficient_core_new.cpp`, `game.cpp`, `game_new.cpp`, and this file.
 - If core behavior changes, update `core/core_test.cpp` first, regenerate `outputs/test.txt`, then update/validate `efficient_core/efficient_core.cpp`.
 - Use `outputs/test.txt` as the observable behavior reference for deterministic tests.
 - Do not run extremely large simulations automatically. Use 1,000,000 spins only for development benchmarking.

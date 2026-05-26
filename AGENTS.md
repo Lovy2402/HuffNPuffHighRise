@@ -248,3 +248,256 @@ Include:
 Do not write long prose.
 Prefer structured bullet points and sections.
 
+
+
+## TASK 4
+
+## Objective
+
+Create a new C++ simulation code file for the game using the attached math model Excel file and the attached Game_Rules document as the primary sources of truth.
+
+There is also an existing reference C++ code file under name core.cpp in the folder. That file is provided only for coding style, structure, naming conventions, logging format, simulation flow style, and general implementation reference.
+
+Do not modify, overwrite, delete, or rename the reference code.
+
+Create a completely new C++ source file named:
+
+core_new.cpp
+
+The new file should implement the game simulation logic based on the Excel math model and Game_Rules document.
+
+---
+
+## Source Priority
+
+Use the files in this priority order:
+
+1. Game_Rules folder  
+   - Use this for game flow, feature rules, trigger conditions, symbol behavior, win evaluation rules, and player-facing logic.
+
+2. Excel Math Model under name Huff_N_Puff_Highrise_Math_Model_12_Reelsets.xlsx  
+   - Use this for reel strips, paytables, probability tables, weights, feature tables, RTP components, trigger odds, values, and mathematical parameters.
+
+3. Reference C++ Code  
+   - Use this only for code style and structure.
+   - Do not assume its math logic applies to the new game unless it clearly matches the Excel and Game_Rules files.
+   - Do not modify the reference code.
+
+If there is a mismatch between the Excel file and Game_Rules file, add a clear comment in `core_new.cpp` explaining the ambiguity and choose the interpretation that is most consistent with the Game_Rules file.
+
+---
+
+## Hard Restrictions
+
+- Do not edit the existing reference code.
+- Do not overwrite any existing file.
+- Do not remove or rename any existing file.
+- Create only the new file `core_new.cpp`.
+- Do not invent mechanics that are not present in the Game_Rules or Excel file.
+- Do not simplify the simulation unless the simplification is mathematically equivalent.
+- Do not hardcode RTP results.
+- Do not directly force outcomes to match expected RTP.
+- Do not skip feature logic just because an EV value is available, unless the Excel explicitly says to use a direct EV substitution.
+- Do not change symbol definitions, reel strips, weights, or paytable values unless directly taken from the Excel file.
+
+---
+
+## Required Implementation Scope
+
+The new `core_new.cpp` file should include a complete simulation of the game, including:
+
+1. Base game spin logic
+2. Reel/window generation
+3. Symbol evaluation
+4. Line wins, ways wins, scatter wins, or other win logic as defined in the files
+5. Wild behavior
+6. Scatter or bonus trigger logic
+7. Free game logic, if present
+8. Respin / hold-and-spin / special feature logic, if present
+9. Jackpot / prize / credit symbol logic, if present
+10. Feature retrigger logic, if present
+11. Total win calculation
+12. RTP tracking
+13. Hit frequency tracking
+14. Feature frequency tracking
+15. Max win tracking
+16. Volatility / standard deviation tracking
+17. Segment-wise RTP reporting
+
+---
+
+## Required RTP Breakdown
+
+Track and print RTP separately for every major component available in the game, such as:
+
+- Base game RTP
+- Line win RTP
+- Scatter win RTP
+- Free game RTP
+- Respin feature RTP
+- Bonus feature RTP
+- Jackpot RTP
+- Any special feature RTP
+- Total RTP
+
+Only include components that actually exist in the Game_Rules or Excel file.
+
+---
+
+## Required Statistics Output
+
+At the end of the simulation, print a clear summary under name RTP_summary.md including:
+
+- Total spins simulated
+- Total bet
+- Total win
+- Total RTP
+- Base game RTP
+- Feature RTP breakdown
+- Hit frequency
+- Base game hit frequency
+- Feature trigger frequency
+- Free game trigger frequency, if applicable
+- Respin trigger frequency, if applicable
+- Average feature win
+- Maximum win observed
+- Standard deviation / volatility estimate
+- Any other important counters needed to validate the math model
+
+Use a clean and readable console output format similar to the reference code style.
+
+---
+
+## Code Style Requirements
+
+Follow the style of the reference C++ code for:
+
+- File structure
+- Function naming style
+- Variable naming style
+- Random number generation style, unless unsuitable
+- Output formatting
+- Class/struct usage
+- Constants and table declarations
+- Simulation loop structure
+
+However, the actual game logic must come from the Excel and Game_Rules files, not from the reference code.
+
+---
+
+## Code Structure Requirements
+
+Organize the code clearly using functions such as:
+
+- `loadTables()` or equivalent, if needed
+- `spinBaseGame()`
+- `generateWindow()`
+- `evaluateBaseGame()`
+- `evaluateLineWins()` / `evaluateWaysWins()`, depending on the game
+- `checkFeatureTrigger()`
+- `playFreeGames()`, if applicable
+- `playRespinFeature()`, if applicable
+- `evaluateSpecialFeature()`, if applicable
+- `updateStatistics()`
+- `printResults()`
+
+Use structs/classes where useful, for example:
+
+- `GameConfig`
+- `SpinResult`
+- `FeatureResult`
+- `Statistics`
+- `ReelSet`
+- `Paytable`
+- `Symbol`
+- `Window`
+
+Do not over-engineer the code, but make it modular enough for validation and future changes.
+
+---
+
+## Excel Data Handling
+
+Read the Excel file carefully and extract all relevant values manually into the C++ code as constants/tables unless the project already has an Excel-reading framework.
+
+For every major table copied from Excel, add a comment showing:
+
+- Which Excel sheet it came from
+- What the table represents
+- Any assumptions made while converting it into C++
+
+Example:
+
+```cpp
+// Source: Excel sheet "Base_Reels"
+// Represents base game reel strips for the default reel set.
+If any required table is unclear, missing, or inconsistent, add a TODO comment in core_new.cpp and implement the safest interpretation based on Game_Rules.
+
+Validation Requirements
+
+Where possible, include counters that help validate the simulation against the Excel model, such as:
+
+Trigger counts by feature type
+Symbol occurrence counts
+Reelset usage counts
+Window size counts, if the game has changing windows
+Feature entry counts
+Feature completion counts
+Retrigger counts
+Jackpot hit counts
+Bonus table selection counts
+Any weighted table selection distribution
+
+The goal is to make the simulation easy to verify against the math model.
+
+Random Selection Requirements
+
+For all weighted tables:
+
+Implement weighted random selection correctly.
+Use integer weights where possible.
+Do not normalize weights unless required.
+Ensure zero-weight entries cannot be selected.
+Add helper functions for weighted selection.
+
+Example expected helper:
+
+int weightedPick(const std::vector<int>& weights);
+
+or equivalent matching the reference style.
+
+Important Comments
+
+Add comments for all non-obvious math or feature logic.
+
+Especially comment:
+
+Feature trigger conditions
+Feature progression
+Prize assignment
+Retrigger rules
+Jackpot rules
+Multiplier rules
+Caps and max win handling
+Any direct EV substitution, if used
+Any assumption caused by unclear documentation
+Output File
+
+Create the final C++ code in a new file:
+
+core_new.cpp
+
+Do not create or modify any other source code file unless absolutely required for compilation. If additional files are necessary, explain why in comments and do not touch the reference file.
+
+Final Response Requirement
+
+After generating core_new.cpp, provide a short summary listing:
+
+What files were used as source references
+What game components were implemented
+What assumptions or TODOs remain
+How to compile and run the new file
+What output/statistics the simulation prints
+
+Do not claim the simulation is fully validated unless it has actually been cross-checked against expected Excel outputs.
+

@@ -1,0 +1,18 @@
+{
+    "feature_name": "GIRDER TRIGGER",
+    "written_rules": [
+        "If 1-5 scatters land, then the difference needed to trigger the feature with 6 scatters will be added to the reels.",
+        "During the base game if 5 or 6 scatters except SUPER SAW HARD HAT land, a SUPER SAW HARD HAT may be thrown onto the reels."
+    ],
+    "symbol_frame_progression": {
+        "Mystery Stacked Reels": {
+            "description": "Once the reel spin initiates, each reel may contain a number of positions that are randomly replaced with PIGGY1, PIGGY2, PIGGY3, TOOLBOX or TAPE"
+        }
+    },
+    "conditions_triggers": {
+        "GIRDER TRIGGER": {
+            "trigger_conditions": "If 1-5 scatters land",
+            "additional_trigger_conditions": "If 5 or 6 scatters except SUPER SAW HARD HAT land"
+        }
+    }
+}

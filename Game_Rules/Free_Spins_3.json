@@ -1,0 +1,31 @@
+{
+    "feature_name": "FREE SPINS FEATURE",
+    "written_rules": [
+        "During the FREE SPINS FEATURE, HORIZONTAL SAW HARD HAT, VERTICAL SAW HARD HAT symbols and HAZARD HARD HAT symbol only appears on reels 1, 3, and 5.",
+        "During the FREE SPINS FEATURE, WILD symbol only appears on reels 2 and 3.",
+        "An alternate set of reels is used during the FREE SPINS FEATURE. Winning combinations for these reels are identical to the base game except SUPER SAW HARD HAT symbol does not appear. Prizes are awarded as shown."
+    ],
+    "symbol_frame_progression": {
+        "HORIZONTAL SAW HARD HAT": [
+            "reels 1",
+            "reels 3",
+            "reels 5"
+        ],
+        "VERTICAL SAW HARD HAT": [
+            "reels 1",
+            "reels 3",
+            "reels 5"
+        ],
+        "HAZARD HARD HAT": [
+            "reels 1",
+            "reels 3",
+            "reels 5"
+        ],
+        "WILD": [
+            "reels 2",
+            "reels 3"
+        ]
+    },
+    "table_mappings": {},
+    "conditions_triggers": {}
+}

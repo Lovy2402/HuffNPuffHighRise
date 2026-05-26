@@ -1,0 +1,23 @@
+{
+    "feature_name": "BASE GAME",
+    "written_rules": [
+        "Before the base game reel spin initiates, a base game reel set is chosen from multiple possible reel sets.",
+        "HORIZONTAL SAW HARD HAT, VERTICAL SAW HARD HAT, HAZARD HARD HAT and SUPER SAW HARD HAT symbols are WILD for HARD HAT symbol.",
+        "Before the base game reel spin initiates, a number of positions may be randomly replaced with HARD HAT, HORIZONTAL SAW HARD HAT and/or VERTICAL SAW HARD HAT symbols.",
+        "The base game starts with the bottom 3 rows of the grid active. If HAZARD HARD HAT symbol lands on an active row during the base game, then 1-3 additional rows will become active. HAZARD HARD HAT symbol only appears on reels 1, 3, and 5 during the base game."
+    ],
+    "symbol_frame_progression": {
+        "symbols": [
+            "HORIZONTAL SAW HARD HAT",
+            "VERTICAL SAW HARD HAT",
+            "HAZARD HARD HAT",
+            "SUPER SAW HARD HAT"
+        ],
+        "frames": [
+            "bottom 3 rows"
+        ]
+    },
+    "conditions_triggers": {
+        "trigger": "HAZARD HARD HAT symbol landing on an active row during the base game"
+    }
+}

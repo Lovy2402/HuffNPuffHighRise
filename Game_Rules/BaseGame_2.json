@@ -1,0 +1,16 @@
+{
+    "feature_name": "HARD HAT Symbols",
+    "written_rules": [
+        "During the base game, 1-5 HARD HAT, HORIZONTAL SAW HARD HAT, VERTICAL SAW HARD HAT and/or SUPER SAW HARD HAT symbols may be placed on active rows.",
+        "HORIZONTAL SAW HARD HAT, VERTICAL SAW HARD HAT symbols do not appear on reel 4 during the base game, except via placement.",
+        "SUPER SAW HARD HAT symbol only appears via placement."
+    ],
+    "symbol_frame_progression": {
+        "HARD HAT": "active",
+        "HORIZONTAL SAW HARD HAT": "active",
+        "VERTICAL SAW HARD HAT": "active",
+        "SUPER SAW HARD HAT": "active"
+    },
+    "table_mappings": {},
+    "conditions_triggers": {}
+}

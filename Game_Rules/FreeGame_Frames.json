@@ -1,0 +1,22 @@
+{
+    "feature_name": "FREE SPINS FEATURE",
+    "written_rules": "During the FREE SPINS FEATURE and the SUPER SAW FREE SPINS, for each HARD HAT symbol that lands on a position without BRICK FRAME, a new frame is added to the position or the existing frame is upgraded.",
+    "symbol_frame_progression": {
+        "HARD HAT": {
+            "BRICK FRAME": "BRICK FRAME"
+        }
+    },
+    "table_mappings": {
+        "Current Frame": [
+            "NONE",
+            "BRICK FRAME"
+        ],
+        "Replacement Frame": [
+            "BRICK FRAME",
+            "BRICK FRAME"
+        ]
+    },
+    "conditions_triggers": {
+        "HARD HAT": "landing on a position without BRICK FRAME"
+    }
+}

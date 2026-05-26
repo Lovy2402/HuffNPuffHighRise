@@ -1,0 +1,26 @@
+{
+    "feature_name": "FREE SPINS FEATURE and SUPER SAW FREE SPINS",
+    "written_rules": [
+        "During the FREE SPINS FEATURE and the SUPER SAW FREE SPINS, for each HARD HAT symbol that lands on an active position with BRICK FRAME, an existing frame on a different active position is upgraded, a new frame is added to a different active position, or a prize is awarded, based on the rules below:",
+        "- If there exists an active position with STICK FRAME, then a randomly chosen STICK FRAME is upgraded to BRICK FRAME.",
+        "- Otherwise, if there exists an active position with STRAW FRAME, then a randomly chosen STRAW FRAME is upgraded to STICK FRAME.",
+        "- Otherwise, if there exists a frameless active position, then STRAW FRAME is added to a randomly chosen frameless position.",
+        "- Otherwise, 10x total bet is awarded."
+    ],
+    "symbol_frame_progression": {
+        "HARD HAT": {
+            "BRICK FRAME": [
+                "STICK FRAME",
+                "STRAW FRAME"
+            ],
+            "STICK FRAME": [
+                "BRICK FRAME"
+            ],
+            "STRAW FRAME": [
+                "STICK FRAME"
+            ]
+        }
+    },
+    "table_mappings": {},
+    "conditions_triggers": {}
+}

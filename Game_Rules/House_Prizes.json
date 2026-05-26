@@ -1,0 +1,18 @@
+{
+    "feature_name": "FREE SPINS FEATURE",
+    "written_rules": "At the end of the FREE SPINS FEATURE and the SUPER SAW FREE SPINS, each active position with STRAW FRAME, STICK FRAME, or BRICK FRAME is replaced with STRAW HOUSE, STICK HOUSE, or BRICK HOUSE, respectively, and each house reveals and awards a prize or jackpot based on the tables below.",
+    "symbol_frame_progression": {
+        "STRAW FRAME": "STRAW HOUSE",
+        "STICK FRAME": "STICK HOUSE",
+        "BRICK FRAME": "BRICK HOUSE"
+    },
+    "table_mappings": {
+        "STRAW HOUSE": "0.50x - 1x total bet.",
+        "STICK HOUSE": "1.5x - 4.5x total bet.",
+        "BRICK HOUSE": "7.5x - 150x total bet, Mini, Minix2, Minor, Major or Grand."
+    },
+    "conditions_triggers": [
+        "FREE SPINS FEATURE",
+        "SUPER SAW FREE SPINS"
+    ]
+}

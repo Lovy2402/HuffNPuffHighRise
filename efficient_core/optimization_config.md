@@ -251,3 +251,42 @@ g++ -O3 -std=c++17 -Wall -Wextra game.cpp -o /tmp/game
 /tmp/game --spins 1000000 --seed 123456789 --threads 4 --rtp-output outputs/rtp_report.txt --symbol-output outputs/symbol_distribution.csv
 python3 validation/validate_game.py
 ```
+
+## Core New Task 2/3 Additions
+
+New files:
+
+- `efficient_core/efficient_core_new.cpp`: optimized backend for `core_new.cpp` behavior.
+- `game_new.cpp`: user-facing runner using `efficient_core/efficient_core_new.cpp` as its backend.
+
+`efficient_core_new.cpp` keeps the Task 4 source assumptions from `core_new.cpp`:
+
+- Game flow and feature behavior come from `Game_Rules/*.json`.
+- Weights/prizes/reelset skeleton come from `Huff_N_Puff_Highrise_Math_Model_12_Reelsets.xlsx`.
+- Final reel strips are still unavailable; placeholder 100-stop strips use the workbook skeleton counts.
+- Final symbol paytable is still unavailable; base ways wins remain instrumented and pay zero.
+
+Optimization notes for `core_new.cpp` behavior:
+
+- Moved RNG into an `Engine` object so each worker owns independent deterministic state.
+- Replaced dynamically sized reel strips with fixed `array<Symbol, 100>` strips matching the workbook skeleton length.
+- Kept 6x5 windows as fixed `std::array` values.
+- Added thread-local `Statistics` aggregation and final merge with all worker threads joined.
+- Default thread count is conservative via `defaultThreadCount()`, roughly 8-10% of hardware threads.
+- `--threads N` is an explicit cap; `--single-thread` is the deterministic equivalence mode.
+
+Compile and smoke-test commands:
+
+```bash
+g++ -O3 -std=c++17 -Wall -Wextra efficient_core/efficient_core_new.cpp -o /tmp/efficient_core_new
+/tmp/efficient_core_new --spins 1000 --seed 123456789 --single-thread --output /tmp/RTP_summary_new.md --symbol-output /tmp/symbol_distribution_new.csv
+/tmp/efficient_core_new --spins 1000 --seed 123456789 --threads 2 --output /tmp/RTP_summary_new_threads.md --symbol-output /tmp/symbol_distribution_new_threads.csv
+
+g++ -O3 -std=c++17 -Wall -Wextra game_new.cpp -o /tmp/game_new
+/tmp/game_new --spins 1000 --seed 123456789 --single-thread --rtp-output /tmp/rtp_report_new.md --symbol-output /tmp/symbol_win_distribution_new.csv
+```
+
+Single-thread validation status:
+
+- `core_new.cpp`, `efficient_core_new.cpp`, and `game_new.cpp` produce the same 1,000-spin fixed-seed totals for seed `123456789`.
+- Full math validation is not claimed because the workbook does not include final reel strips or a base paytable.

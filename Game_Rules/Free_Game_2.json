@@ -1,0 +1,10 @@
+{
+    "feature_name": "FREE SPINS FEATURE",
+    "written_rules": "A frame appearing on a position is held for the remainder of the FREE SPINS FEATURE and the SUPER SAW FREE SPINS. Each position may have only 1 frame at a given time.",
+    "symbol_frame_progression": {
+        "FREE SPINS FEATURE": "A frame appears on a position and remains there until the end of the FREE SPINS FEATURE.",
+        "SUPER SAW FREE SPINS": "A frame appears on a position and remains there until the end of the SUPER SAW FREE SPINS."
+    },
+    "table_mappings": {},
+    "conditions_triggers": {}
+}
