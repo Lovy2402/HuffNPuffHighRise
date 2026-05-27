@@ -501,3 +501,362 @@ What output/statistics the simulation prints
 
 Do not claim the simulation is fully validated unless it has actually been cross-checked against expected Excel outputs.
 
+
+
+
+## Task 5
+
+##Task: Verify Claude_Review.md Against Excel Math Model and Game Rules
+
+You are reviewing a C++ slot game simulation project.
+
+## Context
+
+The current project contains:
+
+- `core_new.cpp`  
+  This is the C++ simulation file previously generated/modified after comparison with the math model and game rules.
+
+- `Huff_N_Puff_Highrise_Math_Model_12_Reelsets.xlsx`  
+  This Excel file is the primary math model and source of truth for reelsets, feature logic, weights, tables, credit values, RTP structure, window expansion, and intended game behavior.
+
+- `Game_Rules/`  
+  This folder contains the written rules and game flow instructions. Use this as the secondary source of truth after the Excel file.
+
+- `Claude_Review.md`  
+  This file contains Claude’s review/analysis and the issues/differences that need to be independently verified.
+
+## Goal
+
+Verify whether the issues, differences, and correction suggestions raised in `Claude_Review.md` are actually correct.
+
+You must compare Claude’s claims against:
+
+1. `Huff_N_Puff_Highrise_Math_Model_12_Reelsets.xlsx`
+2. `Game_Rules/`
+3. The current implementation in `core_new.cpp`
+
+Do not assume Claude’s review is correct. Treat `Claude_Review.md` as a hypothesis that needs independent verification.
+
+---
+
+## Important Rules
+
+- Treat the Excel math model as the primary source of truth.
+- Treat the `Game_Rules/` folder as the secondary source of truth.
+- Treat `core_new.cpp` as the current implementation to be reviewed.
+- Treat `Claude_Review.md` only as a list of claims to verify, not as the source of truth.
+- Do not modify `core_new.cpp`.
+- Do not modify the Excel file.
+- Do not modify files inside `Game_Rules/`.
+- Do not modify `Claude_Review.md`.
+- Do not rewrite the full simulation unless absolutely necessary.
+- Preserve the existing code style and structure as much as possible.
+- Only make code changes if an issue from `Claude_Review.md` is confirmed to be valid.
+- If an issue is unclear, ambiguous, or contradicted by the Excel/Game Rules, do not blindly implement it.
+
+---
+
+## Required Review Process
+
+For each issue, difference, or correction suggestion mentioned in `Claude_Review.md`, perform the following:
+
+### 1. Identify Claude’s Claim
+
+Clearly restate the issue Claude raised.
+
+Include:
+
+- What Claude says is wrong or inconsistent
+- Which function, section, table, feature, or game behavior Claude is referring to
+- Whether Claude suggested a code change
+- Whether the claim relates to:
+  - Base game
+  - Free game
+  - Feature trigger
+  - Respins
+  - Window expansion
+  - Credit collection
+  - Reelsets
+  - Weights/tables
+  - RTP reporting
+  - Hit frequency reporting
+  - Simulation output
+  - Any other section
+
+### 2. Validate Against Source of Truth
+
+Check the issue against:
+
+- Relevant Excel sheets/tables/cells
+- Relevant files or sections inside `Game_Rules/`
+- Relevant code sections in `core_new.cpp`
+
+Determine whether Claude’s issue is:
+
+- Correct
+- Incorrect
+- Partially correct
+- Ambiguous / needs clarification
+- Already handled correctly in `core_new.cpp`
+
+### 3. Explain the Verdict
+
+For each issue, explain:
+
+- Whether the issue is valid or not
+- Why it is valid or invalid
+- Which Excel table/sheet/rule supports the conclusion
+- Which code section confirms or contradicts it
+- Whether a code change is required
+
+### 4. Apply Changes Only If Needed
+
+If one or more issues from `Claude_Review.md` are confirmed as valid and require code changes:
+
+- Create a new C++ file named:
+
+```text
+core_new2.cpp
+Base it on the current core_new.cpp
+Apply only the necessary changes
+Do not remove unrelated code
+Do not refactor unrelated sections
+Do not change formatting unnecessarily
+Add comments only where useful for explaining corrected logic
+
+If all Claude issues are invalid, ambiguous, or do not require code changes:
+
+Still create core_new2.cpp as a copy of core_new.cpp
+Do not change behavior
+Mention clearly in the reports that no behavioral changes were required
+Required Output Files
+
+You must create the following files:
+
+1. core_new2.cpp
+
+This should contain the corrected implementation if valid issues are found.
+
+Rules:
+
+Start from core_new.cpp
+Make only verified corrections
+Preserve existing structure and style
+Do not delete existing functionality
+Do not introduce unrelated improvements
+Do not alter simulation reporting unless the verified issue specifically requires it
+Every behavioral change must be traceable to a verified issue from Claude_Review.md
+2. Claude_Review_Verification_Report.md
+
+This file should explain whether the issues in Claude_Review.md are correct or not.
+
+Use this structure:
+
+# Claude Review Verification Report
+
+## Source Files Reviewed
+
+- core_new.cpp
+- Huff_N_Puff_Highrise_Math_Model_12_Reelsets.xlsx
+- Game_Rules/
+- Claude_Review.md
+
+## Executive Summary
+
+Briefly summarize:
+
+- How many issues/differences Claude raised
+- How many were valid
+- How many were invalid
+- How many were partially valid
+- How many were ambiguous
+- Whether code changes were made in core_new2.cpp
+- Whether core_new2.cpp has behavioral changes or is only a copy of core_new.cpp
+
+---
+
+## Issue-by-Issue Verification
+
+### Issue 1: <Issue Name>
+
+#### Claude’s Claim
+Explain what Claude claimed in Claude_Review.md.
+
+#### Source of Truth Check
+Mention relevant Excel sheets/tables/rules.
+
+#### Code Check
+Mention relevant function/logic in core_new.cpp.
+
+#### Verdict
+Choose one:
+
+- Valid
+- Invalid
+- Partially valid
+- Ambiguous
+- Already correctly implemented
+
+#### Explanation
+Explain the reasoning clearly.
+
+#### Required Action
+Mention whether code change was needed.
+
+---
+
+Repeat this section for every issue/difference mentioned in Claude_Review.md.
+
+---
+
+## Final Conclusion
+
+Explain whether Claude_Review.md should be accepted fully, partially, or rejected.
+
+Mention:
+
+- Which issues were genuinely valid
+- Which issues were not valid
+- Which issues need human confirmation
+- Whether core_new2.cpp should replace core_new.cpp or only be reviewed as an alternative
+3. Claude_Review_Changes_And_Purpose.md
+
+This file should explain every code change made in core_new2.cpp.
+
+Use this structure:
+
+# Changes Made in core_new2.cpp
+
+## Summary
+
+Explain whether code changes were made.
+
+Mention clearly:
+
+- Whether core_new2.cpp contains behavioral changes
+- Whether it is only a copy of core_new.cpp
+- Which Claude_Review.md issues resulted in code changes
+
+---
+
+## Change 1: <Change Name>
+
+### Related Claude Review Issue
+Mention which issue from Claude_Review.md this change addresses.
+
+### Why This Change Was Needed
+Explain the mismatch between core_new.cpp and the Excel/Game Rules.
+
+### What Was Changed
+Explain the exact logic/code modified.
+
+### Expected Impact
+Explain how this affects any relevant area:
+
+- Feature logic
+- RTP
+- Hit frequency
+- Window behavior
+- Credit collection
+- Respin behavior
+- Reelset selection
+- Free game behavior
+- Base game behavior
+- Reporting output
+- Any other simulation result
+
+### Risk / Notes
+Mention any assumptions or areas requiring further validation.
+
+---
+
+Repeat for each change.
+
+---
+
+## No-Change Items
+
+List any Claude_Review.md issues that did not result in code changes and explain why.
+4. Claude_Review_Issue_Clarifications.md
+
+Create this file to separate confirmed issues from unclear or invalid ones.
+
+Use this structure:
+
+# Claude Review Issue Clarifications
+
+## Purpose
+
+This file clarifies whether each issue from Claude_Review.md requires a code fix, explanation only, or no action.
+
+---
+
+## Confirmed Valid Issues
+
+List issues that were valid and required code changes.
+
+For each one, include:
+
+- Issue summary
+- Reason it is valid
+- Code area affected
+- Whether it was fixed in core_new2.cpp
+
+---
+
+## Valid But No Code Change Required
+
+List issues where Claude’s concern is conceptually correct, but the existing code already handles it or no code change is needed.
+
+---
+
+## Invalid Issues
+
+List issues where Claude’s claim is contradicted by the Excel model, Game Rules, or existing code.
+
+For each one, include:
+
+- Claude’s claim
+- Why it is incorrect
+- Supporting evidence from Excel/Game Rules/code
+
+---
+
+## Ambiguous Issues / Needs Human Confirmation
+
+List issues where the Excel model or Game Rules are unclear.
+
+For each one, include:
+
+- What is unclear
+- Which source is ambiguous
+- What question should be asked before changing code
+- Suggested code approach if the interpretation is confirmed
+Additional Validation Requirements
+
+After creating core_new2.cpp, verify that:
+
+It compiles successfully.
+It does not break existing simulation flow.
+It preserves existing output behavior unless a verified issue requires output changes.
+Any new logic is isolated and easy to review.
+Any changes are traceable back to a specific issue in Claude_Review.md.
+No unverified Claude suggestion has been implemented.
+No unrelated refactoring or cleanup has been done.
+
+If compilation is not possible in the environment, state this clearly in the markdown reports.
+
+Final Response Required From Codex
+
+At the end, summarize:
+
+Whether Claude_Review.md was mostly correct, partially correct, or mostly incorrect
+Which issues were valid
+Which issues were rejected
+Which issues were ambiguous
+Whether core_new2.cpp contains behavioral changes
+Which markdown files were created
+Any remaining questions that need human confirmation
+
+Do not make assumptions beyond the Excel file, Game Rules, current code, and Claude_Review.md.

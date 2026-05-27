@@ -218,6 +218,43 @@ Fixed-seed single-thread result for all three new executables:
 - Girder triggers: `2`
 - Mystery Stack triggers: `132`
 
+## Task 5 Current State
+
+Artifacts:
+
+- `core_new2.cpp`: Task 5 corrected alternative based on `core_new.cpp`.
+- `Claude_Review_Verification_Report.md`: issue-by-issue verification against Excel, `Game_Rules/`, and code.
+- `Claude_Review_Changes_And_Purpose.md`: traceability for each code change in `core_new2.cpp`.
+- `Claude_Review_Issue_Clarifications.md`: confirmed, no-change, and ambiguous issue buckets.
+- `outputs/RTP_summary_core_new2_smoke.md`: 1,000-spin smoke output.
+
+Verified changes in `core_new2.cpp`:
+
+- Saw paths skip `BRICK_FRAME` cells.
+- Trigger-window saw symbols execute before spin 1.
+- Base-game `HAZARD_HARD_HAT` placement is restricted to reels 1, 3, and 5.
+- Normal FS `HAZARD_HARD_HAT`, `HORIZONTAL_SAW_HARD_HAT`, and `VERTICAL_SAW_HARD_HAT` placement is restricted to reels 1, 3, and 5.
+- RTP output labels clarify overflow/jackpot are subcomponents included in feature totals.
+- Base reelset usage label clarifies R1 is the 3-row base spin and R2-R4 are not re-spun after Hazard expansion.
+
+Ambiguous / unresolved:
+
+- Normal FS WILD reel restriction conflicts: Excel `Reelsets_12` gives WILDs on reels 2-5, while `Game_Rules/Free_Spins_3.json` says reels 2-3 only.
+- Girder Super Saw throw for exactly 6 non-Super-Saw HHs lacks Excel probability and add/replace mechanics.
+- Super Saw FS overflow table is not separately supplied; current code uses FS-D.
+- Final reel strips and paytable remain unavailable, so full RTP validation is still blocked.
+
+Validation performed:
+
+```bash
+g++ -std=c++17 -O2 -Wall -Wextra -pedantic core_new2.cpp -o /tmp/core_new2_check
+/tmp/core_new2_check --spins 1000 --seed 123 --output outputs/RTP_summary_core_new2_smoke.md
+```
+
+Recommended next step:
+
+- Review the Task 5 markdown reports and resolve the listed source conflicts before promoting `core_new2.cpp` over `core_new.cpp`.
+
 Recommended next step:
 
 - Supply final reel strips and base paytable from the math model, then replace placeholder strip/paytable TODOs and rerun equivalence checks.
